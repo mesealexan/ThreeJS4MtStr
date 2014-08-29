@@ -46,27 +46,30 @@ body {
   <body>
 <div id="container"></div>    
 <div id="text"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
-<div id="local"> <u>Local</u><br> X: <br> Y:<br> Z:</div>
+<div id="local"> <u>To Parent / Local</u><br> X: <br> Y:<br> Z:</div>
 <button id="downloadLink" onclick="createText()">XML</button>
 </a>
     <script>
 
+var accuracy = 4;
+
 function createText(){
-var childWindowName = open('coordinates.xml','childWindowName','overflow: visible');
-childWindowName.document.bgColor='000000';
+var coordinatesWindow = open('coordinates.xml','coordinatesWindow','');
+coordinatesWindow.document.bgColor='000000';
+//coordinatesWindow.document.style.fontSize = '40px';
 if(ray_objects)
     for(i=0;i<ray_objects.length;i++){
         var vector = new THREE.Vector3();
-        childWindowName.document.write(
-            "<h" + i+1 + "style='font-size:16px; overflow: visible'><b>" + ray_objects[i].name + "</b><hr>" +
+        coordinatesWindow.document.write(
+            "<h" + i+1 + "<b>" + ray_objects[i].name + "</b><hr>" +
                 "<u>  World</u><br>" +
-                "   X:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x + "<br>" +
-                "   Y:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y + "<br>" +
-                "   Z:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z + "<br>" +
-                "<u>  Local</u><br>" +
-                "   X:" + ray_objects[i].position.x + "<br>" +
-                "   Y:" + ray_objects[i].position.x + "<br>" +
-                "   Z:" + ray_objects[i].position.x + "<br><br><br>" )
+                "   X:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x).toFixed(accuracy) + "<br>" +
+                "   Y:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y).toFixed(accuracy) + "<br>" +
+                "   Z:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" +
+                "<u>To " + ray_objects[i].parent.parent.name  +  " / Local</u><br>" +
+                "   X:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).x).toFixed(accuracy) + "<br>" +
+                "   Y:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).y).toFixed(accuracy) + "<br>" +
+                "   Z:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).z).toFixed(accuracy) + "<br><br><br>" )
     }
 }
 
@@ -93,9 +96,12 @@ var PipeS_OD =1.1875 , PipeS_tnom = 0.322;
 var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
 var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
 var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
+var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
+var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
+
 
 //Objects in the scene
-var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper;
+var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper, UBolt1, UBolt2, Nut1_1, Nut1_2;
 
 var ray_objects = [];
 
@@ -206,12 +212,40 @@ function setupGui() {
 }
 
 function draw(){
+
     var material  = new THREE.MeshNormalMaterial();
+    var material2  = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCC3399, shininess: 20 } );
+
+    UBolt1 = new THREE.Object3D();
+    UBolt1.name = "UBolt1"
+    drawUBolt(UBolt1,UB_rad, UB_thick, UB_Length, material2);
+    UBolt1.position.y = UB_Length;
+
+
+    Nut1_1 = new THREE.Object3D();
+    Nut1_1.name = "Nut1_1";
+    createMbr(Nut1_1, drawNut(Nut_rad), Nut_thick, material2, true);
+    Nut1_1.rotation.x = Math.PI/2;
+    Nut1_1.position.x = -UB_rad;
+    Nut1_1.position.y = -Nut_thick*1.3;
+    UBolt1.add(Nut1_1);
+
+    Nut1_2 = new THREE.Object3D();
+    Nut1_2.name = "Nut1_2";
+    createMbr(Nut1_2, drawNut(Nut_rad), Nut_thick, material2, true);
+    Nut1_2.rotation.x = Math.PI/2;
+    Nut1_2.position.x = UB_rad;
+    Nut1_2.position.y = -Nut_thick*1.3;
+
+    UBolt1.add(Nut1_2);
+
+    //scene.add(UBolt1);
 
     ExArm = new THREE.Object3D();
     ExArm.name = "ExArm"
     ExArm.Length = 36;
     createMbr( ExArm, drawSection('HHS','W44X335') , ExArm.Length , material , false);
+
 
     ExPipe = new THREE.Object3D(); 
     ExPipe.name = "ExPipe"
@@ -220,6 +254,16 @@ function draw(){
     ExPipe.rotation.x = Math.PI/2;
     ExPipe.position.z = ExArm.Length;
     ExArm.add(ExPipe)
+
+
+    UBolt1.position.z = ExPipe.Length/2 * 0.5;
+
+    UBolt2 = UBolt1.clone();
+
+    UBolt2.position.z = -ExPipe.Length/2 * 0.5;
+    UBolt2.name = "UBolt2";
+    ExPipe.add(UBolt2)
+    ExPipe.add(UBolt1)
 
     LSCPlate = new THREE.Object3D();
     LSCPlate.name = "LSCPlate"
@@ -276,9 +320,10 @@ function draw(){
     scene.add( ExArm );
     
 }
+var parentName;
 function onMouseDown( event_info ) 
         {
-
+        
         event_info.preventDefault();  
         mouse.x = ( event_info.clientX / SCREEN_WIDTH ) * 2 - 1;
         mouse.y = - ( event_info.clientY / SCREEN_HEIGHT ) * 2 + 1; 
@@ -287,9 +332,12 @@ function onMouseDown( event_info )
         var direction = mouse_vector.sub( camera.position ).normalize();
         ray.set( camera.position, direction );
         intersects = ray.intersectObjects(ray_objects, false );
+
             if(intersects.length>0)
             {
+
                 Intersected = intersects[0].object;
+                parentName = Intersected.parent.parent.name;
                 var vector = new THREE.Vector3();
                 axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
                 axis.position.y = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y;
@@ -299,13 +347,13 @@ function onMouseDown( event_info )
                 axis.rotation.z = intersects[0].object.rotation.z;
                 world_text = document.getElementById("text").innerHTML = 
                 intersects[0].object.name + '<br>' + '<u>World</u> <BR>' +
-                'X: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x + '<br>' +  
-                'Y: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y + '<br>' + 
-                'Z: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z;
-                local_text = '<u>Local</u> <BR>' +
-                'X: ' +  intersects[0].object.position.x + '<br>' +  
-                'Y: ' + intersects[0].object.position.y + '<br>' + 
-                'Z: ' + intersects[0].object.position.z
+                'X: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
+                'Y: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
+                'Z: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z).toFixed(accuracy);
+                local_text = '<u> To '+ parentName +' / Local</u> <BR>' +
+                'X: ' +  (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
+                'Y: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
+                'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
                 document.getElementById("text").innerHTML = world_text;
                 document.getElementById("local").innerHTML = local_text;
             }
