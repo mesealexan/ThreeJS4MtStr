@@ -7,7 +7,6 @@ body {
     font-family: monospace;
     background-color: #F5F5F5;
     margin: 0px;
-    overflow: hidden;
 }
 
 #container {
@@ -53,13 +52,13 @@ body {
     <script>
 
 function createText(){
-var childWindowName = open('coordinates.xml','childWindowName','properties of window');
+var childWindowName = open('coordinates.xml','childWindowName','overflow: visible');
 childWindowName.document.bgColor='000000';
 if(ray_objects)
     for(i=0;i<ray_objects.length;i++){
         var vector = new THREE.Vector3();
         childWindowName.document.write(
-            "<h" + i+1 + "style='font-size:16px'><b>" + ray_objects[i].name + "</b><hr>" +
+            "<h" + i+1 + "style='font-size:16px; overflow: visible'><b>" + ray_objects[i].name + "</b><hr>" +
                 "<u>  World</u><br>" +
                 "   X:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x + "<br>" +
                 "   Y:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y + "<br>" +
@@ -89,23 +88,22 @@ var world_text, local_text;
 //Sections properties (to be read from SQL)
 var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1;
 var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
-var Pipe8_OD =4 , Pipe8_tnom = 0.322;
-var HHS_h = 8, HHS_b = 6 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
-var C_d = 10 , C_bf = 2.6 , C_tf = 0.436 , C_tw = 0.24 , C_xbar = 0.634;
+var Pipe_OD =2.25 , Pipe_tnom = 0.322;
+var PipeS_OD =1.1875 , PipeS_tnom = 0.322;
+var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
+var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
+var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
 
 //Objects in the scene
-var ExArm, ExPipe, LSCPlate;
+var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper;
 
 var ray_objects = [];
 
-try {
+
     init();
     setupGui()
     animate();
-} catch(e) {
-    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-    $('#container').append(errorReport+e);
-}
+
 
   
 function init()
@@ -116,7 +114,7 @@ function init()
     camera.position.set(-150,150,150);   
     scene.add(camera); 
 
-    axis = new THREE.AxisHelper(75);
+    axis = new THREE.AxisHelper(50);
     axis.position.set(0,0,0);
     axis.useQuaternion = true
     scene.add(axis); 
@@ -168,6 +166,14 @@ function update(){
 
     ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
     ExArm.position.y = effectController.EArmVO*100 + 20;
+    ExPipe.rotation.z = effectController.PlateHR*Math.PI/180;
+    LSCPlate1.position.z = effectController.mPipeAH*HangPipe.Length;
+    LSCPlate2.position.z = effectController.mPipeBH*HangPipe.Length;
+    Pipe1.position.z = effectController.mPipeAllV*Pipe1.Length;
+    Pipe1_Helper.rotation.z = effectController.mPipe1Rot*Math.PI/180;
+    Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
+    Pipe2_Helper.rotation.z = effectController.mPipe2Rot*Math.PI/180;
+    HangPipe.position.z = effectController.HArmHO*HangPipe.Length;
 }
 
 function setupGui() {
@@ -175,10 +181,13 @@ function setupGui() {
     effectController = {
         mPipeAllV: 0,
         mPipeAH:0.35,
+        mPipe1Rot: 0,
         mPipeBH:-0.35,
+        mPipe2Rot: 0,
         HArmHO:0,
         EArmVO:0,
-        EArmHR:0
+        EArmHR:0,
+        PlateHR:0
     };
 
     var gui = new dat.GUI();
@@ -186,10 +195,13 @@ function setupGui() {
     h = gui.addFolder("Mounting Structure");
     h.add(effectController, "mPipeAllV", -0.5, 0.5, 0.01).name("mPipes Vertical");
     h.add(effectController, "mPipeAH", -0.5, 0.5, 0.01).name("mPipe A Horizontal");
+    h.add(effectController, "mPipe1Rot", -90.0, 90.0, 0.025).name("mPipe A Rot");
     h.add(effectController, "mPipeBH", -0.5, 0.5, 0.01).name("mPipe B Horizontal");
+    h.add(effectController, "mPipe2Rot", -90.0, 90.0, 0.025).name("mPipe B Rot");
     h.add(effectController, "HArmHO", -0.5, 0.5, 0.01).name("H Arm Hori Offset");
     h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
     h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");
+    h.add(effectController, "PlateHR", -89.0, 89.0, 0.025).name("Rotate Plate");
     
 }
 
@@ -198,31 +210,71 @@ function draw(){
 
     ExArm = new THREE.Object3D();
     ExArm.name = "ExArm"
-    ExArm.Length = 50;
+    ExArm.Length = 36;
     createMbr( ExArm, drawSection('HHS','W44X335') , ExArm.Length , material , false);
 
     ExPipe = new THREE.Object3D(); 
     ExPipe.name = "ExPipe"
-    ExPipe.Length = 20;
-    createMbr( ExPipe, drawSection('Pipe8','W44X335') , ExPipe.Length , material , true);
+    ExPipe.Length = 12;
+    createMbr( ExPipe, drawSection('Pipe Large','W44X335') , ExPipe.Length , material , true);
     ExPipe.rotation.x = Math.PI/2;
     ExPipe.position.z = ExArm.Length;
     ExArm.add(ExPipe)
 
     LSCPlate = new THREE.Object3D();
     LSCPlate.name = "LSCPlate"
-    LSCPlate.Length = 20;
-    createMbr( LSCPlate, drawSection('C','W44X335') , LSCPlate.Length , material , true);
+    LSCPlate.Length = 12;
+    createMbr( LSCPlate, drawSection('Large Cross Plate','W44X335') , LSCPlate.Length , material , true);
     LSCPlate.rotation.x = Math.PI/2;
     LSCPlate.rotation.y = -Math.PI/2;
-    LSCPlate.position.y = Pipe8_OD + C_bf/2;
+    LSCPlate.position.y = Pipe_OD + LCP_bf/2;
     ExPipe.add(LSCPlate);
 
-    var caca = new THREE.Object3D();
-    createMbr( caca, drawSection('Nut','W44X335') , 0.4 , material , true);
-    scene.add(caca)
-    scene.add( ExArm );
+    HangPipe = new THREE.Object3D();
+    HangPipe.name = "HangPipe"
+    HangPipe.Length = 150;
+    createMbr( HangPipe, drawSection('Pipe Large','W44X335') , HangPipe.Length , material , true);
+    HangPipe.position.x = -Pipe_OD - LCP_bf/2;
+    LSCPlate.add(HangPipe);
 
+    Pipe1_Helper = new THREE.Object3D(); 
+    HangPipe.add(Pipe1_Helper);
+
+    LSCPlate1 = new THREE.Object3D();
+    LSCPlate1.name = "LSCPlate1"
+    LSCPlate1.Length = 6;
+    createMbr( LSCPlate1, drawSection('Small Cross Plate','W44X335') , LSCPlate1.Length , material , true);
+    LSCPlate1.rotation.x = Math.PI/2;
+    LSCPlate1.position.x = -Pipe_OD - SCP_bf/2;
+    Pipe1_Helper.add(LSCPlate1);
+
+    Pipe1 = new THREE.Object3D(); 
+    Pipe1.name = "Pipe1"
+    Pipe1.Length = 63;
+    createMbr( Pipe1, drawSection('Pipe Small','W44X335') , Pipe1.Length , material , true);
+    Pipe1.position.x = -PipeS_OD - SCP_bf/2;
+    LSCPlate1.add(Pipe1)
+
+    Pipe2_Helper = new THREE.Object3D(); 
+    HangPipe.add(Pipe2_Helper);
+
+    LSCPlate2 = new THREE.Object3D();
+    LSCPlate2.name = "LSCPlate2"
+    LSCPlate2.Length = 6;
+    createMbr( LSCPlate2, drawSection('Small Cross Plate','W44X335') , LSCPlate2.Length , material , true);
+    LSCPlate2.rotation.x = Math.PI/2;
+    LSCPlate2.position.x = -Pipe_OD - SCP_bf/2;
+    Pipe2_Helper.add(LSCPlate2);
+
+    Pipe2 = new THREE.Object3D(); 
+    Pipe2.name = "Pipe2"
+    Pipe2.Length = 63;
+    createMbr( Pipe2, drawSection('Pipe Small','W44X335') , Pipe2.Length , material , true);
+    Pipe2.position.x = -PipeS_OD - SCP_bf/2;
+    LSCPlate2.add(Pipe2)
+
+    scene.add( ExArm );
+    
 }
 function onMouseDown( event_info ) 
         {
