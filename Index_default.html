@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+    <style>
+body {
+    font-family: monospace;
+    background-color: #F5F5F5;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+#text{
+    top:10px;
+    left: 20px;
+    color: #000;
+    position: fixed;
+    z-index: 100;
+}
+#local{
+    left: 250px;
+    top:10px;
+    color: #000;
+    position: fixed;
+    z-index: 100;
+}
+#downloadLink{
+    position: fixed;
+    top:10px;
+    left: 500px;
+    z-index: 100;
+}
+</style>
+    <script src="lib/jquery-1.8.3.min.js"></script>
+    <script src="lib/Coordinates.js"></script>
+    <script src="lib/three.min.js"></script>
+    <script src="lib/three.min.js"></script>
+    <script src="lib/OrbitAndPanControls.js"></script>
+    <script src="lib/dat.gui.min.js"></script>
+    <script src="lib/functions.js"></script>
+  </head>
+  <body>
+<div id="container"></div>    
+<div id="text"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
+<div id="local"> <u>Local</u><br> X: <br> Y:<br> Z:</div>
+<button id="downloadLink" onclick="createText()">XML</button>
+</a>
+    <script>
+
+function createText(){
+var childWindowName = open('coordinates.xml','childWindowName','properties of window');
+childWindowName.document.bgColor='000000';
+if(ray_objects)
+    for(i=0;i<ray_objects.length;i++){
+        var vector = new THREE.Vector3();
+        childWindowName.document.write(
+            "<h" + i+1 + "style='font-size:16px'><b>" + ray_objects[i].name + "</b><hr>" +
+                "<u>  World</u><br>" +
+                "   X:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x + "<br>" +
+                "   Y:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y + "<br>" +
+                "   Z:" + vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z + "<br>" +
+                "<u>  Local</u><br>" +
+                "   X:" + ray_objects[i].position.x + "<br>" +
+                "   Y:" + ray_objects[i].position.x + "<br>" +
+                "   Z:" + ray_objects[i].position.x + "<br><br><br>" )
+    }
+}
+
+
+
+var container, scene, camera, renderer, controls, effectController, Intersected;
+var SCREEN_WIDTH = window.innerWidth; 
+var SCREEN_HEIGHT = window.innerHeight; 
+//Variables for raycaster
+var projector = new THREE.Projector(), 
+    mouse_vector = new THREE.Vector3(),
+    mouse = { x: 0, y: 0, z: 1 },
+    ray = new THREE.Raycaster( new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0) );
+    intersects = []; 
+
+var axis;
+var world_text, local_text;
+
+//Sections properties (to be read from SQL)
+var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1;
+var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
+var Pipe8_OD =4 , Pipe8_tnom = 0.322;
+var HHS_h = 8, HHS_b = 6 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
+var C_d = 10 , C_bf = 2.6 , C_tf = 0.436 , C_tw = 0.24 , C_xbar = 0.634;
+
+//Objects in the scene
+var ExArm, ExPipe, LSCPlate;
+
+var ray_objects = [];
+
+try {
+    init();
+    setupGui()
+    animate();
+} catch(e) {
+    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+    $('#container').append(errorReport+e);
+}
+
+  
+function init()
+    {
+    scene = new THREE.Scene();
+    var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
+    camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+    camera.position.set(-150,150,150);   
+    scene.add(camera); 
+
+    axis = new THREE.AxisHelper(75);
+    axis.position.set(0,0,0);
+    axis.useQuaternion = true
+    scene.add(axis); 
+
+    renderer = new THREE.WebGLRenderer({antialias:true, alpha: true });
+    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT); 
+    renderer.domElement.addEventListener( 'mousedown', onMouseDown, false );
+    container = document.getElementById( 'container' ); 
+    container.appendChild( renderer.domElement ); 
+
+    cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
+    cameraControls.target.set(0,0,0); 
+
+    Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
+
+    var ambientLight = new THREE.AmbientLight( 0x222222 );
+    var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+    light.position.set( 200, 400, 500 );
+    var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+    light2.position.set( -500, 250, -200 );
+    scene.add(ambientLight);
+    scene.add(light);
+    scene.add(light2);
+    draw()
+    }
+
+function animate() 
+    {
+    requestAnimationFrame( animate ); 
+    renderer.render( scene, camera );   
+    cameraControls.update();
+    update();
+    }
+var position = new THREE.Vector3();
+var quaternion = new THREE.Quaternion();
+var scale = new THREE.Vector3();
+
+function update(){
+    if(Intersected)
+    {
+    Intersected.matrixWorld.decompose( position, quaternion, scale )
+    axis.position.copy(position);
+    axis.quaternion.x = quaternion.x;
+    axis.quaternion.y = quaternion.y;
+    axis.quaternion.z = quaternion.z;
+    axis.quaternion.w = quaternion.w;
+    axis.updateMatrixWorld( true );
+    }
+
+    ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
+    ExArm.position.y = effectController.EArmVO*100 + 20;
+}
+
+function setupGui() {
+
+    effectController = {
+        mPipeAllV: 0,
+        mPipeAH:0.35,
+        mPipeBH:-0.35,
+        HArmHO:0,
+        EArmVO:0,
+        EArmHR:0
+    };
+
+    var gui = new dat.GUI();
+       
+    h = gui.addFolder("Mounting Structure");
+    h.add(effectController, "mPipeAllV", -0.5, 0.5, 0.01).name("mPipes Vertical");
+    h.add(effectController, "mPipeAH", -0.5, 0.5, 0.01).name("mPipe A Horizontal");
+    h.add(effectController, "mPipeBH", -0.5, 0.5, 0.01).name("mPipe B Horizontal");
+    h.add(effectController, "HArmHO", -0.5, 0.5, 0.01).name("H Arm Hori Offset");
+    h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
+    h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");
+    
+}
+
+function draw(){
+    var material  = new THREE.MeshNormalMaterial();
+
+    ExArm = new THREE.Object3D();
+    ExArm.name = "ExArm"
+    ExArm.Length = 50;
+    createMbr( ExArm, drawSection('HHS','W44X335') , ExArm.Length , material , false);
+
+    ExPipe = new THREE.Object3D(); 
+    ExPipe.name = "ExPipe"
+    ExPipe.Length = 20;
+    createMbr( ExPipe, drawSection('Pipe8','W44X335') , ExPipe.Length , material , true);
+    ExPipe.rotation.x = Math.PI/2;
+    ExPipe.position.z = ExArm.Length;
+    ExArm.add(ExPipe)
+
+    LSCPlate = new THREE.Object3D();
+    LSCPlate.name = "LSCPlate"
+    LSCPlate.Length = 20;
+    createMbr( LSCPlate, drawSection('C','W44X335') , LSCPlate.Length , material , true);
+    LSCPlate.rotation.x = Math.PI/2;
+    LSCPlate.rotation.y = -Math.PI/2;
+    LSCPlate.position.y = Pipe8_OD + C_bf/2;
+    ExPipe.add(LSCPlate);
+
+    var caca = new THREE.Object3D();
+    createMbr( caca, drawSection('Nut','W44X335') , 0.4 , material , true);
+    scene.add(caca)
+    scene.add( ExArm );
+
+}
+function onMouseDown( event_info ) 
+        {
+
+        event_info.preventDefault();  
+        mouse.x = ( event_info.clientX / SCREEN_WIDTH ) * 2 - 1;
+        mouse.y = - ( event_info.clientY / SCREEN_HEIGHT ) * 2 + 1; 
+        mouse_vector.set( mouse.x, mouse.y, mouse.z );
+        projector.unprojectVector( mouse_vector, camera );
+        var direction = mouse_vector.sub( camera.position ).normalize();
+        ray.set( camera.position, direction );
+        intersects = ray.intersectObjects(ray_objects, false );
+            if(intersects.length>0)
+            {
+                Intersected = intersects[0].object;
+                var vector = new THREE.Vector3();
+                axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
+                axis.position.y = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y;
+                axis.position.z = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z;
+                axis.rotation.x = intersects[0].object.rotation.x;
+                axis.rotation.y = intersects[0].object.rotation.y;
+                axis.rotation.z = intersects[0].object.rotation.z;
+                world_text = document.getElementById("text").innerHTML = 
+                intersects[0].object.name + '<br>' + '<u>World</u> <BR>' +
+                'X: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x + '<br>' +  
+                'Y: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y + '<br>' + 
+                'Z: ' + vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z;
+                local_text = '<u>Local</u> <BR>' +
+                'X: ' +  intersects[0].object.position.x + '<br>' +  
+                'Y: ' + intersects[0].object.position.y + '<br>' + 
+                'Z: ' + intersects[0].object.position.z
+                document.getElementById("text").innerHTML = world_text;
+                document.getElementById("local").innerHTML = local_text;
+            }
+        }
+    </script>
+    </div>
+  </body>
+</html>
+
+

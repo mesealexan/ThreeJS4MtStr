@@ -57,7 +57,7 @@ width: 100%;
 <script src="lib/dat.gui.min.js"></script>
 <script src="lib/tween.min.js"></script>
 <script src="lib/sprintf.js"></script>
-
+<script src="lib/functions.js"></script>
 
 </head>
 <body>
@@ -118,6 +118,10 @@ var projector = new THREE.Projector(),
 var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1;
 var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
 var Pipe_OD =8.625 , Pipe_tnom = 0.322;
+var HHS_h = 8, HHS_b = 6 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
+var C_d = 10 , C_bf = 2.6 , C_tf = 0.436 , C_tw = 0.24 , C_xbar = 0.634;
+
+
 
 //Create an empty array that will hold all the geometry for picking
 var ray_objects = [];
@@ -151,7 +155,7 @@ var material = new THREE.LineBasicMaterial({
 	ExArm = new THREE.Object3D();
 	ExArm.name = "ExArm"
 	ExArm.Length = 50;
-	createMbr( ExArm, drawSection('L','W44X335') , ExArm.Length , robotHandLeftMaterial );
+	createMbr( ExArm, drawSection('HHS','W44X335') , ExArm.Length , robotHandLeftMaterial );
 
 
 	HangPipe = new THREE.Object3D();
@@ -169,6 +173,9 @@ var material = new THREE.LineBasicMaterial({
 	MtPipeB.name = "MtPipeB"
 	createMbr( MtPipeB, drawSection('Pipe','W44X335'), MtPipe.Mbr1Length , robotUpperArmMaterial );
 
+	MtCC = new THREE.Object3D();
+	createMbr( MtCC, drawSection('C','W44X335'), 8.25 , robotUpperArmMaterial );
+	scene.add(MtCC)
 
 	box = new THREE.Object3D();
 	MtPipeB.name = "box"
@@ -203,72 +210,6 @@ var material = new THREE.LineBasicMaterial({
 		axis = new THREE.AxisHelper(75);
 		axis.position.set(0,0,0)
 		scene.add(axis); 
-}
-function createMbr(object, shape, height, material){
-	var geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:height} );
-	geometry.computeFaceNormals()
-	var mesh = new THREE.Mesh( geometry, material );
-	object.add(mesh);  
-	mesh.name = object.name.toString();
-	//mesh.name = object.toString();
-	ray_objects.push(mesh) //Push all the geometry in the array for later picking
-}
-//Example of usage   drawI(23.6,7.01,20.75,0.395,0.505,1)
-
-function drawSection(shapeType,shapeSize){
-	if(shapeType === "I")
-		return(drawI(I_d,I_bf,I_T,I_tw,I_tf,I_k1))
-	if(shapeType === "L")
-		return(drawL(L_d,L_b,L_xbar,L_ybar,L_t))
-	if(shapeType === "Pipe")
-		return(drawPipe(Pipe_OD,Pipe_tnom))
-}
-
-function drawI(d,bf,T,tw,tf,k1){
-	var shape = new THREE.Shape();
-	shape.moveTo(-bf/2, -d/2);
-	shape.lineTo(bf/2, -d/2);
-	shape.lineTo(bf/2, -d/2 + tf);
-	shape.lineTo(k1, -d/2 + tf);
-	shape.lineTo(tw/2, -T/2);
-	shape.lineTo(tw/2, T/2);
-	shape.lineTo(k1, d/2 - tf); 
-	shape.lineTo(bf/2, d/2 - tf);
-	shape.lineTo(bf/2, d/2);
-	shape.lineTo(-bf/2, d/2);
-	shape.lineTo(-bf/2, d/2 - tf);
-	shape.lineTo(-k1, d/2 - tf);
-	shape.lineTo(-tw/2, T/2);
-	shape.lineTo(-tw/2, -T/2);
-	shape.lineTo(-k1, -d/2 + tf);
-	shape.lineTo(-bf/2, -d/2 + tf);
-	shape.lineTo(-bf/2, -d/2);
-	return(shape);
-}
-
-//Example of usage   drawPipe(8.625,0.322)
-function drawPipe(OD,tnom){
-	var arcShape = new THREE.Shape();
-    arcShape.absarc( 0, 0, OD, 0, Math.PI*2, true );
-
-	var holePath = new THREE.Path();
-    holePath.absarc(0, 0, OD-tnom, 0, Math.PI*2, false );
-    arcShape.holes.push( holePath );
-return(arcShape);
-}
-
-//Example of usage   drawL(5,3.5,0.854,1.6,0.375)
-function drawL(d,b,xbar,ybar,t){
-	var shape = new THREE.Shape();
-	shape.moveTo(-xbar,d-ybar);
-	shape.lineTo(-xbar+t,d-ybar-t);
-	shape.lineTo(-xbar+t,-ybar+t+t);
-	shape.lineTo(-xbar+t+t,-ybar+t);
-	shape.lineTo(-xbar+b-t,-ybar+t);
-	shape.lineTo(-xbar+b,-ybar);
-	shape.lineTo(-xbar,-ybar);
-	shape.lineTo(-xbar,d-ybar);
-	return(shape);
 }
 
 function init() {
