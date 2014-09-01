@@ -67,17 +67,20 @@ var world_text, local_text;
 var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1,I_height = 200;
 var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
 var Pipe_OD =2.25 , Pipe_tnom = 0.322;
-var PipeS_OD =1.1875 , PipeS_tnom = 0.322;
+var PipeS_OD =1 , PipeS_tnom = 0.322;
 var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
 var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
-var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
+var LCP_d = 10 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
 var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
-var UB_Length = 3.5, UB_Width = 2, UB_thread = 1.75, UB_thick = 0.3;
+var UB_Length = 7.6, UB_Width = 4.7, UB_thread = 2.75, UB_thick = 0.26;
+var UBT2_Length = 6.6, UBT2_Width = 4.7, UBT2_thread = 3.2, UBT2_thick = 0.26;
+
 var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
 
 
 //Objects in the scene
-var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper, UBolt1, UBolt2, Nut1_1, Nut1_2;
+var ExArm ; 
+var ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper, UBolt1, UBolt3, UBolt4 , UBolt5, UBolt6;
 var haha;
 var ray_objects = [];
 
@@ -86,16 +89,7 @@ var ray_objects = [];
     setupGui()
     animate();
 
-//I Section
-var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1;
-var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
-var Pipe_OD =2.25 , Pipe_tnom = 0.322;
-var PipeS_OD =1.1875 , PipeS_tnom = 0.322;
-var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
-var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
-var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
-var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
-var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
+
   
 function init()
     {
@@ -144,7 +138,7 @@ var quaternion = new THREE.Quaternion();
 var scale = new THREE.Vector3();
 
 function update(){
-    /*
+    
     if(Intersected)
     {
     Intersected.matrixWorld.decompose( position, quaternion, scale )
@@ -158,18 +152,18 @@ function update(){
 
     ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
     ExArm.position.y = effectController.EArmVO*100 + 20;
-    ExPipe.rotation.z = effectController.PlateHR*Math.PI/180;
-    LSCPlate1.position.z = effectController.mPipeAH*HangPipe.Length;
-    LSCPlate2.position.z = effectController.mPipeBH*HangPipe.Length;
-    Pipe1.position.z = effectController.mPipeAllV*Pipe1.Length;
+    ExPipe_dummy.rotation.z = effectController.PlateHR*Math.PI/180;
+    Pipe1_Helper.position.z = effectController.mPipeAH*HangPipe.dimensions.height*0.97;
+  //  LSCPlate2.position.z = effectController.mPipeBH*HangPipe.Length;
+    HangPipe.position.x = effectController.mPipeAllV*HangPipe.dimensions.height*0.9;
     Pipe1_Helper.rotation.z = effectController.mPipe1Rot*Math.PI/180;
-    Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
+   /* Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
     Pipe2_Helper.rotation.z = effectController.mPipe2Rot*Math.PI/180;
     HangPipe.position.z = effectController.HArmHO*HangPipe.Length;*/
 }
 
 function setupGui() {
-/*
+
     effectController = {
         mPipeAllV: 0,
         mPipeAH:0.35,
@@ -194,61 +188,105 @@ function setupGui() {
     h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
     h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");
     h.add(effectController, "PlateHR", -89.0, 89.0, 0.025).name("Rotate Plate");
-    */
+    
 }
 
 function draw(){
-    haha = new THREE.Object3D();
-    hoho = new drawElement(haha, "36 inch", "HHS Rect", "Section I 1", "chrome", "W44X335", true);
-    scene.add(haha);
-/*
-    var material  = new THREE.MeshNormalMaterial();
-    var material2  = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCC3399, shininess: 20 } );
-
-    UBolt1 = new THREE.Object3D();
-    UBolt1.name = "UBolt1"
-    //(object, height, width,thickness, thread, material)
-    drawUBolt(UBolt1, 3.5, 2 ,0.3, 1.75,material2, true, 0.1, true, 0.3);
-
-    //Nut = new THREE.Object3D();
-    //drawNut(Nut,10,5,material)
-    scene.add(UBolt1);
-
-    //scene.add(UBolt1);
-
+    //Start building the scene with the new function
+    //Parent of all
     ExArm = new THREE.Object3D();
-    ExArm.name = "ExArm"
-    ExArm.Length = 36;
-    createMbr( ExArm, drawSection('HHS','W44X335') , ExArm.Length , material , false);
+    drawElement(ExArm, "36 inch", "HHS Rect", "36 HHS Rect", "chrome", "W44X335", false);
+
+        ExPipe = new THREE.Object3D(); 
+        drawElement(ExPipe, "12 inch", "Pipe", "12 Inch Pipe", "chrome", "W44X335", true);
+        ExPipe.rotation.x = Math.PI/2;
+        ExPipe.position.z = ExArm.dimensions.height;
+        ExArm.add(ExPipe);
+            //ExPipe_dummy is the first node that will connect the horizontal pipe to the horizontal arm. It's placed here to simplify rotation
+            ExPipe_dummy = new THREE.Object3D(); 
+            ExPipe.add(ExPipe_dummy);
+
+                LSCPlate = new THREE.Object3D(); 
+                drawElement(LSCPlate, "Large", "C Plate", "Large C Plate", "chrome", "W44X335", true);
+                LSCPlate.rotation.x = Math.PI/2;
+                LSCPlate.rotation.y = -Math.PI/2;
+                LSCPlate.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf/2;
+                ExPipe_dummy.add(LSCPlate)
+
+                //UBolts that fix the plate
+                UBolt1 = new THREE.Object3D(); 
+                drawElement(UBolt1, "Large", "U Bolt", "U Bolt 1", "metal", "W44X335", false);
+                UBolt1.position.z = -ExArm.dimensions.h*0.7;
+                ExPipe_dummy.add(UBolt1);
+
+                UBolt2 = new THREE.Object3D(); 
+                drawElement(UBolt2, "Large", "U Bolt", "U Bolt 2", "metal", "W44X335", false);
+                UBolt2.position.z = ExArm.dimensions.h*0.7;
+                ExPipe_dummy.add(UBolt2);
+
+                HangPipe = new THREE.Object3D();
+                drawElement(HangPipe, "150 inch", "Pipe", "150 Inch Pipe", "chrome", "W44X335", true);
+                HangPipe.rotation.y = Math.PI/2;
+                HangPipe.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf + HangPipe.dimensions.OD;
+                ExPipe_dummy.add(HangPipe);
+
+                //UBolts that fix the hortizontal pipe
+                UBolt3 = new THREE.Object3D(); 
+                drawElement(UBolt3, "Large T2", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                UBolt3.rotation.x = Math.PI;
+                UBolt3.rotation.y = Math.PI/2
+                UBolt3.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf + HangPipe.dimensions.OD;
+                UBolt3.position.x = LSCPlate.dimensions.height * 0.4;
+                ExPipe_dummy.add(UBolt3);
+
+                UBolt4 = new THREE.Object3D(); 
+                drawElement(UBolt4, "Large T2", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                UBolt4.rotation.x = Math.PI;
+                UBolt4.rotation.y = Math.PI/2
+                UBolt4.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf + HangPipe.dimensions.OD;
+                UBolt4.position.x = LSCPlate.dimensions.height * 0.2;
+                ExPipe_dummy.add(UBolt4);
+
+                UBolt5 = new THREE.Object3D(); 
+                drawElement(UBolt5, "Large T2", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                UBolt5.rotation.x = Math.PI;
+                UBolt5.rotation.y = Math.PI/2
+                UBolt5.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf + HangPipe.dimensions.OD;
+                UBolt5.position.x = - LSCPlate.dimensions.height * 0.4;
+                ExPipe_dummy.add(UBolt5);
+
+                UBolt6 = new THREE.Object3D(); 
+                drawElement(UBolt6, "Large T2", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                UBolt6.rotation.x = Math.PI;
+                UBolt6.rotation.y = Math.PI/2
+                UBolt6.position.y = ExPipe.dimensions.OD + LSCPlate.dimensions.bf + HangPipe.dimensions.OD;
+                UBolt6.position.x = - LSCPlate.dimensions.height * 0.2;
+                ExPipe_dummy.add(UBolt6);
+
+                //The second node that will fix the horizontal pipes to the vertical one
+                Pipe1_Helper = new THREE.Object3D(); 
+                HangPipe.add(Pipe1_Helper);
+
+                    LSCPlate1 = new THREE.Object3D();
+                    drawElement(LSCPlate1, "Small", "C Plate", "U Bolt 1", "chrome", "W44X335", true);
+                    LSCPlate1.rotation.y = -Math.PI/2
+                    LSCPlate1.rotation.x = Math.PI/2
+                    LSCPlate1.position.y = HangPipe.dimensions.OD + LSCPlate1.dimensions.bf/2;
+                    Pipe1_Helper.add(LSCPlate1);
+
+                    Pipe1 = new THREE.Object3D(); 
+                    drawElement(Pipe1, "63 inch", "Pipe", "U Bolt 1", "chrome", "W44X335", true);
+                    Pipe1.rotation.y = Math.PI/2;
+                    Pipe1.position.y = HangPipe.dimensions.OD + LSCPlate1.dimensions.bf + Pipe1.dimensions.OD;
+                    Pipe1_Helper.add(Pipe1);
+                scene.add(ExArm)
 
 
-    ExPipe = new THREE.Object3D(); 
-    ExPipe.name = "ExPipe"
-    ExPipe.Length = 12;
-    createMbr( ExPipe, drawSection('Pipe Large','W44X335') , ExPipe.Length , material , true);
-    ExPipe.rotation.x = Math.PI/2;
-    ExPipe.position.z = ExArm.Length;
-    ExArm.add(ExPipe)
 
 
-    LSCPlate = new THREE.Object3D();
-    LSCPlate.name = "LSCPlate"
-    LSCPlate.Length = 12;
-    createMbr( LSCPlate, drawSection('Large Cross Plate','W44X335') , LSCPlate.Length , material , true);
-    LSCPlate.rotation.x = Math.PI/2;
-    LSCPlate.rotation.y = -Math.PI/2;
-    LSCPlate.position.y = Pipe_OD + LCP_bf/2;
-    ExPipe.add(LSCPlate);
+/*
 
-    HangPipe = new THREE.Object3D();
-    HangPipe.name = "HangPipe"
-    HangPipe.Length = 150;
-    createMbr( HangPipe, drawSection('Pipe Large','W44X335') , HangPipe.Length , material , true);
-    HangPipe.position.x = -Pipe_OD - LCP_bf/2;
-    LSCPlate.add(HangPipe);
 
-    Pipe1_Helper = new THREE.Object3D(); 
-    HangPipe.add(Pipe1_Helper);
 
     LSCPlate1 = new THREE.Object3D();
     LSCPlate1.name = "LSCPlate1"
@@ -301,7 +339,7 @@ function onMouseDown( event_info )
 
             if(intersects.length>0)
             {
-/*
+
                 Intersected = intersects[0].object;
                 parentName = Intersected.parent.parent.name;
                 var vector = new THREE.Vector3();
@@ -322,7 +360,6 @@ function onMouseDown( event_info )
                 'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
                 document.getElementById("text").innerHTML = world_text;
                 document.getElementById("local").innerHTML = local_text;
-                */
             }
         }
     </script>
