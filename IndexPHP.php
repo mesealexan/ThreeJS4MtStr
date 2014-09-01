@@ -7,52 +7,20 @@ $db = new dbManagement();
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <title>3D Model</title>
-    <style>
-body {
-    font-family: monospace;
-    background-color: #F5F5F5;
-    margin: 0px;
-}
-
-#container {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-}
-#text{
-    top:10px;
-    left: 20px;
-    color: #000;
-    position: fixed;
-    z-index: 100;
-}
-#local{
-    left: 250px;
-    top:10px;
-    color: #000;
-    position: fixed;
-    z-index: 100;
-}
-#downloadLink{
-    position: fixed;
-    top:10px;
-    left: 500px;
-    z-index: 100;
-}
-</style>
+    <link rel="stylesheet" href="css/style.css">
     <script src="lib/jquery-1.8.3.min.js"></script>
     <script src="lib/Coordinates.js"></script>
     <script src="lib/three.min.js"></script>
     <script src="lib/three.min.js"></script>
     <script src="lib/OrbitAndPanControls.js"></script>
     <script src="lib/dat.gui.min.js"></script>
-    <script src="lib/functions.js"></script>
+    <script src="custom/functions.js"></script>
   </head>
   <body>
 <div id="container"></div>    
 <div id="text"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
 <div id="local"> <u>To Parent / Local</u><br> X: <br> Y:<br> Z:</div>
-<button id="downloadLink" onclick="createText()">XML</button>
+<button id="downloadLink" >XML</button>
 </a>
     <script>
 
@@ -90,10 +58,35 @@ var projector = new THREE.Projector(),
     ray = new THREE.Raycaster( new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0) );
     intersects = []; 
 
+var hoho;
+
 var axis;
 var world_text, local_text;
 
 //Sections properties (to be read from SQL)
+var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1,I_height = 200;
+var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
+var Pipe_OD =2.25 , Pipe_tnom = 0.322;
+var PipeS_OD =1.1875 , PipeS_tnom = 0.322;
+var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
+var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
+var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
+var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
+var UB_Length = 3.5, UB_Width = 2, UB_thread = 1.75, UB_thick = 0.3;
+var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
+
+
+//Objects in the scene
+var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper, UBolt1, UBolt2, Nut1_1, Nut1_2;
+var haha;
+var ray_objects = [];
+
+
+    init();
+    setupGui()
+    animate();
+
+//I Section
 var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1;
 var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
 var Pipe_OD =2.25 , Pipe_tnom = 0.322;
@@ -103,19 +96,6 @@ var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634
 var LCP_d = 8 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
 var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
 var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
-
-
-//Objects in the scene
-var ExArm, ExPipe, LSCPlate, HangPipe, LSCPlate1, Pipe1, Pipe2 , Pipe1_Helper, Pipe2_Helper, UBolt1, UBolt2, Nut1_1, Nut1_2;
-
-var ray_objects = [];
-
-
-    init();
-    setupGui()
-    animate();
-
-
   
 function init()
     {
@@ -164,6 +144,7 @@ var quaternion = new THREE.Quaternion();
 var scale = new THREE.Vector3();
 
 function update(){
+    /*
     if(Intersected)
     {
     Intersected.matrixWorld.decompose( position, quaternion, scale )
@@ -184,11 +165,11 @@ function update(){
     Pipe1_Helper.rotation.z = effectController.mPipe1Rot*Math.PI/180;
     Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
     Pipe2_Helper.rotation.z = effectController.mPipe2Rot*Math.PI/180;
-    HangPipe.position.z = effectController.HArmHO*HangPipe.Length;
+    HangPipe.position.z = effectController.HArmHO*HangPipe.Length;*/
 }
 
 function setupGui() {
-
+/*
     effectController = {
         mPipeAllV: 0,
         mPipeAH:0.35,
@@ -213,36 +194,25 @@ function setupGui() {
     h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
     h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");
     h.add(effectController, "PlateHR", -89.0, 89.0, 0.025).name("Rotate Plate");
-    
+    */
 }
 
 function draw(){
-
+    haha = new THREE.Object3D();
+    hoho = new drawElement(haha, "36 inch", "HHS Rect", "Section I 1", "chrome", "W44X335", true);
+    scene.add(haha);
+/*
     var material  = new THREE.MeshNormalMaterial();
     var material2  = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCC3399, shininess: 20 } );
 
     UBolt1 = new THREE.Object3D();
     UBolt1.name = "UBolt1"
-    drawUBolt(UBolt1,UB_rad, UB_thick, UB_Length, material2);
-    UBolt1.position.y = UB_Length;
+    //(object, height, width,thickness, thread, material)
+    drawUBolt(UBolt1, 3.5, 2 ,0.3, 1.75,material2, true, 0.1, true, 0.3);
 
-
-    Nut1_1 = new THREE.Object3D();
-    Nut1_1.name = "Nut1_1";
-    createMbr(Nut1_1, drawNut(Nut_rad), Nut_thick, material2, true);
-    Nut1_1.rotation.x = Math.PI/2;
-    Nut1_1.position.x = -UB_rad;
-    Nut1_1.position.y = -Nut_thick*1.3;
-    UBolt1.add(Nut1_1);
-
-    Nut1_2 = new THREE.Object3D();
-    Nut1_2.name = "Nut1_2";
-    createMbr(Nut1_2, drawNut(Nut_rad), Nut_thick, material2, true);
-    Nut1_2.rotation.x = Math.PI/2;
-    Nut1_2.position.x = UB_rad;
-    Nut1_2.position.y = -Nut_thick*1.3;
-
-    UBolt1.add(Nut1_2);
+    //Nut = new THREE.Object3D();
+    //drawNut(Nut,10,5,material)
+    scene.add(UBolt1);
 
     //scene.add(UBolt1);
 
@@ -260,15 +230,6 @@ function draw(){
     ExPipe.position.z = ExArm.Length;
     ExArm.add(ExPipe)
 
-
-    UBolt1.position.z = ExPipe.Length/2 * 0.5;
-
-    UBolt2 = UBolt1.clone();
-
-    UBolt2.position.z = -ExPipe.Length/2 * 0.5;
-    UBolt2.name = "UBolt2";
-    ExPipe.add(UBolt2)
-    ExPipe.add(UBolt1)
 
     LSCPlate = new THREE.Object3D();
     LSCPlate.name = "LSCPlate"
@@ -322,8 +283,8 @@ function draw(){
     Pipe2.position.x = -PipeS_OD - SCP_bf/2;
     LSCPlate2.add(Pipe2)
 
-    scene.add( ExArm );
-    
+    //scene.add( ExArm );
+    */
 }
 var parentName;
 function onMouseDown( event_info ) 
@@ -340,7 +301,7 @@ function onMouseDown( event_info )
 
             if(intersects.length>0)
             {
-
+/*
                 Intersected = intersects[0].object;
                 parentName = Intersected.parent.parent.name;
                 var vector = new THREE.Vector3();
@@ -361,6 +322,7 @@ function onMouseDown( event_info )
                 'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
                 document.getElementById("text").innerHTML = world_text;
                 document.getElementById("local").innerHTML = local_text;
+                */
             }
         }
     </script>

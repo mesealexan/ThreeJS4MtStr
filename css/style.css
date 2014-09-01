@@ -1,0 +1,31 @@
+body {
+    font-family: monospace;
+    background-color: #F5F5F5;
+    margin: 0px;
+}
+
+#container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+#text{
+    top:10px;
+    left: 20px;
+    color: #000;
+    position: fixed;
+    z-index: 100;
+}
+#local{
+    left: 250px;
+    top:10px;
+    color: #000;
+    position: fixed;
+    z-index: 100;
+}
+#downloadLink{
+    position: fixed;
+    top:10px;
+    left: 500px;
+    z-index: 100;
+}
