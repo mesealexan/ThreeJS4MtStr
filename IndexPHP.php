@@ -69,7 +69,7 @@ var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
 var Pipe_OD =2.25 , Pipe_tnom = 0.322;
 var PipeS_OD =1 , PipeS_tnom = 0.322;
 var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
-var SCP_d = 4 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
+var SCP_d = 4.6 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
 var LCP_d = 10 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
 var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
 var UB_Length = 7.6, UB_Width = 4.7, UB_thread = 2.75, UB_thick = 0.26;
@@ -279,7 +279,18 @@ function draw(){
                     Pipe1.rotation.y = Math.PI/2;
                     Pipe1.position.y = HangPipe.dimensions.OD + LSCPlate1.dimensions.bf + Pipe1.dimensions.OD;
                     Pipe1_Helper.add(Pipe1);
-                scene.add(ExArm)
+
+                    UBolt1_1 = new THREE.Object3D(); 
+                    drawElement(UBolt1_1, "Large", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                    UBolt1_1.position.z = 1.5;
+                    Pipe1_Helper.add(UBolt1_1);
+
+                    UBolt1_2 = new THREE.Object3D(); 
+                    drawElement(UBolt1_2, "Large", "U Bolt", "U Bolt 3", "metal", "W44X335", false);
+                    UBolt1_2.position.z = -1.5;
+                    Pipe1_Helper.add(UBolt1_2);
+
+                    scene.add(ExArm);
 
 
 

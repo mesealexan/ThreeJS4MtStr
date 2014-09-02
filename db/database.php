@@ -8,7 +8,7 @@
 
 class dbManagement{
 
-	var $dbloc = 'local';
+	var $dbloc = 'cloud';
 	
 	var $dbhost;
 	var $dbuser;
@@ -50,6 +50,10 @@ class dbManagement{
 			$this->dbname = 'stimx';
 			break;
 		case 'cloud':
+			$this->dbhost = 'Alex2014.db.10983647.hostedresource.com';
+			$this->dbuser = 'Alex2014';
+			$this->dbpasswd = 'AlexdB29@';
+			$this->dbname = 'Alex2014';		
 			break;
 		}
 		

@@ -1,3 +1,19 @@
+function getshapeData(shapeType,shapeSize){
+	// shapeType_Temp = 'HSS(Rect)'; shapeSize_Temp = 'HSS6X3X1/8';
+	var shapeResult = jQuery.ajax({
+	url: "queryDatabase.php",
+	data: {Data2Query: 'MtStr_G', Fields: 'Shape', Mbr_Shape: shapeType, Mbr_Shape_Model: shapeSize},
+	dataType: 'json',
+	async: false
+	}).responseText; // get the response data as a string	
+	// alert(shapeResult);
+	var shapeArray = jQuery.parseJSON(shapeResult);
+	// jQuery.each(shapeArray, function (idx, shapeData) { //Each shapeData form
+	// the return would not return in "jQuery.each"
+	shapeData = shapeArray[0];
+	console.log(shapeData);	
+	return(shapeData);
+}
 
 
 function drawElement(object, type, profile, name, material, partNo, centerPivot){
