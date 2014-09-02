@@ -257,6 +257,40 @@ function drawHHS(h,b,tdes,f1){
 		f1:f1
 		});
 }
+function drawHSS_Rect(shapeSize){
+var data = getshapeData('HSS(Rect)',shapeSize)
+console.log(data)
+
+	var shape = new THREE.Shape();
+	shape.moveTo(-b/2+f1,-h/2);
+	shape.lineTo(b/2-f1,-h/2);
+	shape.lineTo(b/2,-h/2+f1);
+	shape.lineTo(b/2,h/2-f1);
+	shape.lineTo(b/2-f1,h/2);
+	shape.lineTo(-b/2+f1,h/2);
+	shape.lineTo(-b/2,h/2-f1);
+	shape.lineTo(-b/2,-h/2+f1);
+	shape.lineTo(-b/2+f1,-h/2);
+
+	var hole = new THREE.Path();
+	hole.moveTo(-b/2+f1+tdes,-h/2+tdes);
+	hole.lineTo(b/2-f1-tdes,-h/2+tdes);
+	hole.lineTo(b/2-tdes,-h/2+f1+tdes);
+	hole.lineTo(b/2-tdes,h/2-f1-tdes);
+	hole.lineTo(b/2-f1-tdes,h/2-tdes);
+	hole.lineTo(-b/2+f1+tdes,h/2-tdes);
+	hole.lineTo(-b/2+tdes,h/2-f1-tdes);
+	hole.lineTo(-b/2+tdes,-h/2+f1+tdes);
+	hole.lineTo(-b/2+f1+tdes,-h/2+tdes);
+	shape.holes.push( hole );
+	return({
+		shape:shape,
+		h:h,
+		b:b,
+		tdes:tdes,
+		f1:f1
+		});
+}
 
 function drawC(d,bf,tf,tw,xbar){
 	var shape = new THREE.Shape();
