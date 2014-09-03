@@ -17,7 +17,6 @@ function getshapeData(shapeType,shapeSize){
 
 
 function drawElement(object, D1, shape, shapeSize,description, material, partNo, centerPivot){
-	//example drawElement(obj, '8 inch', 'Pipe', 'metal', 5, false)
 	this.object = object;
 	this.D1 = D1;	
 	this.shape = shape;
@@ -198,7 +197,6 @@ function drawPipe(shapeSize){
 	shapeData = getshapeData('Pipe',shapeSize);
 	OD = parseFloat(shapeData.OD);
 	t_nom = parseFloat(shapeData.t);
-	// console.log('OD: ' + OD + ', t_nom: '+t_nom);
 
 	var arcShape = new THREE.Shape();
 	arcShape.absarc( 0, 0, OD, 0, Math.PI*2, true );
@@ -207,10 +205,10 @@ function drawPipe(shapeSize){
 	holePath.absarc(0, 0, OD-t_nom, 0, Math.PI*2, false );
 	arcShape.holes.push( holePath );
 	return({
-shape:arcShape,
-OD:OD,
-t_nom:t_nom
-	});
+		shape:arcShape,
+		OD:OD,
+		t_nom:t_nom
+		});
 }
 
 function drawL(d,b,xbar,ybar,t){
@@ -239,7 +237,8 @@ function drawHHS_Rect(shapeSize){
 	h = parseFloat(shapeData.Ht);
 	b = parseFloat(shapeData.b);
 	t_des = parseFloat(shapeData.t_des);
-	f1 = 0.3; // shapeData.f1; // to be found out where the value is.
+	f1 = 0.3; //This value represents the fillet of the corners.
+	// shapeData.f1; // to be found out where the value is.
 	// console.log('h: '+h+ ', b: '+b+', t_des:' +t_des+ ', f1:'+f1)
 	// "h: 5.000, b: 5.0000, t_des:0.349, f1:0.3"
 
@@ -271,12 +270,12 @@ function drawHHS_Rect(shapeSize){
 	hole.lineTo(-b/2+f1+t_des,-h/2+t_des);
 	shape.holes.push( hole );
 	return({
-shape:shape,
-h:h,
-b:b,
-t_des:t_des,
-f1:f1
-	});
+		shape:shape,
+		h:h,
+		b:b,
+		t_des:t_des,
+		f1:f1
+			});
 }
 
 function drawC(shapeSize){

@@ -1,3 +1,21 @@
+//This function will read all the object's childrena nd will transform them intro properties
+var all_childrens = [];
+var helper = 0;
+function pushProperties(object){
+	if(object.children.length>0)
+	for(i=0;i<object.children.length;i++)
+	{
+		if(object.children[i].name!=="")
+		{
+		console.log(object.children[i])
+		all_childrens.push(object.children[i]);
+		}
+		if(object.children[i].children.length>0)
+			pushProperties(object.children[i])
+	}
+}
+
+var SV197_36;
 function drawPart(PartNo){
 	Part = new THREE.Object3D();
 	switch(PartNo){
@@ -7,11 +25,14 @@ function drawPart(PartNo){
 	case 'SV197-36':  
 	// I want to have an object named as 'SV197-36' which has children including ExArm and ExPipe. So when referring to ExArm.dimensions, 
 	// it would be SV197-36.ExArm.dimensions
+		SV197_36 = new THREE.Object3D();
 		ExArm = new THREE.Object3D();
+		ExArm.name = 'ExArm';
 		// the size, HSS5X5X3/8, needs adjustment.
 		drawElement(ExArm, 36, "HHS(Rect)",'HSS5X5X3/8', "36 HHS Rect", "chrome", "NP", false);
 
 		ExPipe = new THREE.Object3D(); 
+		ExPipe.name = 'ExPipe'
 		drawElement(ExPipe, 12, "Pipe",'P4x.237',"18 in P4x.237", "chrome", "NP", true);
 		ExPipe.rotation.x = Math.PI/2;
 		ExPipe.position.z = ExArm.dimensions.height;
@@ -19,7 +40,14 @@ function drawPart(PartNo){
 		ExArm.add(ExPipe);
 		//ExPipe_dummy is the first node that will connect the horizontal pipe to the horizontal arm. It's placed here to simplify rotation
 		ExPipe_dummy = new THREE.Object3D(); 
+		ExPipe_dummy.name = 'ExPipe_dummy'
+
 		ExPipe.add(ExPipe_dummy);	
+		scene.add(ExArm);
+		SV197_36.add(ExArm);
+		pushProperties(SV197_36)
+
+
 		break;
 	case 'A58234':  break;
 	case 'A58FW':  break;
@@ -37,18 +65,25 @@ function drawPart(PartNo){
 	case 'A':  break;
 	case 'SP219':  break;
 	case 'SP216': 
+	alert("this one")
+	ExArm = new THREE.Object3D();
+	// the size, HSS5X5X3/8, needs adjustment.
+	drawElement(ExArm, 36, "HHS(Rect)",'HSS5X5X3/8', "36 HHS Rect", "chrome", "NP", false);
+
+
+	/*
 // why I can't put the section of code here?	
 	SP216 = new THREE.Object3D(); 
 	drawElement(SP216, 15, "C",'C10X15.3',"LARGE SUPPORT CROSS PLATE", "chrome", "SP216", true);
 	SP216.rotation.x = Math.PI/2;
 	SP216.rotation.y = -Math.PI/2;
 	SP216.position.y = ExPipe.dimensions.OD + SP216.dimensions.bf/2;
-	ExPipe_dummy.add(SP216);
+	ExPipe_dummy.add(SP216);*/
 	break;	
 	default:
 		break;
 	};
-	
+	/*
 	SP216 = new THREE.Object3D(); 
 	drawElement(SP216, 15, "C",'C10X15.3',"LARGE SUPPORT CROSS PLATE", "chrome", "SP216", true);
 	SP216.rotation.x = Math.PI/2;
@@ -140,5 +175,5 @@ function drawPart(PartNo){
 	UBolt1_2.position.z = -1.5;
 	P263_Helper.add(UBolt1_2);
 
-	scene.add(ExArm);
+	scene.add(ExArm);*/
 };

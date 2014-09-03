@@ -154,13 +154,18 @@ function update(){
 		axis.quaternion.w = quaternion.w;
 		axis.updateMatrixWorld( true );
 	}
-
+	if(ExArm){
 	ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
 	ExArm.position.y = effectController.EArmVO*100 + 20;
+	}
+	if(ExPipe)
 	ExPipe_dummy.rotation.z = effectController.PlateHR*Math.PI/180;
+	if(P263_Helper)
 	P263_Helper.position.z = effectController.mPipeAH*P3150.dimensions.height*0.97;
 	//  LSCPlate2.position.z = effectController.mPipeBH*P3150.Length;
+	if(P3150)
 	P3150.position.x = effectController.mPipeAllV*P3150.dimensions.height*0.9;
+	if(P263_Helper)
 	P263_Helper.rotation.z = effectController.mP263Rot*Math.PI/180;
 	/* Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
 	Pipe2_Helper.rotation.z = effectController.mPipe2Rot*Math.PI/180;
