@@ -11,139 +11,134 @@ function getshapeData(shapeType,shapeSize){
 	// jQuery.each(shapeArray, function (idx, shapeData) { //Each shapeData form
 	// the return would not return in "jQuery.each"
 	shapeData = shapeArray[0];
-	console.log(shapeData);	
+	// console.log(shapeData);	
 	return(shapeData);
 }
 
 
-function drawElement(object, type, profile, name, material, partNo, centerPivot){
+function drawElement(object, D1, shape, shapeSize,description, material, partNo, centerPivot){
 	//example drawElement(obj, '8 inch', 'Pipe', 'metal', 5, false)
 	this.object = object;
-	this.profile = profile;
-	this.type = type;
-	this.object.name = name;
+	this.D1 = D1;	
+	this.shape = shape;
+	this.shapeSize = shapeSize;
+	this.object.description = description;
 	this.material = new setMaterial(material);
 	this.object.partNo = partNo;
 	this.object.dimensions = {};
 	this.object.pivotCentered = centerPivot;
 	var shape, geometry, mesh;
-//Set up the profile
+	//Set up the shape
 
-	if(this.profile === "I Section"){
+	switch (this.shape){
+	case "I":
 		shape = new drawI(I_d,I_bf,I_T,I_tw,I_tf,I_k1);
-		if(this.type === "36 inch"){
+		
+		if(this.D1 === "36 inch"){
 			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:36} );
 			this.object.dimensions.height = 36;
 		}
-		else if(this.type === "150 inch"){
+		else if(this.D1 === "150 inch"){
 			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:150} );
 			this.object.dimensions.height = 150;
 		}
 		else
-			alert("Type and Profile do not match")
+		alert("D1 and shape do not match")
 		//Push the properties
 		for (var key in shape) { if(key!="shape")this.object.dimensions[key] =  shape[key]};
 		if(centerPivot)
-			THREE.GeometryUtils.center(geometry);
+		THREE.GeometryUtils.center(geometry);
 		mesh = new THREE.Mesh( geometry, this.material );
-	}
+		break;
 
-	if(this.profile === "L Section"){
+	case "L":
 		shape = new drawL(L_d,L_b,L_xbar,L_ybar,L_t);
-		if(this.type === "36 inch"){
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:36} );
-			this.object.dimensions.height = 36;
-		}
-		else if(this.type === "150 inch"){
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:150} );
-			this.object.dimensions.height = 150;
-		}
-		else
-			alert("Type and Profile do not match")
+		if(this.D1){
+			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:this.D1} );
+			this.object.dimensions.height = this.D1;
+		}else
+		alert("D1 and shape do not match")
 		//Push the properties
 		for (var key in shape) {if(key!="shape")this.object.dimensions[key] =  shape[key]};
 		if(centerPivot)
-			THREE.GeometryUtils.center(geometry);
+		THREE.GeometryUtils.center(geometry);
 		mesh = new THREE.Mesh( geometry, this.material );
-	}
-	if(this.profile === "C Plate"){
-		if(this.type === "Large"){
-			shape = new drawC(LCP_d,LCP_bf,LCP_tf,LCP_tw,LCP_xbar);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:15} );
-			this.object.dimensions.height = 15;
-		}
-		else if(this.type === "Small"){
-			shape = new drawC(SCP_d,SCP_bf,SCP_tf,SCP_tw,SCP_xbar);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:6} );
-			this.object.dimensions.height = 6;
+		break;
+		
+	case "C":
+		
+		if(this.D1){
+			shape = new drawC(shapeSize);
+			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:this.D1} );
+			this.object.dimensions.height = this.D1;
 		}
 		else
-			alert("Type and Profile do not match")
+		alert("D1 and shape do not match")
 		//Push the properties
 		for (var key in shape) {if(key!="shape")this.object.dimensions[key] =  shape[key]};
 		if(centerPivot)
-			THREE.GeometryUtils.center(geometry)
+		THREE.GeometryUtils.center(geometry)
 		mesh = new THREE.Mesh( geometry, this.material );
-	}
-	if(this.profile === "Pipe"){
-		if(this.type === "12 inch"){
-			shape = new drawPipe(Pipe_OD,Pipe_tnom);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:12} );
-			this.object.dimensions.height = 12;
-		}
-		else if(this.type === "150 inch"){
-			shape = new drawPipe(Pipe_OD,Pipe_tnom);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:150} );
-			this.object.dimensions.height = 150;
-		}
-		else if(this.type === "63 inch"){
-			shape = new drawPipe(PipeS_OD,PipeS_tnom);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:63} );
-			this.object.dimensions.height = 63;
+		break;
+		
+	case "Pipe":
+		
+		if(this.D1){
+			shape = new drawPipe(shapeSize);
+			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:this.D1} );
+			this.object.dimensions.height = this.D1;
 		}
 		else
-			alert("Type and Profile do not match")
+		alert("D1 and shape do not match")
 		//Push the properties
 		for (var key in shape) {if(key!="shape")this.object.dimensions[key] =  shape[key]};
+		
 		if(centerPivot)
-			THREE.GeometryUtils.center(geometry)
+		THREE.GeometryUtils.center(geometry)
 		mesh = new THREE.Mesh( geometry, this.material );
-	}
-	if(this.profile === "HHS Rect"){
-		if(this.type === "36 inch"){
-			shape = new drawHHS(HHS_h,HHS_b,HHS_tdes,HHS_f1);
-			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:36} );
-			this.object.dimensions.height = 36;
+		break;
+		
+	case "HHS(Rect)":
+		if(this.D1){
+			shape = new drawHHS_Rect(shapeSize);
+			geometry = new THREE.ExtrudeGeometry( shape.shape, {bevelEnabled: false, amount:this.D1} );
+			this.object.dimensions.height = this.D1;
 		}
 		else
-			alert("Type and Profile do not match")
+		alert("D1 and shape do not match")
 		//Push the properties
 		for (var key in shape) {if(key!="shape")this.object.dimensions[key] =  shape[key]};
 
 		if(centerPivot)
-			THREE.GeometryUtils.center(geometry)
+		THREE.GeometryUtils.center(geometry)
 		mesh = new THREE.Mesh( geometry, this.material );
-	}
-	if(this.profile === "U Bolt"){
-		if(this.type === "Large"){
+		break;
+		
+	case "UBolt":
+	// alert(this.shapeSize);
+		if(this.shapeSize === "Large"){
 			shape = new drawUBolt(UB_Length, UB_Width, UB_thick, UB_thread, true, 0.26, true, 0.26, this.material);
 			mesh = shape.meshu;
 		}
-		else if(this.type === "Large T2"){
+		else if(this.shapeSize === "Large T2"){
 			shape = new drawUBolt(UBT2_Length, UBT2_Width, UBT2_thick, UBT2_thread, true, 1.44, true, 1.44, this.material);
 			mesh = shape.meshu;
 		}
-		else if(this.type === "Small"){
+		else if(this.shapeSize === "Small"){
 			shape = new drawUBolt(UBS_Length, UBS_Width, UBS_thick, UBS_thread, true, 0, true, 0, this.material);
 			mesh = shape.meshu;
 		}
-		else if(this.type === "Small T2"){
+		else if(this.shapeSize === "Small T2"){
 			shape = new drawUBolt(UBST2_Length, UBST2_Width, UBST2_thick, UBST2_thread, true, 0, true, 0, this.material);
 			mesh = shape.meshu;
 		}
 		else
-			alert("Type and Profile do not match")
+		alert("D1 and shape do not match")
 		for (var key in shape) {if(key!="shape")this.object.dimensions[key] =  shape[key]};
+		break;
+		
+	default:
+		break;
 	}
 	//Center the pivot if required
 
@@ -153,12 +148,18 @@ function drawElement(object, type, profile, name, material, partNo, centerPivot)
 
 
 function setMaterial(value){
-	if(value === 'metal')
+	switch(value){
+	case 'metal':
 		material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
-	if(value === 'aluminium')
+		break;
+	case 'aluminium':
 		material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
-	if(value === 'chrome')
+		break;
+	case 'chrome':
 		material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+		break;
+	default:
+		break;}
 	return(material)
 }
 
@@ -192,18 +193,24 @@ function drawI(d,bf,T,tw,tf,k1){
 		});
 }
 
-function drawPipe(OD,tnom){
+function drawPipe(shapeSize){
+
+	shapeData = getshapeData('Pipe',shapeSize);
+	OD = parseFloat(shapeData.OD);
+	t_nom = parseFloat(shapeData.t);
+	// console.log('OD: ' + OD + ', t_nom: '+t_nom);
+
 	var arcShape = new THREE.Shape();
-    arcShape.absarc( 0, 0, OD, 0, Math.PI*2, true );
+	arcShape.absarc( 0, 0, OD, 0, Math.PI*2, true );
 
 	var holePath = new THREE.Path();
-    holePath.absarc(0, 0, OD-tnom, 0, Math.PI*2, false );
-    arcShape.holes.push( holePath );
-return({
-		shape:arcShape,
-		OD:OD,
-		tnom:tnom
-		});
+	holePath.absarc(0, 0, OD-t_nom, 0, Math.PI*2, false );
+	arcShape.holes.push( holePath );
+	return({
+shape:arcShape,
+OD:OD,
+t_nom:t_nom
+	});
 }
 
 function drawL(d,b,xbar,ybar,t){
@@ -226,40 +233,20 @@ function drawL(d,b,xbar,ybar,t){
 		});
 }
 
-function drawHHS(h,b,tdes,f1){
-	var shape = new THREE.Shape();
-	shape.moveTo(-b/2+f1,-h/2);
-	shape.lineTo(b/2-f1,-h/2);
-	shape.lineTo(b/2,-h/2+f1);
-	shape.lineTo(b/2,h/2-f1);
-	shape.lineTo(b/2-f1,h/2);
-	shape.lineTo(-b/2+f1,h/2);
-	shape.lineTo(-b/2,h/2-f1);
-	shape.lineTo(-b/2,-h/2+f1);
-	shape.lineTo(-b/2+f1,-h/2);
+function drawHHS_Rect(shapeSize){
 
-	var hole = new THREE.Path();
-	hole.moveTo(-b/2+f1+tdes,-h/2+tdes);
-	hole.lineTo(b/2-f1-tdes,-h/2+tdes);
-	hole.lineTo(b/2-tdes,-h/2+f1+tdes);
-	hole.lineTo(b/2-tdes,h/2-f1-tdes);
-	hole.lineTo(b/2-f1-tdes,h/2-tdes);
-	hole.lineTo(-b/2+f1+tdes,h/2-tdes);
-	hole.lineTo(-b/2+tdes,h/2-f1-tdes);
-	hole.lineTo(-b/2+tdes,-h/2+f1+tdes);
-	hole.lineTo(-b/2+f1+tdes,-h/2+tdes);
-	shape.holes.push( hole );
-	return({
-		shape:shape,
-		h:h,
-		b:b,
-		tdes:tdes,
-		f1:f1
-		});
-}
-function drawHSS_Rect(shapeSize){
-var data = getshapeData('HSS(Rect)',shapeSize)
-console.log(data)
+	shapeData = getshapeData('HHS(Rect)',shapeSize);
+	h = parseFloat(shapeData.Ht);
+	b = parseFloat(shapeData.b);
+	t_des = parseFloat(shapeData.t_des);
+	f1 = 0.3; // shapeData.f1; // to be found out where the value is.
+	// console.log('h: '+h+ ', b: '+b+', t_des:' +t_des+ ', f1:'+f1)
+	// "h: 5.000, b: 5.0000, t_des:0.349, f1:0.3"
+
+	// var h = 5;
+	// var b = 5; 
+	// var t_des = 0.349; 
+	// var f1 = 0.3;
 
 	var shape = new THREE.Shape();
 	shape.moveTo(-b/2+f1,-h/2);
@@ -273,26 +260,58 @@ console.log(data)
 	shape.lineTo(-b/2+f1,-h/2);
 
 	var hole = new THREE.Path();
-	hole.moveTo(-b/2+f1+tdes,-h/2+tdes);
-	hole.lineTo(b/2-f1-tdes,-h/2+tdes);
-	hole.lineTo(b/2-tdes,-h/2+f1+tdes);
-	hole.lineTo(b/2-tdes,h/2-f1-tdes);
-	hole.lineTo(b/2-f1-tdes,h/2-tdes);
-	hole.lineTo(-b/2+f1+tdes,h/2-tdes);
-	hole.lineTo(-b/2+tdes,h/2-f1-tdes);
-	hole.lineTo(-b/2+tdes,-h/2+f1+tdes);
-	hole.lineTo(-b/2+f1+tdes,-h/2+tdes);
+	hole.moveTo(-b/2+f1+t_des,-h/2+t_des);
+	hole.lineTo(b/2-f1-t_des,-h/2+t_des);
+	hole.lineTo(b/2-t_des,-h/2+f1+t_des);
+	hole.lineTo(b/2-t_des,h/2-f1-t_des);
+	hole.lineTo(b/2-f1-t_des,h/2-t_des);
+	hole.lineTo(-b/2+f1+t_des,h/2-t_des);
+	hole.lineTo(-b/2+t_des,h/2-f1-t_des);
+	hole.lineTo(-b/2+t_des,-h/2+f1+t_des);
+	hole.lineTo(-b/2+f1+t_des,-h/2+t_des);
 	shape.holes.push( hole );
 	return({
-		shape:shape,
-		h:h,
-		b:b,
-		tdes:tdes,
-		f1:f1
-		});
+shape:shape,
+h:h,
+b:b,
+t_des:t_des,
+f1:f1
+	});
 }
 
-function drawC(d,bf,tf,tw,xbar){
+function drawC(shapeSize){
+
+shapeData = getshapeData('C',shapeSize);
+// console.log(shapeData);
+var d  = parseFloat(shapeData.d);
+var bf = parseFloat(shapeData.b_f);
+var tf = parseFloat(shapeData.t_f);
+var tw = parseFloat(shapeData.t_w);
+var xbar = parseFloat(shapeData.x);
+// console.log('d: ' +d+ ', bf:' +bf+ ', tf:' +tf+ ', tw:' + tw + ', xbar: ' + xbar );
+// why the data from above query does not work???
+// "d: 6.0000, bf:2.030, tf:0.343, tw:0.314, xbar: 0.500"
+
+// switch(shapeSize){
+// case 'C6X10.5':
+	// var d = 4.6;
+	// var bf = 2.0;
+	// var tf = 0.436;
+	// var tw = 0.24;
+	// var xbar = 0.634;
+	// break;
+// case 'C10X15.3':
+	"d: 10.0000, bf:2.600, tf:0.436, tw:0.240, xbar: 0.634"
+	// var d = 10;
+	// var bf = 2.6;
+	// var tf = 0.436;
+	// var tw = 0.24;
+	// var xbar = 0.634;
+	// break;
+// default:
+	// break;
+// }
+
 	var shape = new THREE.Shape();
 	shape.moveTo(-xbar,-d/2);
 	shape.lineTo(-xbar+bf,-d/2);

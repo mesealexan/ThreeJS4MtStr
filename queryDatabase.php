@@ -45,7 +45,8 @@ case 'MtStr_G':
 			$CrtMbr_Shape = $_REQUEST['Mbr_Shape'];
 			$CrtMbr_Shape_Model = $_REQUEST['Mbr_Shape_Model'];
 			
-			$sql = 'SELECT * FROM db_steelshape where Name2="'.$CrtMbr_Shape_Model.'"';}
+			// $sql = 'SELECT * FROM db_steelshape where Name2="'.$CrtMbr_Shape_Model.'"';}
+			$sql = 'SELECT * FROM db_steelshape where Name1="'.$CrtMbr_Shape_Model.'"';}
 			
 		break;
 	case 'Model':
