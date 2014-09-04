@@ -31,10 +31,13 @@ var position = new THREE.Vector3();
 var quaternion = new THREE.Quaternion();
 var scale = new THREE.Vector3();
 
-//Objects in the scene
-var ExArm ; 
-var ExPipe, LSCPlate, P3150, SP219, P263, Pipe2 , P263_Helper, Pipe2_Helper, UBolt1, UBolt3, UBolt4 , UBolt5, UBolt6;
-
+//Collector for on click event
 var ray_objects = [];
 
+//Objects in the scene
+var ExArm, ExPipe ; 
+var LCP1, P3150, P263_Helper, SP219, P263;
 
+//Assemblies
+
+var SV197_36,SP216;
