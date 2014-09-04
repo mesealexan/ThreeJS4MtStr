@@ -15,6 +15,22 @@ function getshapeData(shapeType,shapeSize){
 	return(shapeData);
 }
 
+function setMaterial(value){
+	switch(value){
+	case 'metal':
+		material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
+		break;
+	case 'aluminium':
+		material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
+		break;
+	case 'chrome':
+		material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+		break;
+	default:
+		break;}
+	return(material)
+}
+
 function drawElement( D1, sectionType, shapeSize, description, material, partNo, centerPivot){
 	var mesh;
 	switch (sectionType){
@@ -40,25 +56,6 @@ function drawElement( D1, sectionType, shapeSize, description, material, partNo,
 	mesh.description = description;
 	return(mesh)
 }
-
-function setMaterial(value){
-	switch(value){
-	case 'metal':
-		material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
-		break;
-	case 'aluminium':
-		material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
-		break;
-	case 'chrome':
-		material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
-		break;
-	default:
-		break;}
-	return(material)
-}
-
-/////////////Drawing functions.
-/////////////Please note that these functions now create a mesh and not a shape thus simplyfing drawElement function
 
 function drawHHS_Rect_Beta(shapeSize, D1, material,centerPivot){
 	var shapeData = getshapeData('HHS(Rect)',shapeSize);
@@ -178,12 +175,12 @@ function drawPipe_Beta(shapeSize, D1, material,centerPivot){
 	var OD = parseFloat(shapeData.OD);
 	var t_nom = parseFloat(shapeData.t);
 
-	var shape = new THREE.Shape();
-	shape.absarc( 0, 0, OD, 0, Math.PI*2, true );
+	var arcShape = new THREE.Shape();
+	arcShape.absarc( 0, 0, OD, 0, Math.PI*2, true );
 
 	var holePath = new THREE.Path();
 	holePath.absarc(0, 0, OD-t_nom, 0, Math.PI*2, false );
-	shape.holes.push( holePath );
+	arcShape.holes.push( holePath );
 
 	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1} );
 	if(centerPivot)

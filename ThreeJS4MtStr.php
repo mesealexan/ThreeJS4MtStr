@@ -1,8 +1,9 @@
+<--
 <?php 
 require_once('db/database.php');
 $db = new dbManagement();
 ?>
-
+-->
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -11,11 +12,13 @@ $db = new dbManagement();
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/Coordinates.js"></script>
 <script src="lib/three.min.js"></script>
+<script src="custom/dictionary.js"></script>
 <script src="lib/OrbitAndPanControls.js"></script>
 <script src="lib/dat.gui.min.js"></script>
 <script src="custom/drawElement.js"></script>
 <script src="custom/drawPart.js"></script>
 <script src="custom/drawAssemly.js"></script>
+<script src="custom/update.js"></script>
 </head>
 <body>
 <div id="container"></div>    
@@ -24,8 +27,6 @@ $db = new dbManagement();
 <button id="downloadLink" >XML</button>
 </a>
 <script>
-
-var accuracy = 4;
 
 function createText(){
 	var coordinatesWindow = open('coordinates.xml','coordinatesWindow','');
@@ -47,54 +48,9 @@ function createText(){
 	}
 }
 
-
-
-var container, scene, camera, renderer, controls, effectController, Intersected;
-var SCREEN_WIDTH = window.innerWidth; 
-var SCREEN_HEIGHT = window.innerHeight; 
-//Variables for raycaster
-var projector = new THREE.Projector(), 
-mouse_vector = new THREE.Vector3(),
-mouse = { x: 0, y: 0, z: 1 },
-ray = new THREE.Raycaster( new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0) );
-intersects = []; 
-
-var hoho;
-
-var axis;
-var world_text, local_text;
-
-//Sections properties (to be read from SQL)
-var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1,I_height = 200;
-var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
-
-var Pipe_OD =2.25 , Pipe_tnom = 0.322;
-var PipeS_OD =1 , PipeS_tnom = 0.322;
-
-// var HHS_h = 5, HHS_b = 5 , HHS_tdes = 0.349 , HHS_f1 = 0.3;
-
-// var SCP_d = 4.6 , SCP_bf = 2.0 , SCP_tf = 0.436 , SCP_tw = 0.24 , SCP_xbar = 0.634;
-// var LCP_d = 10 , LCP_bf = 2.6 , LCP_tf = 0.436 , LCP_tw = 0.24 , LCP_xbar = 0.634;
-
-var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
-var UB_Length = 7.6, UB_Width = 4.7, UB_thread = 2.75, UB_thick = 0.26;
-var UBT2_Length = 6.6, UBT2_Width = 4.7, UBT2_thread = 3.2, UBT2_thick = 0.26;
-
-var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
-
-
-//Objects in the scene
-var ExArm ; 
-var ExPipe, LSCPlate, P3150, SP219, P263, Pipe2 , P263_Helper, Pipe2_Helper, UBolt1, UBolt3, UBolt4 , UBolt5, UBolt6;
-var haha;
-var ray_objects = [];
-
-
 init();
 setupGui()
 animate();
-
-
 
 function init()
 {
@@ -138,43 +94,9 @@ function animate()
 	cameraControls.update();
 	update();
 }
-var position = new THREE.Vector3();
-var quaternion = new THREE.Quaternion();
-var scale = new THREE.Vector3();
-
-function update(){
-	
-	if(Intersected)
-	{
-		Intersected.matrixWorld.decompose( position, quaternion, scale )
-		axis.position.copy(position);
-		axis.quaternion.x = quaternion.x;
-		axis.quaternion.y = quaternion.y;
-		axis.quaternion.z = quaternion.z;
-		axis.quaternion.w = quaternion.w;
-		axis.updateMatrixWorld( true );
-	}
-	if(ExArm){
-	ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
-	ExArm.position.y = effectController.EArmVO*100 + 20;
-	}
-	if(ExPipe)
-	ExPipe_dummy.rotation.z = effectController.PlateHR*Math.PI/180;
-	if(P263_Helper)
-	P263_Helper.position.z = effectController.mPipeAH*P3150.dimensions.height*0.97;
-	//  LSCPlate2.position.z = effectController.mPipeBH*P3150.Length;
-	if(P3150)
-	P3150.position.x = effectController.mPipeAllV*P3150.dimensions.height*0.9;
-	if(P263_Helper)
-	P263_Helper.rotation.z = effectController.mP263Rot*Math.PI/180;
-	/* Pipe2.position.z = effectController.mPipeAllV*Pipe2.Length;
-	Pipe2_Helper.rotation.z = effectController.mPipe2Rot*Math.PI/180;
-	P3150.position.z = effectController.HArmHO*P3150.Length;*/
-}
 
 function setupGui() {
-
-	effectController = {
+effectController = {
 mPipeAllV: 0,
 mPipeAH:0.35,
 mP263Rot: 0,
@@ -201,14 +123,6 @@ PlateHR:0
 	
 }
 
-
-
-//Start building the scene with the new function
-//Parent of all
-
-
-
-var parentName;
 function onMouseDown( event_info ) 
 {
 	
