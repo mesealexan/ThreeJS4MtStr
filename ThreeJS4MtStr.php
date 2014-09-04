@@ -1,9 +1,9 @@
-<--
+
 <?php 
 require_once('db/database.php');
 $db = new dbManagement();
 ?>
--->
+
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />

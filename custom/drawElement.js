@@ -101,6 +101,7 @@ function drawHHS_Rect_Beta(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.f1 = f1;
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'HHS(Rect) ' + shapeSize;
+	ray_objects.push(mesh);
 	return(mesh)
 }
 
@@ -137,6 +138,7 @@ function drawC_Beta(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.xbar = xbar;
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'C ' + shapeSize;
+	ray_objects.push(mesh);
 	return(mesh)
 }
 
@@ -170,6 +172,7 @@ function drawL_Beta(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.xbar = xbar;
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'L_E ' + shapeSize;
+	ray_objects.push(mesh);
 	return(mesh)
 }
 
@@ -194,5 +197,6 @@ function drawPipe_Beta(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.t_nom = t_nom;
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'Pipe ' + shapeSize;
+	ray_objects.push(mesh);
 	return(mesh)
 }
