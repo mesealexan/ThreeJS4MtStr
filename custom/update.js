@@ -10,15 +10,23 @@ function update(){
 		axis.quaternion.w = quaternion.w;
 		axis.updateMatrixWorld( true );
 	}
-	/*
-	if(ExArm){
-	ExArm.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
-	ExArm.position.y = effectController.EArmVO*100 + 20;
+	
+	if(SV197_36){
+	SV197_36.rotation.y = effectController.EArmHR*Math.PI/180 + Math.PI;
+	SV197_36.position.y = effectController.EArmVO*100 + 20;
 	}
-	if(ExPipe_dummy)
-	ExPipe_dummy.rotation.z = effectController.PlateHR*Math.PI/180;
-	if(P263_Helper)
-	P263_Helper.position.z = effectController.mPipeAH*P3150.dimensions.height*0.97;
+	if(dummy_plate)
+	dummy_plate.rotation.y = effectController.PlateHR*Math.PI/180;
+
+	if(dummy_vert_1){
+	dummy_vert_1.position.z = effectController.mPipeAH*P3150.P3150.dimensions.D1*0.97;
+	dummy_vert_1.rotation.y = effectController.mP263Rot*Math.PI/180;
+	}
+	if(dummy_vert_2){
+	dummy_vert_2.position.z = effectController.mPipeBH*P3150.P3150.dimensions.D1*0.97;
+	dummy_vert_2.rotation.y = effectController.mPipe2Rot*Math.PI/180 + Math.PI/2;
+	}
+/*
 	//  LSCPlate2.position.z = effectController.mPipeBH*P3150.Length;
 	if(P3150)
 	P3150.position.x = effectController.mPipeAllV*P3150.dimensions.height*0.9;
