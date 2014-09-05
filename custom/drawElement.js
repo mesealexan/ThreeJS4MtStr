@@ -1,10 +1,10 @@
 function duplicate(object){
-	var kkt = object.clone();
+	var cloned = object.clone();
 	if(object.name==="")
 	{
-		pushChildren(kkt)
+		pushChildren(cloned)
 	}
-	return(kkt)
+	return(cloned)
 }
 
 function pushChildren(object){
