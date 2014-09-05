@@ -26,6 +26,10 @@ function update(){
 	dummy_vert_2.position.z = effectController.mPipeBH*P3150.P3150.dimensions.D1*0.97;
 	dummy_vert_2.rotation.y = effectController.mPipe2Rot*Math.PI/180 + Math.PI/2;
 	}
+	if(dummy_vert_3){
+	dummy_vert_3.position.z = effectController.mPipeCH*P3150.P3150.dimensions.D1*0.97;
+	dummy_vert_3.rotation.y = effectController.mPipe3Rot*Math.PI/180 + Math.PI/2;
+	}
 /*
 	//  LSCPlate2.position.z = effectController.mPipeBH*P3150.Length;
 	if(P3150)

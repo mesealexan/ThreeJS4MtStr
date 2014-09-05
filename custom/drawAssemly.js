@@ -96,9 +96,13 @@ function drawAssembly(AssemblyNo){
 			UB1212_2.position.z = -SP219.SP219.dimensions.d/2*0.8;
 			dummy_vert_1.add(UB1212);
 			dummy_vert_1.add(UB1212_2);
+
 		dummy_vert_2 = duplicate(dummy_vert_1);
 			UB5458.add(dummy_vert_2);
 
+		dummy_vert_3 = duplicate(dummy_vert_1);
+			UB5458.add(dummy_vert_3);
+		
 			Assembly.add(SV197_36);
 		break;
 	case 'RMV12-372':

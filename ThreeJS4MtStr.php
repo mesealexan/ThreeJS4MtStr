@@ -101,6 +101,8 @@ mPipeAllV: 0,
 mPipeAH:0.35,
 mP263Rot: 0,
 mPipeBH:-0.35,
+mPipe3Rot: 0,
+mPipeCH : 0,
 mPipe2Rot: 0,
 HArmHO:0,
 EArmVO:0,
@@ -115,7 +117,9 @@ PlateHR:0
 	h.add(effectController, "mPipeAH", -0.5, 0.5, 0.01).name("mPipe A Horizontal");
 	h.add(effectController, "mP263Rot", -90.0, 90.0, 0.025).name("mPipe A Rot");
 	h.add(effectController, "mPipeBH", -0.5, 0.5, 0.01).name("mPipe B Horizontal");
-	h.add(effectController, "mPipe2Rot", -90.0, 90.0, 0.025).name("mPipe B Rot");
+	h.add(effectController, "mPipe3Rot", -90.0, 90.0, 0.025).name("mPipe B Rot");
+	h.add(effectController, "mPipeCH", -0.5, 0.5, 0.01).name("mPipe C Horizontal");
+	h.add(effectController, "mPipe2Rot", -90.0, 90.0, 0.025).name("mPipe C Rot");
 	h.add(effectController, "HArmHO", -0.5, 0.5, 0.01).name("H Arm Hori Offset");
 	h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
 	h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");

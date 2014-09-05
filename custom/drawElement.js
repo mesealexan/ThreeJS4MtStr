@@ -1,6 +1,20 @@
 function duplicate(object){
-	ray_objects.push(object.clone());
-	return(object.clone())
+	var kkt = object.clone();
+	if(object.name==="")
+	{
+		pushChildren(kkt)
+	}
+	return(kkt)
+}
+
+function pushChildren(object){
+var i=0;
+	do{
+			ray_objects.push(object.children[i]);
+		if(object.children[i].children.length>0)
+			pushChildren(object.children[i])
+		i++
+	} while (i < object.children.length)
 }
 
 function getshapeData(shapeType,shapeSize){
