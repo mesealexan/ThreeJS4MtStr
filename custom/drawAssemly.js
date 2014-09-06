@@ -1,6 +1,7 @@
+var RMV12_363 =  new THREE.Object3D();
 
 function drawAssembly(AssemblyNo){
- 	var Assembly = new THREE.Object3D();
+ 	
 	switch (AssemblyNo){
 	case 'RMV12-363':
 		//var PartNo = 'G58R-24'; G58R_24 = new drawPart(PartNo);  Assembly.add(G58R_24);
@@ -22,10 +23,11 @@ function drawAssembly(AssemblyNo){
 		var PartNo = 'A'; A = new drawPart(PartNo);   Assembly.add(A);
 		*/
 
-
 		//Assembly A
+		var AssemblyA = new THREE.Object3D();
 		var PartNo = 'SV197-36'; SV197_36 = new drawPart(PartNo); 
 
+		SV197_36.matrixWorldNeedsUpdate = true
 		dummy_plate = new THREE.Object3D();
 			dummy_plate.position.z = SV197_36.ExArm.dimensions.D1;
 			SV197_36.add(dummy_plate);
@@ -105,9 +107,20 @@ function drawAssembly(AssemblyNo){
 
 		dummy_vert_3 = duplicate(dummy_vert_1);
 			UB5458.add(dummy_vert_3);
-		
-		//Assembly B
+					
+			AssemblyA.add(SV197_36);
+			RMV12_363.AssemblyA = AssemblyA;
+			RMV12_363.AssemblyA.dummy_vert_1 = dummy_vert_1;
+			RMV12_363.AssemblyA.dummy_vert_1.A = A;
 
+			RMV12_363.AssemblyA.dummy_vert_2 = dummy_vert_2;
+			RMV12_363.AssemblyA.dummy_vert_2.A = A;
+
+			RMV12_363.AssemblyA.dummy_vert_3 = dummy_vert_3;
+			RMV12_363.AssemblyA.dummy_vert_3.A = A;
+
+		//Assembly B
+	var AssemblyB = new THREE.Object3D();
 		var PartNo = 'SV197-36'; SV197_36_B = new drawPart(PartNo); 
 
 		dummy_plate_B = new THREE.Object3D();
@@ -190,8 +203,11 @@ function drawAssembly(AssemblyNo){
 		dummy_vert_3_B = duplicate(dummy_vert_1_B);
 			UB5458_B.add(dummy_vert_3_B);
 
-//Assembly C
+			AssemblyB.add(SV197_36_B);
+			RMV12_363.AssemblyB = AssemblyB;
 
+//Assembly C
+		var AssemblyC = new THREE.Object3D();
 		var PartNo = 'SV197-36'; SV197_36_C = new drawPart(PartNo); 
 
 		dummy_plate_C = new THREE.Object3D();
@@ -275,9 +291,15 @@ function drawAssembly(AssemblyNo){
 			UB5458_C.add(dummy_vert_3_C);
 
 
-			Assembly.add(SV197_36);
-			Assembly.add(SV197_36_B);
-			Assembly.add(SV197_36_C);
+			AssemblyC.add(SV197_36_C);
+			RMV12_363.AssemblyC = AssemblyC;
+
+			RMV12_363.add(AssemblyA);
+			RMV12_363.add(AssemblyB);
+			RMV12_363.add(AssemblyC);
+			pushNamesA(RMV12_363.AssemblyA);
+			pushNamesB(RMV12_363.AssemblyB);
+			pushNamesC(RMV12_363.AssemblyC);
 		break;
 	case 'RMV12-372':
 		break;
@@ -288,5 +310,34 @@ function drawAssembly(AssemblyNo){
 	default:
 		break;
 	};
-	scene.add(Assembly);
+	scene.add(RMV12_363);
 };
+
+function pushNamesA(object){
+var i=0;
+	do{
+			object.children[i].name = "A: " + object.children[i].name
+		if(object.children[i].children.length>0)
+			pushNamesA(object.children[i])
+		i++
+	} while (i < object.children.length)
+}
+function pushNamesB(object){
+var i=0;
+	do{
+			object.children[i].name = "B: " + object.children[i].name
+		if(object.children[i].children.length>0)
+			pushNamesB(object.children[i])
+		i++
+	} while (i < object.children.length)
+}
+function pushNamesC(object){
+var i=0;
+	do{
+			object.children[i].name = "C: " + object.children[i].name
+		if(object.children[i].children.length>0)
+			pushNamesC(object.children[i])
+		i++
+	} while (i < object.children.length)
+}
+

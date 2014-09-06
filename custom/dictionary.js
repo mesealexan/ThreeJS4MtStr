@@ -1,5 +1,5 @@
 //fixed variables
-var container, scene, camera, renderer, controls, effectController, Intersected;
+var container, scene, camera, renderer, controls, effectController;
 var SCREEN_WIDTH = window.innerWidth; 
 var SCREEN_HEIGHT = window.innerHeight; 
 
@@ -9,7 +9,9 @@ mouse_vector = new THREE.Vector3(),
 mouse = { x: 0, y: 0, z: 1 },
 ray = new THREE.Raycaster( new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0) );
 intersects = []; 
+var Intersected;
 
+var keyboard;
 //Accuracy for displaying numbers on screen and XML
 var accuracy = 4;
 var axis;

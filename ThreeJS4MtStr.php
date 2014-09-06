@@ -12,6 +12,7 @@ $db = new dbManagement();
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/Coordinates.js"></script>
 <script src="lib/three.min.js"></script>
+<script src='lib/THREEx.KeyboardState.js'></script>
 <script src="custom/dictionary.js"></script>
 <script src="lib/OrbitAndPanControls.js"></script>
 <script src="lib/dat.gui.min.js"></script>
@@ -27,6 +28,7 @@ $db = new dbManagement();
 <button id="downloadLink" >XML</button>
 </a>
 <script>
+
 
 function createText(){
 	var coordinatesWindow = open('coordinates.xml','coordinatesWindow','');
@@ -59,6 +61,8 @@ function init()
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	camera.position.set(-150,150,150);   
 	scene.add(camera); 
+
+	keyboard = new THREEx.KeyboardState();
 
 	axis = new THREE.AxisHelper(50);
 	axis.position.set(0,0,0);
@@ -98,10 +102,18 @@ function animate()
 function setupGui() {
 effectController = {
 EArmVO:0,
-EArmHR:0,
+
 PlateAHR:0,
 PlateBHR:0,
 PlateCHR:0,
+
+ArmARot:0,
+ArmBRot:0,
+ArmCRot:0,
+
+ArmADist:0,
+ArmBDist:0,
+ArmCDist:0,
 
 mPipeA1H:0.35,
 mPipeA1V:0,
@@ -139,9 +151,10 @@ mPipeC3R:0
 	
 	h = gui.addFolder("Mounting Structure");
 	h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
-	h.add(effectController, "EArmHR", -180.0, 180.0, 0.025).name("Extend Arm Hori Rot");
 	
 	a = gui.addFolder("A");
+	a.add(effectController, "ArmADist", 0, 100, 0.01).name("Move Arm Hori");
+	a.add(effectController, "ArmARot", -89.0, 89.0, 0.025).name("Rotate Arm");
 	a.add(effectController, "PlateAHR", -89.0, 89.0, 0.025).name("Rotate Plate");
 	a.add(effectController, "mPipeA1H", -0.5, 0.5, 0.01).name("mPipe 1 Horizontal");
 	a.add(effectController, "mPipeA1V", -0.5, 0.5, 0.01).name("mPipe 1 Vertical");
@@ -154,7 +167,8 @@ mPipeC3R:0
 	a.add(effectController, "mPipeA3R", -90.0, 90.0, 0.025).name("mPipe 3 Rot");
 	
 	b = gui.addFolder("B");
-
+	b.add(effectController, "ArmBDist", 0, 100, 0.01).name("Move Arm Hori");
+	b.add(effectController, "ArmBRot", -89.0, 89.0, 0.025).name("Rotate Arm");
 	b.add(effectController, "PlateBHR", -89.0, 89.0, 0.025).name("Rotate Plate");
 	b.add(effectController, "mPipeB1H", -0.5, 0.5, 0.01).name("mPipe 1 Horizontal");
 	b.add(effectController, "mPipeB1V", -0.5, 0.5, 0.01).name("mPipe 1 Vertical");
@@ -167,7 +181,8 @@ mPipeC3R:0
 	b.add(effectController, "mPipeB3R", -90.0, 90.0, 0.025).name("mPipe 3 Rot");
 
 	c = gui.addFolder("C");
-
+	c.add(effectController, "ArmCDist", 0, 100, 0.01).name("Move Arm Hori");
+	c.add(effectController, "ArmCRot", -89.0, 89.0, 0.025).name("Rotate Arm");
 	c.add(effectController, "PlateCHR", -89.0, 89.0, 0.025).name("Rotate Plate");
 	c.add(effectController, "mPipeC1H", -0.5, 0.5, 0.01).name("mPipe 1 Horizontal");
 	c.add(effectController, "mPipeC1V", -0.5, 0.5, 0.01).name("mPipe 1 Vertical");
@@ -194,16 +209,15 @@ function onMouseDown( event_info )
 
 	if(intersects.length>0)
 	{
-		//if(Intersected!==currentIntersect)
-		Intersected = intersects[0].object;
-		currentIntersect = Intersected.material.color.getHex();
-		Intersected.material.color.setHex('#ff0000')
-		console.log(currentIntersect)
-		/*
-		Intersected.material.color.r = 1;
-		Intersected.material.color.g = 0;
-		Intersected.material.color.b = 0;
-		*/
+		if ( intersects[ 0 ].object != Intersected )
+		{
+			if ( Intersected ) 
+				Intersected.material.color.setHex( Intersected.currentHex );
+
+		Intersected = intersects[ 0 ].object;
+		Intersected.currentHex = Intersected.material.color.getHex();
+		Intersected.material.color.setHex( 0xff0000 );
+
 		parentName = Intersected.parent.parent.name;
 		var vector = new THREE.Vector3();
 		axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
@@ -223,7 +237,11 @@ function onMouseDown( event_info )
 		'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
 		document.getElementById("text").innerHTML = world_text;
 		document.getElementById("local").innerHTML = local_text;
+		}
 	}
+
+
+
 }
 </script>
 </div>
