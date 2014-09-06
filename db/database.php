@@ -8,7 +8,7 @@
 
 class dbManagement{
 
-	var $dbloc = 'cloud';
+	var $dbloc = 'global';
 	
 	var $dbhost;
 	var $dbuser;
