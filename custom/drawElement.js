@@ -6,11 +6,11 @@ function duplicate(object){
 }
 
 function pushChildren(object){
-var i=0;
+	var i=0;
 	do{
-			ray_objects.push(object.children[i]);
+		ray_objects.push(object.children[i]);
 		if(object.children[i].children.length>0)
-			pushChildren(object.children[i])
+		pushChildren(object.children[i])
 		i++
 	} while (i < object.children.length)
 }
