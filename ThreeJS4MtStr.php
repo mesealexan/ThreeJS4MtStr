@@ -24,7 +24,7 @@ $db = new dbManagement();
 </head>
 <body>
 <div id="container"></div>    
-<div id="text"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
+<div id="text" style="background-color:yelow;"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
 <div id="local"> <u>To Parent / Local</u><br> X: <br> Y:<br> Z:</div>
 <button id="downloadLink" >XML</button>
 </a>
@@ -53,10 +53,15 @@ function createText(){
 
 var  Assembly2Draw = 'RMV12-363';
 init(Assembly2Draw);
+
+var Assembly =  new THREE.Object3D();
+Assembly = drawAssembly(Assembly2Draw);
+scene.add(Assembly);
+
 setupGui(Assembly2Draw);
 animate();
 
-function init(Assembly2Draw)
+function init()
 {
 	scene = new THREE.Scene();
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
@@ -90,8 +95,6 @@ function init(Assembly2Draw)
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
-	
-	drawAssembly(Assembly2Draw);
 }
 
 function animate() 
@@ -102,10 +105,10 @@ function animate()
 	update();
 }
 
-var currentIntersect;
+var currentIntersect; // what is this variable about?
 function onMouseDown( event_info ) 
 {
-	
+
 	event_info.preventDefault();  
 	mouse.x = ( event_info.clientX / SCREEN_WIDTH ) * 2 - 1;
 	mouse.y = - ( event_info.clientY / SCREEN_HEIGHT ) * 2 + 1; 
@@ -147,9 +150,6 @@ function onMouseDown( event_info )
 		document.getElementById("local").innerHTML = local_text;
 		}
 	}
-
-
-
 }
 </script>
 </div>

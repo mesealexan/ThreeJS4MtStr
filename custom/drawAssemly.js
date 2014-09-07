@@ -1,9 +1,10 @@
-var RMV12_363 =  new THREE.Object3D();
+
 
 function drawAssembly(AssemblyNo){
  	
 	switch (AssemblyNo){
 	case 'RMV12-363':
+		var RMV12_363 =  new THREE.Object3D();
 		//var PartNo = 'G58R-24'; G58R_24 = new drawPart(PartNo);  Assembly.add(G58R_24);
 		//var PartNo = 'G58R-48'; G58R_48 = new drawPart(PartNo);  Assembly.add(G58R_48);
 		/*
@@ -300,6 +301,7 @@ function drawAssembly(AssemblyNo){
 			pushNamesA(RMV12_363.AssemblyA);
 			pushNamesB(RMV12_363.AssemblyB);
 			pushNamesC(RMV12_363.AssemblyC);
+			return(RMV12_363);
 		break;
 	case 'RMV12-372':
 		break;
@@ -310,7 +312,6 @@ function drawAssembly(AssemblyNo){
 	default:
 		break;
 	};
-	scene.add(RMV12_363);
 };
 
 function pushNamesA(object){

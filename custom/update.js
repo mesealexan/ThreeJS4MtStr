@@ -20,13 +20,15 @@ function update(){
 
 	SV197_36.position.z = effectController.ArmADist*Math.cos(SV197_36.rotation.y);
 	SV197_36.position.x = effectController.ArmADist*Math.sin(SV197_36.rotation.y);
-	}
+	};
+	
 	if(SV197_36_B){
 	SV197_36_B.rotation.y = effectController.ArmBRot*Math.PI/180 + Math.PI + Math.PI*2/3;
 	SV197_36_B.position.y = effectController.EArmVO*100 + 20;
 	SV197_36_B.position.z = effectController.ArmBDist*Math.cos(SV197_36_B.rotation.y);
 	SV197_36_B.position.x = effectController.ArmBDist*Math.sin(SV197_36_B.rotation.y);
 	}
+	
 	if(SV197_36_C){
 	SV197_36_C.rotation.y = effectController.ArmCRot*Math.PI/180 + Math.PI - Math.PI*2/3;
 	SV197_36_C.position.y = effectController.EArmVO*100 + 20;
@@ -42,11 +44,13 @@ function update(){
 	dummy_vert_1.rotation.y = effectController.mPipeA1R*Math.PI/180;
 	dummy_vert_1.children[0].children[1].position.z = -effectController.mPipeA1V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_2){
 	dummy_vert_2.position.z = effectController.mPipeA2H*P3150.dimensions.D1*0.97;
 	dummy_vert_2.rotation.y = effectController.mPipeA2R*Math.PI/180 + Math.PI/2;
 	dummy_vert_2.children[0].children[1].position.z = -effectController.mPipeA2V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_3){
 	dummy_vert_3.position.z = effectController.mPipeA3H*P3150.dimensions.D1*0.97;
 	dummy_vert_3.rotation.y = effectController.mPipeA3R*Math.PI/180 + Math.PI/2;
@@ -61,11 +65,13 @@ function update(){
 	dummy_vert_1_B.rotation.y = effectController.mPipeB1R*Math.PI/180;
 	dummy_vert_1_B.children[0].children[1].position.z = -effectController.mPipeB1V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_2_B){
 	dummy_vert_2_B.position.z = effectController.mPipeB2H*P3150.dimensions.D1*0.97;
 	dummy_vert_2_B.rotation.y = effectController.mPipeB2R*Math.PI/180 + Math.PI/2;
 	dummy_vert_2_B.children[0].children[1].position.z = -effectController.mPipeB2V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_3_B){
 	dummy_vert_3_B.position.z = effectController.mPipeB3H*P3150.dimensions.D1*0.97;
 	dummy_vert_3_B.rotation.y = effectController.mPipeB3R*Math.PI/180 + Math.PI/2;
@@ -80,11 +86,13 @@ function update(){
 	dummy_vert_1_C.rotation.y = effectController.mPipeC1R*Math.PI/180;
 	dummy_vert_1_C.children[0].children[1].position.z = -effectController.mPipeC1V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_2_C){
 	dummy_vert_2_C.position.z = effectController.mPipeC2H*P3150.dimensions.D1*0.97;
 	dummy_vert_2_C.rotation.y = effectController.mPipeC2R*Math.PI/180 + Math.PI/2;
 	dummy_vert_2_C.children[0].children[1].position.z = -effectController.mPipeC2V*A.dimensions.D1;
 	}
+	
 	if(dummy_vert_3_C){
 	dummy_vert_3_C.position.z = effectController.mPipeC3H*P3150.dimensions.D1*0.97;
 	dummy_vert_3_C.rotation.y = effectController.mPipeC3R*Math.PI/180 + Math.PI/2;
@@ -103,9 +111,5 @@ function update(){
 	if(P3150)
 	P3150.position.z = effectController.HArmHO*P3150.Length;
 */
-
-
-
-
 
 }

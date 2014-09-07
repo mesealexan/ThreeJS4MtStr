@@ -31,6 +31,7 @@ function getshapeData(shapeType,shapeSize){
 	// console.log(shapeData);	
 	return(shapeData);
 }
+
 var counter = 1;
 function drawElement( D1, sectionType, shapeSize, description, material, partNo, centerPivot){
 	var mesh;
