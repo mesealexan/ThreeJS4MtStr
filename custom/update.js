@@ -12,6 +12,11 @@ function update(){
 		axis.updateMatrixWorld( true );
 	}
 	
+	if(RMV12_363)
+	{
+		RMV12_363.rotation.y = effectController.EArmRot*Math.PI/180;
+	}
+	
 	if(SV197_36){
 		SV197_36.updateMatrixWorld( true );
 

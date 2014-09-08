@@ -1,10 +1,10 @@
-
+var RMV12_363 =  new THREE.Object3D();
 
 function drawAssembly(AssemblyNo){
  	
 	switch (AssemblyNo){
 	case 'RMV12-363':
-		var RMV12_363 =  new THREE.Object3D();
+		
 		//var PartNo = 'G58R-24'; G58R_24 = new drawPart(PartNo);  Assembly.add(G58R_24);
 		//var PartNo = 'G58R-48'; G58R_48 = new drawPart(PartNo);  Assembly.add(G58R_48);
 		/*
