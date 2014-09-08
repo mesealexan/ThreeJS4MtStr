@@ -26,28 +26,25 @@ $db = new dbManagement();
 <div id="container"></div>    
 <div id="text" style="background-color:yelow;"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
 <div id="local"> <u>To Parent / Local</u><br> X: <br> Y:<br> Z:</div>
-<button id="downloadLink" >XML</button>
+<button id="downloadLink" onclick="createText()">Coordinates</button>
 </a>
 <script>
 
 
 function createText(){
-	var coordinatesWindow = open('coordinates.xml','coordinatesWindow','');
-	coordinatesWindow.document.bgColor='000000';
+	var coordinatesWindow = open('coordinates.html','coordinatesWindow','');
+	//coordinatesWindow.document.bgColor='000000';
 	//coordinatesWindow.document.style.fontSize = '40px';
 	if(ray_objects)
 	for(i=0;i<ray_objects.length;i++){
 		var vector = new THREE.Vector3();
+		if(ray_objects[i].name !== "")
 		coordinatesWindow.document.write(
-		"<h" + i+1 + "<b>" + ray_objects[i].name + "</b><hr>" +
-		"<u>  World</u><br>" +
-		"   X:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x).toFixed(accuracy) + "<br>" +
-		"   Y:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y).toFixed(accuracy) + "<br>" +
-		"   Z:" + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" +
-		"<u>To " + ray_objects[i].parent.parent.name  +  " / Local</u><br>" +
-		"   X:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).x).toFixed(accuracy) + "<br>" +
-		"   Y:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).y).toFixed(accuracy) + "<br>" +
-		"   Z:" + (vector.getPositionFromMatrix( ray_objects[i].parent.parent.matrixWorld ).z).toFixed(accuracy) + "<br><br><br>" )
+		"<h" + i+1 + "<b> PartNo: " + ray_objects[i].name + " Element No. " + i + "</b><hr>" +
+		"<u>  Position</u><br>" +
+		"   X: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).x).toFixed(accuracy) + "<br>" +
+		"   Y: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).y).toFixed(accuracy) + "<br>" +
+		"   Z: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" + "<br>" + "<br>")
 	}
 }
 
@@ -105,7 +102,6 @@ function animate()
 	update();
 }
 
-var currentIntersect; // what is this variable about?
 function onMouseDown( event_info ) 
 {
 

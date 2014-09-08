@@ -1,6 +1,7 @@
 function setupGui(Assembly2Draw) {
 effectController = {
 EArmVO:0,
+EArmRot:0,
 
 PlateAHR:0,
 PlateBHR:0,
@@ -50,6 +51,7 @@ mPipeC3R:0
 	
 	h = gui.addFolder("Mounting Structure");
 	h.add(effectController, "EArmVO", -0.5, 0.5, 0.01).name("Extend Arm Vert Offset");
+	h.add(effectController, "EArmRot", -89.0, 89.0, 0.025).name("Rotate Arms");
 	
 	a = gui.addFolder("A");
 	a.add(effectController, "ArmADist", 0, 100, 0.01).name("Move Arm Hori");

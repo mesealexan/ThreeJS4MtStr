@@ -18,22 +18,21 @@ function update(){
 	SV197_36.rotation.y = effectController.ArmARot*Math.PI/180 + Math.PI;
 	SV197_36.position.y = effectController.EArmVO*100 + 20;
 
-	SV197_36.position.z = effectController.ArmADist*Math.cos(SV197_36.rotation.y);
-	SV197_36.position.x = effectController.ArmADist*Math.sin(SV197_36.rotation.y);
+	SV197_36.position.z = -effectController.ArmADist;
 	};
 	
 	if(SV197_36_B){
 	SV197_36_B.rotation.y = effectController.ArmBRot*Math.PI/180 + Math.PI + Math.PI*2/3;
 	SV197_36_B.position.y = effectController.EArmVO*100 + 20;
-	SV197_36_B.position.z = effectController.ArmBDist*Math.cos(SV197_36_B.rotation.y);
-	SV197_36_B.position.x = effectController.ArmBDist*Math.sin(SV197_36_B.rotation.y);
+	SV197_36_B.position.z = effectController.ArmBDist*0.49999999999999933;
+	SV197_36_B.position.x = effectController.ArmBDist*(-0.866025403784439);
 	}
 	
 	if(SV197_36_C){
 	SV197_36_C.rotation.y = effectController.ArmCRot*Math.PI/180 + Math.PI - Math.PI*2/3;
 	SV197_36_C.position.y = effectController.EArmVO*100 + 20;
-	SV197_36_C.position.z = effectController.ArmCDist*Math.cos(SV197_36_C.rotation.y);
-	SV197_36_C.position.x = effectController.ArmCDist*Math.sin(SV197_36_C.rotation.y);
+	SV197_36_C.position.z = effectController.ArmCDist*0.4999999999999999;
+	SV197_36_C.position.x = effectController.ArmCDist*0.8660254037844387;
 	}
 	
 	if(dummy_plate)
