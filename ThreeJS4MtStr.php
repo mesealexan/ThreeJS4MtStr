@@ -55,6 +55,8 @@ var Assembly =  new THREE.Object3D();
 Assembly = drawAssembly(Assembly2Draw);
 scene.add(Assembly);
 
+var cube = new THREE.Mesh(new THREE.CubeGeometry(5, 5, 5), new THREE.MeshNormalMaterial());
+    RMV12_363.AssemblyA.dummy_vert_1.A.add(cube);
 setupGui(Assembly2Draw);
 animate();
 
@@ -92,6 +94,9 @@ function init()
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
+
+	//Attach a cube to part A of AssemblyA
+
 }
 
 function animate() 

@@ -32,62 +32,51 @@ function getshapeData(shapeType,shapeSize){
 	return(shapeData);
 }
 
-var counter = 1;
 function drawElement( D1, sectionType, shapeSize, description, material, partNo, centerPivot){
 	var mesh;
 	switch (sectionType){
 	case "I":
 			mesh = new drawI(shapeSize, D1, material,centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "L":
 			mesh = new drawL(shapeSize, D1, material,centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "C":
 			mesh = new drawC(shapeSize, D1, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "Pipe":
 			mesh = new drawPipe(shapeSize, D1, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "HHS(Rect)":
 			mesh = new drawHHS_Rect(shapeSize, D1, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "U Bolt":
 			//NOTE D1 = length, shapeSize = width
 			mesh = new drawUBolt(D1, shapeSize, 0.2, D1/2, true, true, 0.5, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "SR":
 			mesh = new drawSR(shapeSize,D1, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "Nut":
 			//NOTE D1 = radius, shapeSize = thickness
 			mesh = new drawNut(D1, shapeSize ,material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "Hex Bolt":
 			mesh = new drawHexBolt(8, 1.125, 5, 0.5, material, centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	case "Donut":
 			//NOTE D1 = radius, shapeSize = tubular radius
 			mesh = new drawDonut(D1, shapeSize, material,centerPivot);
-			mesh.name = partNo + " " + description + " ";
-			counter++
+			mesh.name = partNo + " ";
 			break;
 	default:
 		alert("Something went wrong! Check drawElement")
