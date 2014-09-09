@@ -56,11 +56,11 @@ Assembly = drawAssembly(Assembly2Draw);
 scene.add(Assembly);
 
 var dummy =  new THREE.Object3D();
-RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
+//RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
 
 var cube = new THREE.Mesh(new THREE.CubeGeometry(6, 12, 60), new THREE.MeshNormalMaterial());
 
-dummy.add(cube);
+//dummy.add(cube);
 
 dummy.rotation.z = 30*Math.PI/180;
 dummy.rotation.y = 5*Math.PI/180;

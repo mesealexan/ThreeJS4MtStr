@@ -1,9 +1,47 @@
-function duplicate(object){
 
-	var cloned = object.clone();
-		pushChildren(cloned)
-	return(cloned)
+function duplicate(object){
+	if(object.geometry)
+    	clonedObject = new THREE.Mesh(object.geometry, new setMaterial(object.matValue));
+	else
+		clonedObject = new THREE.Object3D();
+	    clonedObject.position.copy(object.position);
+	    clonedObject.rotation.copy(object.rotation);
+	    clonedObject.scale.copy(object.scale);
+	    clonedObject.name = object.name + " ";
+    if(object.children.length>0)
+        cloneChildrens(object, clonedObject)
+    else if(object.children.length===0)
+    return(clonedObject);
 }
+
+function cloneChildrens(object, parent){
+    var i=0;
+    do{
+    	if(object.children[i].geometry)
+    	{
+       		childrenCloned = new THREE.Mesh(object.children[i].geometry, new setMaterial(object.children[i].matValue));
+	       	childrenCloned.position.copy(object.children[i].position);
+	        childrenCloned.rotation.copy(object.children[i].rotation);
+	        childrenCloned.scale.copy(object.children[i].scale);
+	        childrenCloned.name = object.children[i].name + " ";
+	       	ray_objects.push(childrenCloned);
+	        parent.add(childrenCloned);
+    	}
+    	else
+    		childrenCloned =  new THREE.Object3D();
+
+        if(object.children[i].children.length>0)
+            cloneChildrens(object.children[i], childrenCloned)
+        i++
+        } while (i < object.children.length)
+}
+
+		
+
+
+
+
+
 
 function pushChildren(object){
 	var i=0;
@@ -90,13 +128,13 @@ function drawElement( D1, sectionType, shapeSize, description, material, partNo,
 function setMaterial(value){
 	switch(value){
 	case 'metal':
-		material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
+		var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
 		break;
 	case 'aluminium':
-		material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
 		break;
 	case 'chrome':
-		material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
 		break;
 	default:
 		break;}
@@ -148,6 +186,7 @@ function drawHHS_Rect(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'HHS(Rect) ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -185,6 +224,7 @@ function drawC(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'C ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -219,6 +259,7 @@ function drawL(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'L_E ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -244,6 +285,7 @@ function drawPipe(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'Pipe ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -263,6 +305,7 @@ function drawSR(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'SR ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -288,6 +331,7 @@ function drawPipe(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.D1 = D1;
 	mesh.name = 'Pipe ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -328,6 +372,7 @@ function drawHexBolt(height, radius, thread, NutOffset, material, centerPivot){
 	mesh.dimensions.radius = radius;
 	mesh.name = 'Hex Bolt ' + radius;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 
@@ -402,6 +447,7 @@ function drawI(shapeSize, D1, material,centerPivot){
 	mesh.dimensions.k1 = k1;
 	mesh.name = '???? ' + shapeSize;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh);
 }
 
@@ -416,6 +462,7 @@ function drawDonut(radius, tubeRadius, material,centerPivot){
 	mesh.dimensions.tubeRadius = tubeRadius;
 	mesh.name = "Donut " + radius;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
 function drawUBolt(height, width, thickness, thread, leftNut, rightNut, NutOffset, material, centerPivot){
@@ -495,5 +542,6 @@ function drawUBolt(height, width, thickness, thread, leftNut, rightNut, NutOffse
 	mesh.dimensions.NutOffset = NutOffset;
 	mesh.name = 'U Bolt ' + height + " " + width;
 	ray_objects.push(mesh);
+	mesh.matValue = material;
 	return(mesh)
 }
