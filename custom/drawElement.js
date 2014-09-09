@@ -1,34 +1,31 @@
 
 function duplicate(object){
-	if(object.geometry)
-    	clonedObject = new THREE.Mesh(object.geometry, new setMaterial(object.matValue));
-	else
-		clonedObject = new THREE.Object3D();
-	    clonedObject.position.copy(object.position);
-	    clonedObject.rotation.copy(object.rotation);
-	    clonedObject.scale.copy(object.scale);
-	    clonedObject.name = object.name + " ";
-    if(object.children.length>0)
-        cloneChildrens(object, clonedObject)
-    else if(object.children.length===0)
+		clonedObject = object.clone();
+		pushChildren(clonedObject)
     return(clonedObject);
 }
-
+/*
 function cloneChildrens(object, parent){
     var i=0;
     do{
-    	if(object.children[i].geometry)
+    	console.log(object.children[i].geometry)
+    	if(object.children[i].geometry!=undefined)
     	{
+    		console.log("aur")
        		childrenCloned = new THREE.Mesh(object.children[i].geometry, new setMaterial(object.children[i].matValue));
+    	}
+       	else
+       	{
+       		console.log("au")
+    		childrenCloned =  new THREE.Mesh(new THREE.CubeGeometry(5,5,5), new THREE.MeshBasicMaterial());
+    	}
 	       	childrenCloned.position.copy(object.children[i].position);
 	        childrenCloned.rotation.copy(object.children[i].rotation);
 	        childrenCloned.scale.copy(object.children[i].scale);
 	        childrenCloned.name = object.children[i].name + " ";
 	       	ray_objects.push(childrenCloned);
 	        parent.add(childrenCloned);
-    	}
-    	else
-    		childrenCloned =  new THREE.Object3D();
+    	
 
         if(object.children[i].children.length>0)
             cloneChildrens(object.children[i], childrenCloned)
@@ -36,7 +33,7 @@ function cloneChildrens(object, parent){
         } while (i < object.children.length)
 }
 
-		
+	*/	
 
 
 
@@ -47,8 +44,10 @@ function pushChildren(object){
 	var i=0;
 	do{
 		ray_objects.push(object.children[i]);
+		if(object.children[i].material)
+			object.children[i].material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
 		if(object.children[i].children.length>0)
-		pushChildren(object.children[i])
+			pushChildren(object.children[i])
 		i++
 	} while (i < object.children.length)
 }

@@ -123,6 +123,7 @@ function drawAssembly(AssemblyNo){
 			UB5458.add(dummy_vert_2);
 
 		Vpipe2 = duplicate(SP219);
+			Vpipe2.rotation.z = Math.PI/2
 			dummy_vert_2.add(Vpipe2)
 /*
 		dummy_vert_3 = duplicate(dummy_vert_1);
