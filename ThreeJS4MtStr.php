@@ -51,6 +51,7 @@ function createText(){
 var  Assembly2Draw = 'RMV12-363';
 init(Assembly2Draw);
 
+
 var Assembly =  new THREE.Object3D();
 Assembly = drawAssembly(Assembly2Draw);
 scene.add(Assembly);
@@ -58,13 +59,8 @@ scene.add(Assembly);
 var dummy =  new THREE.Object3D();
 RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
 
-
-var cube = new THREE.SceneUtils.createMultiMaterialObject( 
-	new THREE.CubeGeometry(6, 12, 60),  //Geometry
-	[
-    new THREE.MeshLambertMaterial( { color: 0x999999} ), //Solid Material
-    new THREE.MeshBasicMaterial( { color: 0xff2222, wireframe: true} //Wireframe Material
-    )]);
+var cube = new THREE.Mesh(new THREE.CubeGeometry(6, 12, 60), new THREE.MeshPhongMaterial({ color: 0x999999}));
+cube.name = "cube";
 ray_objects.push(cube);
 dummy.add(cube);
 
