@@ -56,11 +56,17 @@ Assembly = drawAssembly(Assembly2Draw);
 scene.add(Assembly);
 
 var dummy =  new THREE.Object3D();
-//RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
+RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
 
-var cube = new THREE.Mesh(new THREE.CubeGeometry(6, 12, 60), new THREE.MeshNormalMaterial());
 
-//dummy.add(cube);
+var cube = new THREE.SceneUtils.createMultiMaterialObject( 
+	new THREE.CubeGeometry(6, 12, 60),  //Geometry
+	[
+    new THREE.MeshLambertMaterial( { color: 0x999999} ), //Solid Material
+    new THREE.MeshBasicMaterial( { color: 0xff2222, wireframe: true} //Wireframe Material
+    )]);
+ray_objects.push(cube);
+dummy.add(cube);
 
 dummy.rotation.z = 30*Math.PI/180;
 dummy.rotation.y = 5*Math.PI/180;
@@ -114,9 +120,6 @@ function init()
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
-
-	//Attach a cube to part A of AssemblyA
-
 }
 
 function animate() 
@@ -146,10 +149,11 @@ function onMouseDown( event_info )
 			if ( Intersected ) 
 				Intersected.material.color.setHex( Intersected.currentHex );
 
+
 		Intersected = intersects[ 0 ].object;
 		Intersected.currentHex = Intersected.material.color.getHex();
 		Intersected.material.color.setHex( 0xff0000 );
-
+console.log(Intersected.id)	
 		parentName = Intersected.parent.parent.name;
 		var vector = new THREE.Vector3();
 		axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;

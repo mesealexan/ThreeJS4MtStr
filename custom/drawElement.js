@@ -4,48 +4,30 @@ function duplicate(object){
 		pushChildren(clonedObject)
     return(clonedObject);
 }
-/*
-function cloneChildrens(object, parent){
-    var i=0;
-    do{
-    	console.log(object.children[i].geometry)
-    	if(object.children[i].geometry!=undefined)
-    	{
-    		console.log("aur")
-       		childrenCloned = new THREE.Mesh(object.children[i].geometry, new setMaterial(object.children[i].matValue));
-    	}
-       	else
-       	{
-       		console.log("au")
-    		childrenCloned =  new THREE.Mesh(new THREE.CubeGeometry(5,5,5), new THREE.MeshBasicMaterial());
-    	}
-	       	childrenCloned.position.copy(object.children[i].position);
-	        childrenCloned.rotation.copy(object.children[i].rotation);
-	        childrenCloned.scale.copy(object.children[i].scale);
-	        childrenCloned.name = object.children[i].name + " ";
-	       	ray_objects.push(childrenCloned);
-	        parent.add(childrenCloned);
-    	
 
-        if(object.children[i].children.length>0)
-            cloneChildrens(object.children[i], childrenCloned)
-        i++
-        } while (i < object.children.length)
-}
-
-	*/	
-
-
-
-
-
-
+//function to push all colned elements in ray_objects and to separate the materials
 function pushChildren(object){
 	var i=0;
 	do{
 		ray_objects.push(object.children[i]);
 		if(object.children[i].material)
-			object.children[i].material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+		{
+			var hex = object.children[i].material.color.getHex();
+			switch(hex){
+			case 11184810 :  
+				var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+				break;
+			case 3355443 :
+				var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
+				break;
+			case 15658734 :
+				var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
+				break;
+			}
+
+
+			object.children[i].material = material;
+		}
 		if(object.children[i].children.length>0)
 			pushChildren(object.children[i])
 		i++
