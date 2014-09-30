@@ -18,7 +18,7 @@ function drawAssembly(AssemblyNo){
 		SP216 = new drawPart(PartNo); 
 			SP216.rotation.y = Math.PI/2;
 			SP216.position.z = SP216.SP216.dimensions.bf/2 + SV197_36.ExArm.ExPipe.dimensions.OD; 
-			dummy_plate.add(SP216);
+			dummy_plate.add(SP216); // <------
 
 			var PartNo = 'UB1306'; //UBolt1
 		UB1306 = new drawPart(PartNo);  
@@ -116,7 +116,7 @@ function drawAssembly(AssemblyNo){
 		Vpipe3 = duplicate(SP219); //duplicate the vertical pipe system
 			dummy_vert_3.add(Vpipe3) //attach the vertical pipe system to the dummy
 			
-			AssemblyA.add(SV197_36);
+		AssemblyA.add(SV197_36);
 
 		//Assembly B
 		AssemblyB = duplicate(SV197_36);
@@ -132,7 +132,7 @@ function drawAssembly(AssemblyNo){
 		//Controller properties - this part is hardcoded for now
 
 		RMV12_363.AssemblyA = AssemblyA;
-		RMV12_363.AssemblyA.dummy_plate = RMV12_363.AssemblyA.children[0].children[1]
+		RMV12_363.AssemblyA.dummy_plate = RMV12_363.AssemblyA.children[0].children[1]; // Why children[1] not children[0];
 		RMV12_363.AssemblyA.dummy_vert_1 = RMV12_363.AssemblyA.children[0].children[1].children[0].children[3].children[5];
 		RMV12_363.AssemblyA.dummy_vert_2 = RMV12_363.AssemblyA.children[0].children[1].children[0].children[3].children[6];
 		RMV12_363.AssemblyA.dummy_vert_3 = RMV12_363.AssemblyA.children[0].children[1].children[0].children[3].children[7];

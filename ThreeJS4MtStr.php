@@ -16,11 +16,13 @@ $db = new dbManagement();
 <script src="custom/dictionary.js"></script>
 <script src="lib/OrbitAndPanControls.js"></script>
 <script src="lib/dat.gui.min.js"></script>
+
+<script src="custom/functions.js"></script>
 <script src="custom/drawElement.js"></script>
 <script src="custom/drawPart.js"></script>
 <script src="custom/drawAssemly.js"></script>
-<script src="custom/setupGui.js"></script>
-<script src="custom/update.js"></script>
+<script src="custom/setupGuiX.js"></script>
+<script src="custom/updateX.js"></script>
 </head>
 <body>
 <div id="container"></div>    
@@ -51,9 +53,9 @@ function createText(){
 var  Assembly2Draw = 'RMV12-363';
 init(Assembly2Draw);
 
-
 var Assembly =  new THREE.Object3D();
 Assembly = drawAssembly(Assembly2Draw);
+console.log(Assembly);
 scene.add(Assembly);
 
 var dummy =  new THREE.Object3D();
@@ -75,8 +77,6 @@ dummy.position.x = -6;
 dummy.rotation.z = 30*Math.PI/180;
 dummy.rotation.y = 5*Math.PI/180;
 */
-
-
 
 
 setupGui(Assembly2Draw);
