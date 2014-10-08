@@ -20,7 +20,7 @@ $db = new dbManagement();
 <script src="custom/functions.js"></script>
 <script src="custom/drawElement.js"></script>
 <script src="custom/drawPart.js"></script>
-<script src="custom/drawAssemly.js"></script>
+<script src="custom/drawAssemlyX.js"></script>
 <script src="custom/setupGuiX.js"></script>
 <script src="custom/updateX.js"></script>
 </head>
@@ -55,9 +55,9 @@ init(Assembly2Draw);
 
 var Assembly =  new THREE.Object3D();
 Assembly = drawAssembly(Assembly2Draw);
-console.log(Assembly);
 scene.add(Assembly);
 
+/*
 var dummy =  new THREE.Object3D();
 RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
 
@@ -70,6 +70,7 @@ dummy.rotation.z = 30*Math.PI/180;
 dummy.rotation.y = 5*Math.PI/180;
 
 cube.position.x = -6;
+*/
 /*
 // THREE.GeometryUtils.center(cube);
 dummy.position.x = -6;
