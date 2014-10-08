@@ -25,7 +25,6 @@ function update(){
 		// alert(Assembly);
 		if(RMV12_363[Assembly]) //check for assembly A
 		{
-			
 			switch (Assembly){
 			case 'AssemblyA':
 				RMV12_363[Assembly].rotation.y =  effectController[Assembly].ArmRot*Math.PI/180 + Math.PI; 

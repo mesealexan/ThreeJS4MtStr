@@ -26,10 +26,23 @@ $db = new dbManagement();
 </head>
 <body>
 <div id="container"></div>    
-<div id="text" style="background-color:yelow;"><b>Select Object</b><br> <u>World</u><br> X: <br> Y:<br> Z:</div>    
-<div id="local"> <u>To Parent / Local</u><br> X: <br> Y:<br> Z:</div>
+<div id="text" style="background-color:yellow;">
+<b>Select Object</b><br>
+<u>In World CS</u><br>
+X:<br>
+Y:<br>
+Z:</div> 
+<br>
+
+<div id="local">
+<u>To Parent / Local</u><br>
+X:<br>
+Y:<br>
+Z:</div>
+<br>
+
 <button id="downloadLink" onclick="createText()">Coordinates</button>
-</a>
+
 <script>
 
 
