@@ -138,8 +138,15 @@ function drawAssembly(AssemblyNo){
 		// dummy_vert_3.add(Vpipe3) //attach the vertical pipe system to the dummy
 		dummy_vert_3.Vpipe3 = Vpipe3;
 
+	Arms = ['AssemblyA','AssemblyB','AssemblyC'];
+	for (var iArm = 0; iArm < 3; iArm++) {
+		var Assembly = Arms[iArm];
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//It will still use the last created object in this way because SV197_36, dummy_plate, etc are still the same objects////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		RMV12_363[Assembly] = SV197_36;
 		RMV12_363[Assembly].SV197_36 = SV197_36;
-		// RMV12_363.AssemblyA.dummy_plate = RMV12_363.AssemblyA.children[0].children[1]; // Why children[1] not children[0];
 		RMV12_363[Assembly].dummy_plate = RMV12_363[Assembly].SV197_36.dummy_plate;
 		
 		RMV12_363[Assembly].dummy_vert_1 = RMV12_363[Assembly].SV197_36.dummy_plate.SP216.P3150.dummy_vert_1;
@@ -152,10 +159,12 @@ function drawAssembly(AssemblyNo){
 		
 		RMV12_363[Assembly].dummy_vert_1.A = RMV12_363[Assembly].SV197_36.dummy_plate.SP216.P3150.dummy_vert_1.SP219.A;
 
+		RMV12_363.add(RMV12_363[Assembly]); //Pushing all assemblies into one object so it can be returned as an object
+}
 		//Push A,B,C Letter in the name of objects
-		pushNames(RMV12_363[Assembly],"A");
-		pushNames(RMV12_363[Assembly],"B");
-		pushNames(RMV12_363[Assembly],"C");
+		//pushNames(RMV12_363[Assembly],"A");
+		//pushNames(RMV12_363[Assembly],"B");
+		//pushNames(RMV12_363[Assembly],"C");
 
 		return(RMV12_363);
 		break;
