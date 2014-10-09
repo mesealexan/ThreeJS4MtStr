@@ -1,3 +1,4 @@
+//
 function duplicate(object){
 		clonedObject = object.clone();
 		pushChildren(clonedObject)
