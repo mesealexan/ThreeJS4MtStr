@@ -74,13 +74,13 @@ function drawElement( D1, sectionType, shapeSize, description, material, partNo,
 function setMaterial(value){
 	switch(value){
 	case 'metal':
-		var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
+		var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
 		break;
 	case 'aluminium':
-		var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
 		break;
 	case 'chrome':
-		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue, side:THREE.DoubleSide } );
 		break;
 	default:
 		break;}
@@ -209,32 +209,6 @@ function drawL(shapeSize, D1, material,centerPivot){
 	return(mesh)
 }
 
-function drawPipe(shapeSize, D1, material,centerPivot){
-	var shapeData = getshapeData('Pipe',shapeSize);
-	var OD = parseFloat(shapeData.OD);
-	var t_nom = parseFloat(shapeData.t);
-
-	var shape = new THREE.Shape();
-	shape.absarc( 0, 0, OD, 0, Math.PI*2, true );
-
-	var holePath = new THREE.Path();
-	holePath.absarc(0, 0, OD-t_nom, 0, Math.PI*2, false );
-	shape.holes.push( holePath );
-
-	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1} );
-	if(centerPivot)
-		THREE.GeometryUtils.center(geometry);
-	mesh = new THREE.Mesh( geometry, setMaterial(material) );
-	mesh.dimensions = {};
-	mesh.dimensions.OD = OD;
-	mesh.dimensions.t_nom = t_nom;
-	mesh.dimensions.D1 = D1;
-	mesh.name = 'Pipe ' + shapeSize;
-	ray_objects.push(mesh);
-	mesh.matValue = material;
-	return(mesh)
-}
-
 function drawSR(shapeSize, D1, material, centerPivot){
 	var shapeData = getshapeData('SR',shapeSize);
 	var OD = parseFloat(shapeData.OD);
@@ -267,7 +241,7 @@ function drawPipe(shapeSize, D1, material,centerPivot){
 	holePath.absarc(0, 0, OD-t_nom, 0, Math.PI*2, false );
 	shape.holes.push( holePath );
 
-	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1} );
+	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, steps: 50, curveSegments:50} );
 	if(centerPivot)
 		THREE.GeometryUtils.center(geometry);
 	mesh = new THREE.Mesh( geometry, setMaterial(material) );
@@ -297,11 +271,11 @@ function drawHexBolt(height, radius, thread, NutOffset, material, centerPivot){
 
 	
 
-	var cylinder_geo = new THREE.CylinderGeometry(radius/2, radius/2, height - thread, 16, 16, false);
+	var cylinder_geo = new THREE.CylinderGeometry(radius/2, radius/2, height - thread, 32, 32, false);
 	cylinder_geo.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	cylinder_geo.applyMatrix( new THREE.Matrix4().makeTranslation( 0, 0, height/2 - thread/2) )
 
-	var thread_geo = new THREE.CylinderGeometry(radius/2.2, radius/2.2, thread, 16, 16, false);
+	var thread_geo = new THREE.CylinderGeometry(radius/2.2, radius/2.2, thread, 32, 32, false);
 	thread_geo.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	thread_geo.applyMatrix( new THREE.Matrix4().makeTranslation( 0, 0, height - thread/2) )
 

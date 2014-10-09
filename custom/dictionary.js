@@ -43,3 +43,5 @@ var LCP1, P3150, P263_Helper, SP219, P263;
 //Assemblies
 
 var SV197_36,SP216;
+var textureCube;
+var reflectivityValue = 0.33;

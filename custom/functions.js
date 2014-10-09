@@ -14,13 +14,13 @@ function pushChildren(object){
 			var hex = object.children[i].material.color.getHex();
 			switch(hex){
 			case 11184810 :  
-				var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true } );
+				var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
 				break;
 			case 3355443 :
-				var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20 } );
+				var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
 				break;
 			case 15658734 :
-				var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5 } );
+				var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
 				break;
 			}
 			object.children[i].material = material;

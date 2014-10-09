@@ -122,14 +122,60 @@ function init()
 
 	Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
 
+	//Reflection Cube
+
+	var path = "art/1/";
+	var format = '.jpg';
+	var urls = [
+			path + 'px' + format, path + 'nx' + format,
+			path + 'py' + format, path + 'ny' + format,
+			path + 'pz' + format, path + 'nz' + format
+		];
+
+
+	
+	textureCube = THREE.ImageUtils.loadTextureCube( urls );
+	var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+
+	var refractionCube = new THREE.Texture( textureCube.image, new THREE.CubeRefractionMapping() );
+	refractionCube.format = THREE.RGBFormat;
+				
+	var shader = THREE.ShaderLib[ "cube" ];
+				shader.uniforms[ "tCube" ].value = textureCube;
+
+	var material = new THREE.ShaderMaterial( {
+
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					depthWrite: false,
+					side: THREE.BackSide
+
+				} ),
+
+		mesh = new THREE.Mesh( new THREE.CubeGeometry( 300, 300, 300 ), material );
+		mesh.visible = false;
+		scene.add( mesh );
+
+
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
-	light.position.set( 200, 400, 500 );
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
-	light2.position.set( -500, 250, -200 );
 	scene.add(ambientLight);
-	scene.add(light);
-	scene.add(light2);
+
+	var light = new THREE.PointLight( 0xffffff, 1.3, 1000 );
+	light.position.set( 400, 300, 400 );
+	scene.add( light );
+
+	var light1 = new THREE.PointLight( 0xffffff, 1.3, 1000 );
+	light1.position.set( -400, 300, 400 );
+	scene.add( light1 );
+
+	var light2 = new THREE.PointLight( 0xffffff, 1.3, 1000 );
+	light2.position.set( 400, 300, -400 );
+	scene.add( light2 );
+
+	var light3 = new THREE.PointLight( 0xffffff, 1.3, 1000 );
+	light3.position.set( -400, 300, -400 );
+	scene.add( light3 );
 }
 
 function animate() 
