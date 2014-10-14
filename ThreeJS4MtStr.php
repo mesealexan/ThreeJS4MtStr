@@ -20,7 +20,7 @@ $db = new dbManagement();
 <script src="custom/functions.js"></script>
 <script src="custom/drawElement.js"></script>
 <script src="custom/drawPart.js"></script>
-<script src="custom/drawAssemlyX.js"></script>
+
 <script src="custom/setupGuiX.js"></script>
 <script src="custom/updateX.js"></script>
 </head>
@@ -62,15 +62,16 @@ function createText(){
 		"   Z: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" + "<br>" + "<br>")
 	}
 }
-
+init();
+/*
 var  Assembly2Draw = 'RMV12-363';
-init(Assembly2Draw);
+
 
 var Assembly =  new THREE.Object3D();
 Assembly = drawAssembly(Assembly2Draw);
 scene.add(Assembly);
 
-/*
+
 var dummy =  new THREE.Object3D();
 RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
 
@@ -93,7 +94,7 @@ dummy.rotation.y = 5*Math.PI/180;
 */
 
 
-setupGui(Assembly2Draw);
+//setupGui(Assembly2Draw);
 animate();
 
 function init()

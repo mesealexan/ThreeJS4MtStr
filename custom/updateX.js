@@ -11,7 +11,7 @@ function update(){
 		axis.quaternion.w = quaternion.w;
 		axis.updateMatrixWorld( true );
 	}
-	
+	/*
 	if(RMV12_363)
 	{
 		RMV12_363.rotation.y = effectController.EArmRot*Math.PI/180;
@@ -57,5 +57,6 @@ function update(){
 			RMV12_363[Assembly].dummy_vert_3.rotation.y = effectController[Assembly].Pipe3R*Math.PI/180;
 			RMV12_363[Assembly].dummy_vert_3.VP.position.z = -effectController[Assembly].Pipe3V*A.A.dimensions.D1;			
 		}
-	};	
+	}
+*/
 }
