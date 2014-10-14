@@ -1,0 +1,536 @@
+<?xml version="1.0"?>
+<PROJECT NAME="AAAD">
+ <TOWER Type="Lattice">
+ <NODE ID="N160" X="-11.525" Y="60" Z="6.653962"/>
+<NODE ID="N1" X="-3.29" Y="250" Z="1.899482"/>
+<NODE ID="N2" X="-3.29" Y="240" Z="1.899482"/>
+<NODE ID="N3" X="3.29" Y="250" Z="1.899482"/>
+<NODE ID="N4" X="3.29" Y="240" Z="1.899482"/>
+<NODE ID="N5" X="0" Y="250" Z="-3.798965"/>
+<NODE ID="N6" X="0" Y="240" Z="-3.798965"/>
+<NODE ID="N7" X="3.29" Y="245" Z="1.899482"/>
+<NODE ID="N8" X="-3.29" Y="245" Z="1.899482"/>
+<NODE ID="N9" X="0" Y="242.5" Z="1.899482"/>
+<NODE ID="N10" X="0" Y="245" Z="-3.798965"/>
+<NODE ID="N11" X="1.645" Y="242.5" Z="-0.949741"/>
+<NODE ID="N12" X="-1.645" Y="242.5" Z="-0.949741"/>
+<NODE ID="N13" X="0" Y="247.5" Z="1.899482"/>
+<NODE ID="N14" X="1.645" Y="247.5" Z="-0.949741"/>
+<NODE ID="N15" X="-1.645" Y="247.5" Z="-0.949741"/>
+<NODE ID="N16" X="-3.315" Y="220" Z="1.913916"/>
+<NODE ID="N17" X="3.315" Y="220" Z="1.913916"/>
+<NODE ID="N18" X="0" Y="220" Z="-3.827832"/>
+<NODE ID="N19" X="3.31" Y="224" Z="1.911029"/>
+<NODE ID="N20" X="-3.31" Y="224" Z="1.911029"/>
+<NODE ID="N21" X="0" Y="222.001509" Z="1.912472"/>
+<NODE ID="N22" X="0" Y="224" Z="-3.822059"/>
+<NODE ID="N23" X="1.656249" Y="222.001509" Z="-0.956236"/>
+<NODE ID="N24" X="-1.656249" Y="222.001509" Z="-0.956236"/>
+<NODE ID="N25" X="3.305" Y="228" Z="1.908143"/>
+<NODE ID="N26" X="-3.305" Y="228" Z="1.908143"/>
+<NODE ID="N27" X="0" Y="226.001512" Z="1.909585"/>
+<NODE ID="N28" X="0" Y="228" Z="-3.816285"/>
+<NODE ID="N29" X="1.653749" Y="226.001512" Z="-0.954792"/>
+<NODE ID="N30" X="-1.653749" Y="226.001512" Z="-0.954792"/>
+<NODE ID="N31" X="3.3" Y="232" Z="1.905256"/>
+<NODE ID="N32" X="-3.3" Y="232" Z="1.905256"/>
+<NODE ID="N33" X="0" Y="230.001514" Z="1.906698"/>
+<NODE ID="N34" X="0" Y="232" Z="-3.810512"/>
+<NODE ID="N35" X="1.651249" Y="230.001514" Z="-0.953349"/>
+<NODE ID="N36" X="-1.651249" Y="230.001514" Z="-0.953349"/>
+<NODE ID="N37" X="3.295" Y="236" Z="1.902369"/>
+<NODE ID="N38" X="-3.295" Y="236" Z="1.902369"/>
+<NODE ID="N39" X="0" Y="234.001516" Z="1.903811"/>
+<NODE ID="N40" X="0" Y="236" Z="-3.804738"/>
+<NODE ID="N41" X="1.648749" Y="234.001516" Z="-0.951906"/>
+<NODE ID="N42" X="-1.648749" Y="234.001516" Z="-0.951906"/>
+<NODE ID="N43" X="0" Y="238.001519" Z="1.900925"/>
+<NODE ID="N44" X="1.646249" Y="238.001519" Z="-0.950462"/>
+<NODE ID="N45" X="-1.646249" Y="238.001519" Z="-0.950462"/>
+<NODE ID="N46" X="-4.315" Y="200" Z="2.491266"/>
+<NODE ID="N47" X="4.315" Y="200" Z="2.491266"/>
+<NODE ID="N48" X="0" Y="200" Z="-4.982533"/>
+<NODE ID="N49" X="4.065" Y="205" Z="2.346929"/>
+<NODE ID="N50" X="-4.065" Y="205" Z="2.346929"/>
+<NODE ID="N51" X="0" Y="202.574582" Z="2.416945"/>
+<NODE ID="N52" X="0" Y="205" Z="-4.693858"/>
+<NODE ID="N53" X="2.093135" Y="202.574582" Z="-1.208472"/>
+<NODE ID="N54" X="-2.093135" Y="202.574582" Z="-1.208472"/>
+<NODE ID="N55" X="3.815" Y="210" Z="2.202591"/>
+<NODE ID="N56" X="-3.815" Y="210" Z="2.202591"/>
+<NODE ID="N57" X="0" Y="207.579315" Z="2.27247"/>
+<NODE ID="N58" X="0" Y="210" Z="-4.405183"/>
+<NODE ID="N59" X="1.968017" Y="207.579315" Z="-1.136235"/>
+<NODE ID="N60" X="-1.968017" Y="207.579315" Z="-1.136235"/>
+<NODE ID="N61" X="3.565" Y="215" Z="2.058254"/>
+<NODE ID="N62" X="-3.565" Y="215" Z="2.058254"/>
+<NODE ID="N63" X="0" Y="212.584688" Z="2.127978"/>
+<NODE ID="N64" X="0" Y="215" Z="-4.116507"/>
+<NODE ID="N65" X="1.842883" Y="212.584688" Z="-1.063989"/>
+<NODE ID="N66" X="-1.842883" Y="212.584688" Z="-1.063989"/>
+<NODE ID="N67" X="0" Y="217.590843" Z="1.983463"/>
+<NODE ID="N68" X="1.717729" Y="217.590843" Z="-0.991731"/>
+<NODE ID="N69" X="-1.717729" Y="217.590843" Z="-0.991731"/>
+<NODE ID="N70" X="-5.35" Y="180" Z="3.088824"/>
+<NODE ID="N71" X="5.35" Y="180" Z="3.088824"/>
+<NODE ID="N72" X="0" Y="180" Z="-6.177648"/>
+<NODE ID="N73" X="5.005" Y="186.666667" Z="2.889638"/>
+<NODE ID="N74" X="-5.005" Y="186.666667" Z="2.889638"/>
+<NODE ID="N75" X="0" Y="183.444391" Z="2.985913"/>
+<NODE ID="N76" X="0" Y="186.666667" Z="-5.779276"/>
+<NODE ID="N77" X="2.585876" Y="183.444391" Z="-1.492956"/>
+<NODE ID="N78" X="-2.585876" Y="183.444391" Z="-1.492956"/>
+<NODE ID="N79" X="4.66" Y="193.333333" Z="2.690452"/>
+<NODE ID="N80" X="-4.66" Y="193.333333" Z="2.690452"/>
+<NODE ID="N81" X="0" Y="190.118986" Z="2.78649"/>
+<NODE ID="N82" X="0" Y="193.333333" Z="-5.380904"/>
+<NODE ID="N83" X="2.413171" Y="190.118986" Z="-1.393245"/>
+<NODE ID="N84" X="-2.413171" Y="190.118986" Z="-1.393245"/>
+<NODE ID="N85" X="0" Y="196.7948" Z="2.587031"/>
+<NODE ID="N86" X="2.240435" Y="196.7948" Z="-1.293515"/>
+<NODE ID="N87" X="-2.240435" Y="196.7948" Z="-1.293515"/>
+<NODE ID="N88" X="-6.37" Y="160" Z="3.677721"/>
+<NODE ID="N89" X="6.37" Y="160" Z="3.677721"/>
+<NODE ID="N90" X="0" Y="160" Z="-7.355442"/>
+<NODE ID="N91" X="6.03" Y="166.666667" Z="3.481422"/>
+<NODE ID="N92" X="-6.03" Y="166.666667" Z="3.481422"/>
+<NODE ID="N93" X="0" Y="163.424731" Z="3.57688"/>
+<NODE ID="N94" X="0" Y="166.666667" Z="-6.962844"/>
+<NODE ID="N95" X="3.097669" Y="163.424731" Z="-1.78844"/>
+<NODE ID="N96" X="-3.097669" Y="163.424731" Z="-1.78844"/>
+<NODE ID="N97" X="5.69" Y="173.333333" Z="3.285123"/>
+<NODE ID="N98" X="-5.69" Y="173.333333" Z="3.285123"/>
+<NODE ID="N99" X="0" Y="170.096701" Z="3.380425"/>
+<NODE ID="N100" X="0" Y="173.333333" Z="-6.570246"/>
+<NODE ID="N101" X="2.927534" Y="170.096701" Z="-1.690213"/>
+<NODE ID="N102" X="-2.927534" Y="170.096701" Z="-1.690213"/>
+<NODE ID="N103" X="0" Y="176.769324" Z="3.183951"/>
+<NODE ID="N104" X="2.757382" Y="176.769324" Z="-1.591975"/>
+<NODE ID="N105" X="-2.757382" Y="176.769324" Z="-1.591975"/>
+<NODE ID="N106" X="-7.415" Y="140" Z="4.281052"/>
+<NODE ID="N107" X="7.415" Y="140" Z="4.281052"/>
+<NODE ID="N108" X="0" Y="140" Z="-8.562104"/>
+<NODE ID="N109" X="7.066667" Y="146.666667" Z="4.079942"/>
+<NODE ID="N110" X="-7.066667" Y="146.666667" Z="4.079942"/>
+<NODE ID="N111" X="0" Y="143.413511" Z="4.178078"/>
+<NODE ID="N112" X="0" Y="146.666667" Z="-8.159884"/>
+<NODE ID="N113" X="3.618322" Y="143.413511" Z="-2.089039"/>
+<NODE ID="N114" X="-3.618322" Y="143.413511" Z="-2.089039"/>
+<NODE ID="N115" X="6.718333" Y="153.333333" Z="3.878832"/>
+<NODE ID="N116" X="-6.718333" Y="153.333333" Z="3.878832"/>
+<NODE ID="N117" X="0" Y="150.08423" Z="3.976846"/>
+<NODE ID="N118" X="0" Y="153.333333" Z="-7.757663"/>
+<NODE ID="N119" X="3.444049" Y="150.08423" Z="-1.988423"/>
+<NODE ID="N120" X="-3.444049" Y="150.08423" Z="-1.988423"/>
+<NODE ID="N121" X="0" Y="156.75538" Z="3.7756"/>
+<NODE ID="N122" X="3.269766" Y="156.75538" Z="-1.8878"/>
+<NODE ID="N123" X="-3.269766" Y="156.75538" Z="-1.8878"/>
+<NODE ID="N124" X="-8.46" Y="120" Z="4.884383"/>
+<NODE ID="N125" X="8.46" Y="120" Z="4.884383"/>
+<NODE ID="N126" X="0" Y="120" Z="-9.768767"/>
+<NODE ID="N127" X="7.9375" Y="130" Z="4.582718"/>
+<NODE ID="N128" X="-7.9375" Y="130" Z="4.582718"/>
+<NODE ID="N129" X="0" Y="125.159323" Z="4.728744"/>
+<NODE ID="N130" X="0" Y="130" Z="-9.165435"/>
+<NODE ID="N131" X="4.095213" Y="125.159323" Z="-2.364372"/>
+<NODE ID="N132" X="-4.095213" Y="125.159323" Z="-2.364372"/>
+<NODE ID="N133" X="0" Y="135.170168" Z="4.426752"/>
+<NODE ID="N134" X="3.833679" Y="135.170168" Z="-2.213376"/>
+<NODE ID="N135" X="-3.833679" Y="135.170168" Z="-2.213376"/>
+<NODE ID="N136" X="-9.44" Y="100" Z="5.450187"/>
+<NODE ID="N137" X="9.44" Y="100" Z="5.450187"/>
+<NODE ID="N138" X="0" Y="100" Z="-10.900373"/>
+<NODE ID="N139" X="8.95" Y="110" Z="5.167285"/>
+<NODE ID="N140" X="-8.95" Y="110" Z="5.167285"/>
+<NODE ID="N141" X="0" Y="105.133225" Z="5.304967"/>
+<NODE ID="N142" X="0" Y="110" Z="-10.33457"/>
+<NODE ID="N143" X="4.594236" Y="105.133225" Z="-2.652483"/>
+<NODE ID="N144" X="-4.594236" Y="105.133225" Z="-2.652483"/>
+<NODE ID="N145" X="0" Y="115.140724" Z="5.021853"/>
+<NODE ID="N146" X="4.349052" Y="115.140724" Z="-2.510926"/>
+<NODE ID="N147" X="-4.349052" Y="115.140724" Z="-2.510926"/>
+<NODE ID="N148" X="-10.48" Y="80" Z="6.050631"/>
+<NODE ID="N149" X="10.48" Y="80" Z="6.050631"/>
+<NODE ID="N150" X="0" Y="80" Z="-12.101262"/>
+<NODE ID="N151" X="9.96" Y="90" Z="5.750409"/>
+<NODE ID="N152" X="-9.96" Y="90" Z="5.750409"/>
+<NODE ID="N153" X="0" Y="85.127202" Z="5.896701"/>
+<NODE ID="N154" X="0" Y="90" Z="-11.500817"/>
+<NODE ID="N155" X="5.106693" Y="85.127202" Z="-2.94835"/>
+<NODE ID="N156" X="-5.106693" Y="85.127202" Z="-2.94835"/>
+<NODE ID="N157" X="0" Y="95.134021" Z="5.596274"/>
+<NODE ID="N158" X="4.846515" Y="95.134021" Z="-2.798137"/>
+<NODE ID="N159" X="-4.846515" Y="95.134021" Z="-2.798137"/>
+<NODE ID="N160" X="-11.525" Y="60" Z="6.653962"/>
+<NODE ID="N161" X="11.525" Y="60" Z="6.653962"/>
+<NODE ID="N162" X="0" Y="60" Z="-13.307924"/>
+<NODE ID="N163" X="11.0025" Y="70" Z="6.352296"/>
+<NODE ID="N164" X="-11.0025" Y="70" Z="6.352296"/>
+<NODE ID="N165" X="0" Y="65.115969" Z="6.499631"/>
+<NODE ID="N166" X="0" Y="70" Z="-12.704593"/>
+<NODE ID="N167" X="5.628845" Y="65.115969" Z="-3.249815"/>
+<NODE ID="N168" X="-5.628845" Y="65.115969" Z="-3.249815"/>
+<NODE ID="N169" X="0" Y="75.121611" Z="6.197795"/>
+<NODE ID="N170" X="5.367448" Y="75.121611" Z="-3.098897"/>
+<NODE ID="N171" X="-5.367448" Y="75.121611" Z="-3.098897"/>
+<NODE ID="N172" X="-12.615" Y="40" Z="7.283274"/>
+<NODE ID="N173" X="12.615" Y="40" Z="7.283274"/>
+<NODE ID="N174" X="0" Y="40" Z="-14.566547"/>
+<NODE ID="N175" X="12.07" Y="50" Z="6.968618"/>
+<NODE ID="N176" X="-12.07" Y="50" Z="6.968618"/>
+<NODE ID="N177" X="0" Y="45.110391" Z="7.122472"/>
+<NODE ID="N178" X="0" Y="50" Z="-13.937236"/>
+<NODE ID="N179" X="6.168242" Y="45.110391" Z="-3.561236"/>
+<NODE ID="N180" X="-6.168242" Y="45.110391" Z="-3.561236"/>
+<NODE ID="N181" X="0" Y="55.115491" Z="6.807656"/>
+<NODE ID="N182" X="5.895603" Y="55.115491" Z="-3.403828"/>
+<NODE ID="N183" X="-5.895603" Y="55.115491" Z="-3.403828"/>
+<NODE ID="N184" X="-13.905" Y="20" Z="8.028056"/>
+<NODE ID="N185" X="13.905" Y="20" Z="8.028056"/>
+<NODE ID="N186" X="0" Y="20" Z="-16.056111"/>
+<NODE ID="N187" X="0" Y="40" Z="7.283274"/>
+<NODE ID="N188" X="-13.26" Y="30" Z="7.655665"/>
+<NODE ID="N189" X="-6.9525" Y="30" Z="7.655665"/>
+<NODE ID="N190" X="6.9525" Y="30" Z="7.655665"/>
+<NODE ID="N191" X="13.26" Y="30" Z="7.655665"/>
+<NODE ID="N192" X="6.3075" Y="40" Z="-3.641637"/>
+<NODE ID="N193" X="10.10625" Y="30" Z="2.193209"/>
+<NODE ID="N194" X="3.15375" Y="30" Z="-9.848874"/>
+<NODE ID="N195" X="0" Y="30" Z="-15.311329"/>
+<NODE ID="N196" X="-6.3075" Y="40" Z="-3.641637"/>
+<NODE ID="N197" X="-3.15375" Y="30" Z="-9.848874"/>
+<NODE ID="N198" X="-10.10625" Y="30" Z="2.193209"/>
+<NODE ID="N199" X="-15.15" Y="0" Z="8.746857"/>
+<NODE ID="N200" X="15.15" Y="0" Z="8.746857"/>
+<NODE ID="N201" X="0" Y="0" Z="-17.493713"/>
+<NODE ID="N202" X="0" Y="20" Z="8.028056"/>
+<NODE ID="N203" X="-14.5275" Y="10" Z="8.387456"/>
+<NODE ID="N204" X="-7.575" Y="10" Z="8.387456"/>
+<NODE ID="N205" X="7.575" Y="10" Z="8.387456"/>
+<NODE ID="N206" X="14.5275" Y="10" Z="8.387456"/>
+<NODE ID="N207" X="6.9525" Y="20" Z="-4.014028"/>
+<NODE ID="N208" X="11.05125" Y="10" Z="2.366414"/>
+<NODE ID="N209" X="3.47625" Y="10" Z="-10.75387"/>
+<NODE ID="N210" X="0" Y="10" Z="-16.774912"/>
+<NODE ID="N211" X="-6.9525" Y="20" Z="-4.014028"/>
+<NODE ID="N212" X="-3.47625" Y="10" Z="-10.75387"/>
+<NODE ID="N213" X="-11.05125" Y="10" Z="2.366414"/> 
+<MEMBER ID="M1" N_I="N2" N_J="N1" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M2" N_I="N4" N_J="N3" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M3" N_I="N6" N_J="N5" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M4" N_I="N1" N_J="N3" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M5" N_I="N3" N_J="N5" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M6" N_I="N5" N_J="N1" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M7" N_I="N2" N_J="N7" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M8" N_I="N4" N_J="N8" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M9" N_I="N4" N_J="N10" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M10" N_I="N6" N_J="N7" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M11" N_I="N6" N_J="N8" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M12" N_I="N2" N_J="N10" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M13" N_I="N8" N_J="N3" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M14" N_I="N7" N_J="N1" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M15" N_I="N7" N_J="N5" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M16" N_I="N10" N_J="N3" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M17" N_I="N10" N_J="N1" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M18" N_I="N8" N_J="N5" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M19" N_I="N16" N_J="N2" CrossSectionType="Pipe" Shape="ROHN 3 STD"/>
+<MEMBER ID="M20" N_I="N17" N_J="N4" CrossSectionType="Pipe" Shape="ROHN 3 STD"/>
+<MEMBER ID="M21" N_I="N18" N_J="N6" CrossSectionType="Pipe" Shape="ROHN 3 STD"/>
+<MEMBER ID="M22" N_I="N16" N_J="N19" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M23" N_I="N17" N_J="N20" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M24" N_I="N17" N_J="N22" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M25" N_I="N18" N_J="N19" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M26" N_I="N18" N_J="N20" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M27" N_I="N16" N_J="N22" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M28" N_I="N20" N_J="N25" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M29" N_I="N19" N_J="N26" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M30" N_I="N19" N_J="N28" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M31" N_I="N22" N_J="N25" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M32" N_I="N22" N_J="N26" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M33" N_I="N20" N_J="N28" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M34" N_I="N26" N_J="N31" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M35" N_I="N25" N_J="N32" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M36" N_I="N25" N_J="N34" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M37" N_I="N28" N_J="N31" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M38" N_I="N28" N_J="N32" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M39" N_I="N26" N_J="N34" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M40" N_I="N32" N_J="N37" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M41" N_I="N31" N_J="N38" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M42" N_I="N31" N_J="N40" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M43" N_I="N34" N_J="N37" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M44" N_I="N34" N_J="N38" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M45" N_I="N32" N_J="N40" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M46" N_I="N38" N_J="N4" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M47" N_I="N37" N_J="N2" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M48" N_I="N37" N_J="N6" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M49" N_I="N40" N_J="N4" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M50" N_I="N40" N_J="N2" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M51" N_I="N38" N_J="N6" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M52" N_I="N46" N_J="N16" CrossSectionType="Pipe" Shape="ROHN 3.5 EH"/>
+<MEMBER ID="M53" N_I="N47" N_J="N17" CrossSectionType="Pipe" Shape="ROHN 3.5 EH"/>
+<MEMBER ID="M54" N_I="N48" N_J="N18" CrossSectionType="Pipe" Shape="ROHN 3.5 EH"/>
+<MEMBER ID="M55" N_I="N16" N_J="N17" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M56" N_I="N17" N_J="N18" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M57" N_I="N18" N_J="N16" CrossSectionType="Single Angle" Shape="L1 3/4x1 3/4x3/16"/>
+<MEMBER ID="M58" N_I="N46" N_J="N49" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M59" N_I="N47" N_J="N50" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M60" N_I="N47" N_J="N52" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M61" N_I="N48" N_J="N49" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M62" N_I="N48" N_J="N50" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M63" N_I="N46" N_J="N52" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M64" N_I="N50" N_J="N55" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M65" N_I="N49" N_J="N56" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M66" N_I="N49" N_J="N58" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M67" N_I="N52" N_J="N55" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M68" N_I="N52" N_J="N56" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M69" N_I="N50" N_J="N58" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M70" N_I="N56" N_J="N61" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M71" N_I="N55" N_J="N62" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M72" N_I="N55" N_J="N64" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M73" N_I="N58" N_J="N61" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M74" N_I="N58" N_J="N62" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M75" N_I="N56" N_J="N64" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M76" N_I="N62" N_J="N17" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M77" N_I="N61" N_J="N16" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M78" N_I="N61" N_J="N18" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M79" N_I="N64" N_J="N17" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M80" N_I="N64" N_J="N16" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M81" N_I="N62" N_J="N18" CrossSectionType="Single Angle" Shape="L2x2x3/16"/>
+<MEMBER ID="M82" N_I="N70" N_J="N46" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M83" N_I="N71" N_J="N47" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M84" N_I="N72" N_J="N48" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M85" N_I="N70" N_J="N73" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M86" N_I="N71" N_J="N74" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M87" N_I="N71" N_J="N76" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M88" N_I="N72" N_J="N73" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M89" N_I="N72" N_J="N74" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M90" N_I="N70" N_J="N76" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M91" N_I="N74" N_J="N79" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M92" N_I="N73" N_J="N80" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M93" N_I="N73" N_J="N82" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M94" N_I="N76" N_J="N79" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M95" N_I="N76" N_J="N80" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M96" N_I="N74" N_J="N82" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M97" N_I="N80" N_J="N47" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M98" N_I="N79" N_J="N46" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M99" N_I="N79" N_J="N48" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M100" N_I="N82" N_J="N47" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M101" N_I="N82" N_J="N46" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M102" N_I="N80" N_J="N48" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M103" N_I="N88" N_J="N70" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M104" N_I="N89" N_J="N71" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M105" N_I="N90" N_J="N72" CrossSectionType="Pipe" Shape="ROHN 4 EH"/>
+<MEMBER ID="M106" N_I="N88" N_J="N91" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M107" N_I="N89" N_J="N92" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M108" N_I="N89" N_J="N94" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M109" N_I="N90" N_J="N91" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M110" N_I="N90" N_J="N92" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M111" N_I="N88" N_J="N94" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M112" N_I="N92" N_J="N97" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M113" N_I="N91" N_J="N98" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M114" N_I="N91" N_J="N100" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M115" N_I="N94" N_J="N97" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M116" N_I="N94" N_J="N98" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M117" N_I="N92" N_J="N100" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M118" N_I="N98" N_J="N71" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M119" N_I="N97" N_J="N70" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M120" N_I="N97" N_J="N72" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M121" N_I="N100" N_J="N71" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M122" N_I="N100" N_J="N70" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M123" N_I="N98" N_J="N72" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x3/16"/>
+<MEMBER ID="M124" N_I="N106" N_J="N88" CrossSectionType="Pipe" Shape="ROHN 5 EH"/>
+<MEMBER ID="M125" N_I="N107" N_J="N89" CrossSectionType="Pipe" Shape="ROHN 5 EH"/>
+<MEMBER ID="M126" N_I="N108" N_J="N90" CrossSectionType="Pipe" Shape="ROHN 5 EH"/>
+<MEMBER ID="M127" N_I="N106" N_J="N109" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M128" N_I="N107" N_J="N110" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M129" N_I="N107" N_J="N112" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M130" N_I="N108" N_J="N109" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M131" N_I="N108" N_J="N110" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M132" N_I="N106" N_J="N112" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M133" N_I="N110" N_J="N115" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M134" N_I="N109" N_J="N116" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M135" N_I="N109" N_J="N118" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M136" N_I="N112" N_J="N115" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M137" N_I="N112" N_J="N116" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M138" N_I="N110" N_J="N118" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M139" N_I="N116" N_J="N89" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M140" N_I="N115" N_J="N88" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M141" N_I="N115" N_J="N90" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M142" N_I="N118" N_J="N89" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M143" N_I="N118" N_J="N88" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M144" N_I="N116" N_J="N90" CrossSectionType="Single Angle" Shape="L2 1/2x2 1/2x1/4"/>
+<MEMBER ID="M145" N_I="N124" N_J="N106" CrossSectionType="Pipe" Shape="ROHN 6 EHS"/>
+<MEMBER ID="M146" N_I="N125" N_J="N107" CrossSectionType="Pipe" Shape="ROHN 6 EHS"/>
+<MEMBER ID="M147" N_I="N126" N_J="N108" CrossSectionType="Pipe" Shape="ROHN 6 EHS"/>
+<MEMBER ID="M148" N_I="N124" N_J="N127" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M149" N_I="N125" N_J="N128" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M150" N_I="N125" N_J="N130" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M151" N_I="N126" N_J="N127" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M152" N_I="N126" N_J="N128" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M153" N_I="N124" N_J="N130" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M154" N_I="N128" N_J="N107" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M155" N_I="N127" N_J="N106" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M156" N_I="N127" N_J="N108" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M157" N_I="N130" N_J="N107" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M158" N_I="N130" N_J="N106" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M159" N_I="N128" N_J="N108" CrossSectionType="Single Angle" Shape="L3 1/2x3 1/2x1/4"/>
+<MEMBER ID="M160" N_I="N136" N_J="N124" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M161" N_I="N137" N_J="N125" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M162" N_I="N138" N_J="N126" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M163" N_I="N136" N_J="N139" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M164" N_I="N137" N_J="N140" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M165" N_I="N137" N_J="N142" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M166" N_I="N138" N_J="N139" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M167" N_I="N138" N_J="N140" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M168" N_I="N136" N_J="N142" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M169" N_I="N140" N_J="N125" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M170" N_I="N139" N_J="N124" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M171" N_I="N139" N_J="N126" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M172" N_I="N142" N_J="N125" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M173" N_I="N142" N_J="N124" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M174" N_I="N140" N_J="N126" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M175" N_I="N148" N_J="N136" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M176" N_I="N149" N_J="N137" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M177" N_I="N150" N_J="N138" CrossSectionType="Pipe" Shape="ROHN 6 EH"/>
+<MEMBER ID="M178" N_I="N148" N_J="N151" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M179" N_I="N149" N_J="N152" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M180" N_I="N149" N_J="N154" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M181" N_I="N150" N_J="N151" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M182" N_I="N150" N_J="N152" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M183" N_I="N148" N_J="N154" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M184" N_I="N152" N_J="N137" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M185" N_I="N151" N_J="N136" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M186" N_I="N151" N_J="N138" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M187" N_I="N154" N_J="N137" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M188" N_I="N154" N_J="N136" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M189" N_I="N152" N_J="N138" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M190" N_I="N160" N_J="N148" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M191" N_I="N161" N_J="N149" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M192" N_I="N162" N_J="N150" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M193" N_I="N160" N_J="N163" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M194" N_I="N161" N_J="N164" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M195" N_I="N161" N_J="N166" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M196" N_I="N162" N_J="N163" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M197" N_I="N162" N_J="N164" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M198" N_I="N160" N_J="N166" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M199" N_I="N164" N_J="N149" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M200" N_I="N163" N_J="N148" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M201" N_I="N163" N_J="N150" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M202" N_I="N166" N_J="N149" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M203" N_I="N166" N_J="N148" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M204" N_I="N164" N_J="N150" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M205" N_I="N172" N_J="N160" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M206" N_I="N173" N_J="N161" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M207" N_I="N174" N_J="N162" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M208" N_I="N172" N_J="N175" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M209" N_I="N173" N_J="N176" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M210" N_I="N173" N_J="N178" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M211" N_I="N174" N_J="N175" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M212" N_I="N174" N_J="N176" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M213" N_I="N172" N_J="N178" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M214" N_I="N176" N_J="N161" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M215" N_I="N175" N_J="N160" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M216" N_I="N175" N_J="N162" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M217" N_I="N178" N_J="N161" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M218" N_I="N178" N_J="N160" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M219" N_I="N176" N_J="N162" CrossSectionType="Single Angle" Shape="L4x4x1/4"/>
+<MEMBER ID="M220" N_I="N184" N_J="N172" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M221" N_I="N185" N_J="N173" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M222" N_I="N186" N_J="N174" CrossSectionType="Pipe" Shape="ROHN 8 EHS"/>
+<MEMBER ID="M223" N_I="N172" N_J="N173" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M224" N_I="N184" N_J="N187" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M225" N_I="N188" N_J="N189" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M226" N_I="N189" N_J="N172" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M227" N_I="N185" N_J="N187" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M228" N_I="N190" N_J="N191" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M229" N_I="N190" N_J="N173" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M230" N_I="N173" N_J="N174" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M231" N_I="N185" N_J="N192" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M232" N_I="N191" N_J="N193" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M233" N_I="N193" N_J="N173" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M234" N_I="N186" N_J="N192" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M235" N_I="N194" N_J="N195" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M236" N_I="N194" N_J="N174" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M237" N_I="N190" N_J="N193" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M238" N_I="N190" N_J="N192" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M239" N_I="N174" N_J="N172" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M240" N_I="N186" N_J="N196" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M241" N_I="N195" N_J="N197" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M242" N_I="N197" N_J="N174" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M243" N_I="N184" N_J="N196" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M244" N_I="N198" N_J="N188" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M245" N_I="N198" N_J="N172" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M246" N_I="N194" N_J="N197" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M247" N_I="N194" N_J="N196" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M248" N_I="N189" N_J="N198" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M249" N_I="N198" N_J="N187" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M250" N_I="N187" N_J="N192" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+<MEMBER ID="M251" N_I="N192" N_J="N196" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+<MEMBER ID="M252" N_I="N196" N_J="N187" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+<MEMBER ID="M253" N_I="N199" N_J="N184" CrossSectionType="Pipe" Shape="ROHN 8 EH"/>
+<MEMBER ID="M254" N_I="N200" N_J="N185" CrossSectionType="Pipe" Shape="ROHN 8 EH"/>
+<MEMBER ID="M255" N_I="N201" N_J="N186" CrossSectionType="Pipe" Shape="ROHN 8 EH"/>
+<MEMBER ID="M256" N_I="N184" N_J="N185" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M257" N_I="N199" N_J="N202" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M258" N_I="N203" N_J="N204" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M259" N_I="N204" N_J="N184" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M260" N_I="N200" N_J="N202" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M261" N_I="N205" N_J="N206" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M262" N_I="N205" N_J="N185" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M263" N_I="N185" N_J="N186" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M264" N_I="N200" N_J="N207" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M265" N_I="N206" N_J="N208" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M266" N_I="N208" N_J="N185" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M267" N_I="N201" N_J="N207" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M268" N_I="N209" N_J="N210" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M269" N_I="N209" N_J="N186" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M270" N_I="N205" N_J="N208" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M271" N_I="N205" N_J="N207" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M272" N_I="N186" N_J="N184" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M273" N_I="N201" N_J="N211" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M274" N_I="N210" N_J="N212" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M275" N_I="N212" N_J="N186" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M276" N_I="N199" N_J="N211" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M277" N_I="N213" N_J="N203" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M278" N_I="N213" N_J="N184" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M279" N_I="N209" N_J="N212" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M280" N_I="N209" N_J="N211" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M281" N_I="N204" N_J="N213" CrossSectionType="Pipe" Shape="ROHN 1.5 STD"/>
+<MEMBER ID="M282" N_I="N213" N_J="N202" CrossSectionType="Pipe" Shape="ROHN 2.5 STD"/>
+<MEMBER ID="M283" N_I="N202" N_J="N207" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+<MEMBER ID="M284" N_I="N207" N_J="N211" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+<MEMBER ID="M285" N_I="N211" N_J="N202" CrossSectionType="Pipe" Shape="ROHN 2 STD"/>
+ </TOWER>
+ <DATABASE>
+  <SHAPE TYPE="PIPE" NAME="ROHN TS1.5x16 ga" OD="1.5" t="0.058 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN TS1.5x11 ga" OD="1.5" t="0.12 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 1.5 STD" OD="1.9" t="0.145 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 2 STD" OD="2.375" t="0.154 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN PIPE 2.0 EH" OD="2.375" t="0.218 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 2 X-STR" OD="2.375" t="0.218 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN PIPE 2.5 STD" OD="2.875" t="0.203 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 2.5 STD" OD="2.875" t="0.203 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 2.5 EH" OD="2.875" t="0.276 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 2.5 X-STR" OD="2.875" t="0.276 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN PIPE 3 EH" OD="3.5" t="0.3 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN PIPE 3 STD" OD="3.5" t="0.216 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 3 X-STR" OD="3.5" t="0.3 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 3.5 EH" OD="4" t="0.318 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 4 EH" OD="4.5" t="0.337 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 4 X-STR" OD="4.5" t="0.337 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 5 STD" OD="5.563" t="0.258 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 5 EH" OD="5.563" t="0.375 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 5 X-STR" OD="5.563" t="0.375 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 6 EHS" OD="6.625" t="0.34 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 6 EH" OD="6.625" t="0.432 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 8 EHS" OD="8.625" t="0.375 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 8 EH" OD="8.625" t="0.5 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 8 X-STR" OD="8.625" t="0.5 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 10EH" OD="10.75" t="0.5 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 12.75 EH" OD="12.75" t="0.5 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 12.75 EHS" OD="12.75" t="0.625 "/>
+  <SHAPE TYPE="PIPE" NAME="ROHN 14EHS" OD="14" t="0.75 "/>
+  <SHAPE TYPE="ANGLE" NAME="L4x4x1/4" B="4" C="4" A="0.25"/>
+  <SHAPE TYPE="ANGLE" NAME="L2x2x3/16" B="2" C="2" A="0.1875"/>
+ </DATABASE>
+</PROJECT>

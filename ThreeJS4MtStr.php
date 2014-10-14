@@ -23,6 +23,9 @@ $db = new dbManagement();
 
 <script src="custom/setupGuiX.js"></script>
 <script src="custom/updateX.js"></script>
+
+<xml id="writersXML" SRC="xml/Tower_full.xml"></xml>
+
 </head>
 <body>
 <div id="container"></div>    
@@ -45,6 +48,45 @@ Z:</div>
 
 <script>
 
+function loadXMLDoc(filename)
+{
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // code for IE5 and IE6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET",filename,false);
+xhttp.send();
+return xhttp.responseXML;
+}
+
+
+var xmlDoc=loadXMLDoc("xml/Tower_full.xml");
+var x = xmlDoc.documentElement.childNodes;
+
+var tower = x[1].childNodes;
+var database = x[3].childNodes;
+
+
+var yo = tower[1];
+
+console.log(parseFloat(yo.getAttribute("X")));
+/*
+for (i=0;i<tower.length;i++)
+  {
+  if(tower[i].nodeType==1)
+    {
+    	y = tower[i].childNodes
+    console.log(y);
+    }
+  }
+
+*/
+
+
 
 function createText(){
 	var coordinatesWindow = open('coordinates.html','coordinatesWindow','');
@@ -63,39 +105,6 @@ function createText(){
 	}
 }
 init();
-/*
-var  Assembly2Draw = 'RMV12-363';
-
-
-var Assembly =  new THREE.Object3D();
-Assembly = drawAssembly(Assembly2Draw);
-scene.add(Assembly);
-
-
-var dummy =  new THREE.Object3D();
-RMV12_363.AssemblyA.dummy_vert_1.A.add(dummy);
-
-var cube = new THREE.Mesh(new THREE.CubeGeometry(6, 12, 60), new THREE.MeshPhongMaterial({ color: 0x999999}));
-cube.name = "cube";
-ray_objects.push(cube);
-dummy.add(cube);
-
-dummy.rotation.z = 30*Math.PI/180;
-dummy.rotation.y = 5*Math.PI/180;
-
-cube.position.x = -6;
-*/
-/*
-// THREE.GeometryUtils.center(cube);
-dummy.position.x = -6;
-// cube.position.y = -6;
-dummy.rotation.z = 30*Math.PI/180;
-dummy.rotation.y = 5*Math.PI/180;
-*/
-
-
-//setupGui(Assembly2Draw);
-animate();
 
 function init()
 {
@@ -124,7 +133,7 @@ function init()
 	Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
 
 	//Reflection Cube
-
+/*
 	var path = "art/1/";
 	var format = '.jpg';
 	var urls = [
@@ -157,7 +166,7 @@ function init()
 		mesh = new THREE.Mesh( new THREE.CubeGeometry( 300, 300, 300 ), material );
 		mesh.visible = false;
 		scene.add( mesh );
-
+*/
 
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 	scene.add(ambientLight);
@@ -177,6 +186,7 @@ function init()
 	var light3 = new THREE.PointLight( 0xffffff, 1.3, 1000 );
 	light3.position.set( -400, 300, -400 );
 	scene.add( light3 );
+	animate();
 }
 
 function animate() 
