@@ -74,13 +74,13 @@ function drawElement( D1, sectionType, shapeSize, description, material, partNo,
 function setMaterial(value){
 	switch(value){
 	case 'metal':
-		var material = new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xCCCCCC, shininess: 20, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
+		var material = new THREE.MeshNormalMaterial(  );
 		break;
 	case 'aluminium':
-		var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue , side:THREE.DoubleSide } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xeeeeee, specular: 0xfefefe, shininess: 5, side:THREE.DoubleSide } );
 		break;
 	case 'chrome':
-		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true, envMap: textureCube, combine: THREE.MixOperation, reflectivity: reflectivityValue, side:THREE.DoubleSide } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xababab, shininess: 10, metal:true, side:THREE.DoubleSide } );
 		break;
 	default:
 		break;}

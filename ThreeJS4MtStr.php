@@ -16,11 +16,11 @@ $db = new dbManagement();
 <script src="custom/dictionary.js"></script>
 <script src="lib/OrbitAndPanControls.js"></script>
 <script src="lib/dat.gui.min.js"></script>
-
+<script src="lib/helvetiker_regular.typeface.js"></script>
 <script src="custom/functions.js"></script>
 <script src="custom/drawElement.js"></script>
 <script src="custom/drawPart.js"></script>
-
+<script src="custom/drawTower.js"></script>
 <script src="custom/setupGuiX.js"></script>
 <script src="custom/updateX.js"></script>
 
@@ -48,13 +48,16 @@ Z:</div>
 
 <script>
 
+
+///Parse XML
+
 function loadXMLDoc(filename)
 {
 if (window.XMLHttpRequest)
   {
   xhttp=new XMLHttpRequest();
   }
-else // code for IE5 and IE6
+else
   {
   xhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
@@ -63,29 +66,10 @@ xhttp.send();
 return xhttp.responseXML;
 }
 
-
-var xmlDoc=loadXMLDoc("xml/Tower_full.xml");
-var x = xmlDoc.documentElement.childNodes;
-
-var tower = x[1].childNodes;
-var database = x[3].childNodes;
-
-
-var yo = tower[1];
-
-console.log(parseFloat(yo.getAttribute("X")));
-/*
-for (i=0;i<tower.length;i++)
-  {
-  if(tower[i].nodeType==1)
-    {
-    	y = tower[i].childNodes
-    console.log(y);
-    }
-  }
-
-*/
-
+var xmlDoc = loadXMLDoc("xml/Tower_full.xml");
+var nodes = xmlDoc.getElementsByTagName("NODE");
+var members = xmlDoc.getElementsByTagName("MEMBER");
+var shapes = xmlDoc.getElementsByTagName("SHAPE");
 
 
 function createText(){
@@ -115,7 +99,6 @@ function init()
 	scene.add(camera); 
 
 	keyboard = new THREEx.KeyboardState();
-
 	axis = new THREE.AxisHelper(50);
 	axis.position.set(0,0,0);
 	axis.useQuaternion = true
@@ -132,41 +115,9 @@ function init()
 
 	Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
 
-	//Reflection Cube
-/*
-	var path = "art/1/";
-	var format = '.jpg';
-	var urls = [
-			path + 'px' + format, path + 'nx' + format,
-			path + 'py' + format, path + 'ny' + format,
-			path + 'pz' + format, path + 'nz' + format
-		];
-
-
-	
-	textureCube = THREE.ImageUtils.loadTextureCube( urls );
-	var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
-
-	var refractionCube = new THREE.Texture( textureCube.image, new THREE.CubeRefractionMapping() );
-	refractionCube.format = THREE.RGBFormat;
-				
-	var shader = THREE.ShaderLib[ "cube" ];
-				shader.uniforms[ "tCube" ].value = textureCube;
-
-	var material = new THREE.ShaderMaterial( {
-
-					fragmentShader: shader.fragmentShader,
-					vertexShader: shader.vertexShader,
-					uniforms: shader.uniforms,
-					depthWrite: false,
-					side: THREE.BackSide
-
-				} ),
-
-		mesh = new THREE.Mesh( new THREE.CubeGeometry( 300, 300, 300 ), material );
-		mesh.visible = false;
-		scene.add( mesh );
-*/
+	var Tower = drawTower();
+	scene.add(Tower)
+	addCircleSprites() //add text and circles for each point
 
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 	scene.add(ambientLight);
