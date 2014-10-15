@@ -88,6 +88,9 @@ function createText(){
 		"   Z: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" + "<br>" + "<br>")
 	}
 }
+var Tower = new THREE.Object3D();
+var nodeText = new THREE.Object3D();
+var lines = new THREE.Object3D();
 init();
 
 function init()
@@ -95,7 +98,7 @@ function init()
 	scene = new THREE.Scene();
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
-	camera.position.set(-150,150,150);   
+	camera.position.set(-250,250,250);   
 	scene.add(camera); 
 
 	keyboard = new THREEx.KeyboardState();
@@ -111,13 +114,23 @@ function init()
 	container.appendChild( renderer.domElement ); 
 
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	cameraControls.target.set(0,0,0); 
+	cameraControls.target.set(0,116,0); 
 
 	Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
 
-	var Tower = drawTower();
-	scene.add(Tower)
-	addCircleSprites() //add text and circles for each point
+	drawTower(Tower);
+	scene.add(Tower);
+
+	var nodePoints = new THREE.Object3D();
+	addNodePoints(nodePoints);
+	scene.add(nodePoints);
+
+	addNodesText(nodeText);
+	//scene.add(nodeText);
+
+	drawLines(lines);
+	scene.add(lines);
+
 
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 	scene.add(ambientLight);
@@ -137,7 +150,9 @@ function init()
 	var light3 = new THREE.PointLight( 0xffffff, 1.3, 1000 );
 	light3.position.set( -400, 300, -400 );
 	scene.add( light3 );
+	setupGui();
 	animate();
+	
 }
 
 function animate() 
@@ -169,9 +184,13 @@ function onMouseDown( event_info )
 
 
 		Intersected = intersects[ 0 ].object;
+		if(selectedTrigger === true && Intersected.name.charAt(0) === 'N')
+			{
+				addSingleText(Intersected.name)
+			}
 		Intersected.currentHex = Intersected.material.color.getHex();
 		Intersected.material.color.setHex( 0xff0000 );
-console.log(Intersected.id)	
+		console.log(Intersected)
 		parentName = Intersected.parent.parent.name;
 		var vector = new THREE.Vector3();
 		axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;

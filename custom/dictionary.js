@@ -40,6 +40,8 @@ var ray_objects = [];
 var ExArm, ExPipe ; 
 var LCP1, P3150, P263_Helper, SP219, P263;
 
+var selectedTrigger = false;
+
 //Assemblies
 
 var SV197_36,SP216;
