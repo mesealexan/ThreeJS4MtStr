@@ -472,7 +472,7 @@ function drawBar(shapeSize, D1, material,centerPivot){
 
 	var shape = new THREE.Shape();
 	shape.absarc( 0, 0, OD, 0, Math.PI*2, true );
-	var material = new THREE.MeshPhongMaterial( { color: 0x616669, specular: 0xffffff, shininess: 30, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide } );
+	var material = new THREE.MeshPhongMaterial( { color: 0x616669, specular: 0xffffff, shininess: 30 /*, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide*/ } );
 	var material2 = new THREE.MeshPhongMaterial( { color: 0xCBE6F7, specular: 0xfffefe, shininess: 5 } );
 	var materials = [ material, material2 ];
 
@@ -519,7 +519,7 @@ function drawHHS_Rect2(shapeSize, D1, material,centerPivot){
 	shape.holes.push( hole );
 
 	var material2 = new THREE.MeshPhongMaterial( { color: 0xCFE8E3, specular: 0xffffff, shininess: 30 } );
-	var material = new THREE.MeshPhongMaterial( { color: 0x343B39, specular: 0xfffefe, shininess: 30, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide } );
+	var material = new THREE.MeshPhongMaterial( { color: 0x343B39, specular: 0xfffefe, shininess: 30 /*, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide*/ } );
 	var materials = [ material, material2 ];
 
 

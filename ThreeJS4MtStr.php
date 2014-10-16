@@ -116,7 +116,7 @@ function init()
 	cameraControls.target.set(0,116,0); 
 
 	Coordinates.drawGrid({size:300,scale:0.1, orientation:"x"});
-	addReflectionEnvironment();
+	//addReflectionEnvironment();
 	//Add the Tower and subcomponents
 	drawTower(Tower);
 	scene.add(Tower);
