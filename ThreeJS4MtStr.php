@@ -118,7 +118,7 @@ function init()
 	Coordinates.drawGrid({size:300,scale:0.1, orientation:"x"});
 	//addReflectionEnvironment();
 	//Add the Tower and subcomponents
-	//drawTower(Tower);
+	drawTower(Tower);
 	scene.add(Tower);
 
 	addNodePoints(nodePoints);
