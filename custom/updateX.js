@@ -54,28 +54,27 @@ function onMouseDown( event_info )
 		}
 		
 		if(Intersected.parent.parent)
+		{
 			parentName = Intersected.parent.parent.name;
-		else
-			parentName = "none"
-		
-		var vector = new THREE.Vector3();
-		axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
-		axis.position.y = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y;
-		axis.position.z = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z;
-		axis.rotation.x = intersects[0].object.rotation.x;
-		axis.rotation.y = intersects[0].object.rotation.y;
-		axis.rotation.z = intersects[0].object.rotation.z;
-		world_text = document.getElementById("text").innerHTML = 
-		intersects[0].object.name + '<br>' + '<u>World</u> <BR>' +
-		'X: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
-		'Y: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
-		'Z: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z).toFixed(accuracy);
-		local_text = '<u> To '+ parentName +' / Local</u> <BR>' +
-		'X: ' +  (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
-		'Y: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
-		'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
-		document.getElementById("text").innerHTML = world_text;
-		document.getElementById("local").innerHTML = local_text;
+			var vector = new THREE.Vector3();
+			axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
+			axis.position.y = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y;
+			axis.position.z = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z;
+			axis.rotation.x = intersects[0].object.rotation.x;
+			axis.rotation.y = intersects[0].object.rotation.y;
+			axis.rotation.z = intersects[0].object.rotation.z;
+			world_text = document.getElementById("text").innerHTML = 
+			intersects[0].object.name + '<br>' + '<u>World</u> <BR>' +
+			'X: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
+			'Y: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
+			'Z: ' + (vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).z).toFixed(accuracy);
+			local_text = '<u> To '+ parentName +' / Local</u> <BR>' +
+			'X: ' +  (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).x).toFixed(accuracy) + '<br>' +  
+			'Y: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).y).toFixed(accuracy) + '<br>' + 
+			'Z: ' + (vector.getPositionFromMatrix( Intersected.parent.parent.matrixWorld ).z).toFixed(accuracy)
+			document.getElementById("text").innerHTML = world_text;
+			document.getElementById("local").innerHTML = local_text;
+		}
 		}
 	}
 }
