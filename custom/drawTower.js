@@ -1,3 +1,4 @@
+//Function used to draw members
 function drawTower(obj){
 	for(j=0;j<members.length;j++)
 	{
@@ -34,6 +35,7 @@ function drawTower(obj){
 	}
 }
 
+//Function used to draw lines
 function drawLines(obj){
 	var material = new THREE.LineBasicMaterial({color: 0x444444});
 	for(j=0;j<members.length;j++)
@@ -48,7 +50,7 @@ function drawLines(obj){
 	}
 }
 
-//Function used to get the shape that has this type and name
+//Function used to return the shape that has this type and name
 function searchShapes(type, name){
 	if(type === 'Pipe')
 		type = 'PIPE'
@@ -74,7 +76,7 @@ function searchShapes(type, name){
 	return undefined
 }
 
-//Function used to get the Node that has this ID
+//Function used to return the Node that has this ID
 function searchNodes(ID){
 	for(i=0;i<nodes.length;i++)
 	{
@@ -84,6 +86,7 @@ function searchNodes(ID){
 	return undefined
 }
 
+//Function used to create the sphere nodes
 function addNodePoints(object){
 	for(i=0;i<nodes.length;i++){
 		var posX = parseFloat(nodes[i].getAttribute("X"));
@@ -98,6 +101,7 @@ function addNodePoints(object){
 
 }
 
+//Function used to display all nodes texts
 function addNodesText(object){
 	for(i=0;i<nodes.length;i++){
 		var posX = parseFloat(nodes[i].getAttribute("X"));
@@ -108,12 +112,12 @@ function addNodesText(object){
 		sprite.position.set( posX, posY, posZ);
 		object.add( sprite );
 	}
-
 }
+
+//Function used to display single node texts
 function addSingleText( name){
 	if(textHolder)
 		scene.remove(textHolder)
-
 	var positioning = searchNodes(name);
 	var textToDisplay = name + " (" + positioning.x + ", " + positioning.y + ", " + positioning.z + ") ";
 	textHolder = makeTextSprite(textToDisplay , { fontsize: 24 } );
@@ -121,52 +125,33 @@ function addSingleText( name){
 		scene.add( textHolder );
 }
 
+//Function used to generate text boxes
 function makeTextSprite( message, parameters )
 {
 	if ( parameters === undefined ) parameters = {};
-	
 	var fontface = parameters.hasOwnProperty("fontface") ? 
 		parameters["fontface"] : "Arial";
-	
 	var fontsize = parameters.hasOwnProperty("fontsize") ? 
 		parameters["fontsize"] : 16;
-	
 	var borderThickness = parameters.hasOwnProperty("borderThickness") ? 
 		parameters["borderThickness"] : 4;
-	
 	var borderColor = parameters.hasOwnProperty("borderColor") ?
 		parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
-	
 	var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
 		parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
-
 	var spriteAlignment = THREE.SpriteAlignment.topLeft;
-		
 	var canvas = document.createElement('canvas');
 	var context = canvas.getContext('2d');
 	context.font = "Bold " + fontsize + "px " + fontface;
-    
-	// get size data (height depends only on font size)
-	var metrics = context.measureText( message );
-	var textWidth = metrics.width;
-	
-	// background color
 	context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + ","
 								  + backgroundColor.b + "," + backgroundColor.a + ")";
-	// border color
 	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + ","
 								  + borderColor.b + "," + borderColor.a + ")";
-
 	context.lineWidth = borderThickness;
-	// text color
 	context.fillStyle = "rgba(0, 0, 0, 1.0)";
-
 	context.fillText( message, borderThickness, fontsize + borderThickness);
-	
-	// canvas contents will be used for a texture
 	var texture = new THREE.Texture(canvas) 
 	texture.needsUpdate = true;
-
 	var spriteMaterial = new THREE.SpriteMaterial( 
 		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment } );
 	var sprite = new THREE.Sprite( spriteMaterial );
