@@ -14,14 +14,20 @@ h.add(effectController, "Nodes", [ 'none','selected','all']).name("Node Names").
 	if(effectController.Nodes === 'all')
 	{
 		scene.add(nodeText);
-		selectedTrigger = false
+		selectedTrigger = false;
+		if(textHolder)
+			scene.remove(textHolder)
 	}
 	else if(effectController.Nodes === 'none' && nodeText)
 	{
 		scene.remove(nodeText);
-		selectedTrigger = false
+		selectedTrigger = false;
+		if(textHolder)
+			scene.remove(textHolder)
 	}
 	else{
+		if(nodeText)
+			scene.remove(nodeText);
 		selectedTrigger = true;
 	}
 	} ); 

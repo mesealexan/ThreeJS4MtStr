@@ -1,29 +1,9 @@
-function drawTowerLines(){
-	var material = new THREE.LineBasicMaterial({color: 0x0000ff});
-	var geometry = new THREE.Geometry();
-
-	for(i=0;i<nodes.length;i++)
-		{
-
-		var posX = parseFloat(nodes[i].getAttribute("X"));
-		var posY = parseFloat(nodes[i].getAttribute("Y"));
-		var posZ = parseFloat(nodes[i].getAttribute("Z"));
-		geometry.vertices.push(new THREE.Vector3(posX, posY, posZ));
-		}
-
-	var line = new THREE.Line(geometry, material);
-
-    return (line);
-}
-
 function drawTower(obj){
 	for(j=0;j<members.length;j++)
 	{
 		var CrossSectionType = members[j].getAttribute("CrossSectionType");
 		var Shape = members[j].getAttribute("Shape");
-
 		var shapeSize = searchShapes(CrossSectionType, Shape);
-
 		var fromPoint = members[j].getAttribute("N_I");
 		var toPoint = members[j].getAttribute("N_J");
 		var vectorStart = searchNodes(fromPoint);
@@ -68,6 +48,7 @@ function drawLines(obj){
 	}
 }
 
+//Function used to get the shape that has this type and name
 function searchShapes(type, name){
 	if(type === 'Pipe')
 		type = 'PIPE'
@@ -89,11 +70,11 @@ function searchShapes(type, name){
 					C: parseFloat(shapes[i].getAttribute('C')),
 					A: parseFloat(shapes[i].getAttribute('A'))
 				}
-
 	}
 	return undefined
 }
 
+//Function used to get the Node that has this ID
 function searchNodes(ID){
 	for(i=0;i<nodes.length;i++)
 	{
@@ -103,75 +84,7 @@ function searchNodes(ID){
 	return undefined
 }
 
-
-
-function drawBar(shapeSize, D1, material,centerPivot){
-	var OD = shapeSize.OD*0.1
-	var t_nom = shapeSize.t*0.1
-
-	var shape = new THREE.Shape();
-	shape.absarc( 0, 0, OD, 0, Math.PI*2, true );
-
-	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, steps: 10, curveSegments:10} );
-	if(centerPivot)
-		THREE.GeometryUtils.center(geometry);
-	mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x333333, specular: 0xfefefe, shininess: 5}) );
-	mesh.dimensions = {};
-	mesh.dimensions.OD = OD;
-	mesh.dimensions.t_nom = t_nom;
-	mesh.dimensions.D1 = D1;
-	mesh.name = 'Pipe ' + shapeSize;
-	ray_objects.push(mesh);
-	mesh.matValue = material;
-	return(mesh)
-}
-function drawHHS_Rect2(shapeSize, D1, material,centerPivot){
-	var h = shapeSize.B *0.1;
-	var b = shapeSize.C *0.1;
-	var t_des = shapeSize.A;
-	var f1 = 0.01;
-
-	var shape = new THREE.Shape();
-	shape.moveTo(-b/2+f1,-h/2);
-	shape.lineTo(b/2-f1,-h/2);
-	shape.lineTo(b/2,-h/2+f1);
-	shape.lineTo(b/2,h/2-f1);
-	shape.lineTo(b/2-f1,h/2);
-	shape.lineTo(-b/2+f1,h/2);
-	shape.lineTo(-b/2,h/2-f1);
-	shape.lineTo(-b/2,-h/2+f1);
-	shape.lineTo(-b/2+f1,-h/2);
-
-	var hole = new THREE.Path();
-	hole.moveTo(-b/2+f1+t_des,-h/2+t_des);
-	hole.lineTo(b/2-f1-t_des,-h/2+t_des);
-	hole.lineTo(b/2-t_des,-h/2+f1+t_des);
-	hole.lineTo(b/2-t_des,h/2-f1-t_des);
-	hole.lineTo(b/2-f1-t_des,h/2-t_des);
-	hole.lineTo(-b/2+f1+t_des,h/2-t_des);
-	hole.lineTo(-b/2+t_des,h/2-f1-t_des);
-	hole.lineTo(-b/2+t_des,-h/2+f1+t_des);
-	hole.lineTo(-b/2+f1+t_des,-h/2+t_des);
-	shape.holes.push( hole );
-
-	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1} );
-	if(centerPivot)
-		THREE.GeometryUtils.center(geometry);
-	mesh = new THREE.Mesh( geometry,  new THREE.MeshPhongMaterial( { color: 0x666666, specular: 0xfefefe, shininess: 5}) );
-	mesh.dimensions = {};
-	mesh.dimensions.h = h;
-	mesh.dimensions.b = b;
-	mesh.dimensions.t_des = t_des;
-	mesh.dimensions.f1 = f1;
-	mesh.dimensions.D1 = D1;
-	mesh.name = 'HHS(Rect) ' + shapeSize;
-	ray_objects.push(mesh);
-	mesh.matValue = material;
-	return(mesh)
-}
-
 function addNodePoints(object){
-	//var sphereContainer = new THREE.Object3D();
 	for(i=0;i<nodes.length;i++){
 		var posX = parseFloat(nodes[i].getAttribute("X"));
 		var posY = parseFloat(nodes[i].getAttribute("Y"));
@@ -182,7 +95,7 @@ function addNodePoints(object){
 		ray_objects.push(sphere);
 		object.add(sphere);
 	}
-	//return sphereContainer;
+
 }
 
 function addNodesText(object){
@@ -197,12 +110,15 @@ function addNodesText(object){
 	}
 
 }
-function addSingleText(name){
+function addSingleText( name){
+	if(textHolder)
+		scene.remove(textHolder)
+
 	var positioning = searchNodes(name);
-	var textToDisplay = nodes[i].getAttribute("ID") + " (" + positioning.x + ", " + positioning.y + ", " + positioning.z + ") ";
-	var sprite = makeTextSprite(textToDisplay , { fontsize: 24 } );
-		sprite.position.set( positioning );
-		scene.add( sprite );
+	var textToDisplay = name + " (" + positioning.x + ", " + positioning.y + ", " + positioning.z + ") ";
+	textHolder = makeTextSprite(textToDisplay , { fontsize: 24 } );
+		textHolder.position.set( positioning.x, positioning.y, positioning.z );
+		scene.add( textHolder );
 }
 
 function makeTextSprite( message, parameters )
@@ -213,7 +129,7 @@ function makeTextSprite( message, parameters )
 		parameters["fontface"] : "Arial";
 	
 	var fontsize = parameters.hasOwnProperty("fontsize") ? 
-		parameters["fontsize"] : 18;
+		parameters["fontsize"] : 16;
 	
 	var borderThickness = parameters.hasOwnProperty("borderThickness") ? 
 		parameters["borderThickness"] : 4;

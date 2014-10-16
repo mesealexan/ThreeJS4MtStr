@@ -465,3 +465,106 @@ function drawUBolt(height, width, thickness, thread, leftNut, rightNut, NutOffse
 	mesh.matValue = material;
 	return(mesh)
 }
+
+function drawBar(shapeSize, D1, material,centerPivot){
+	var OD = shapeSize.OD*0.1
+	var t_nom = shapeSize.t*0.1
+
+	var shape = new THREE.Shape();
+	shape.absarc( 0, 0, OD, 0, Math.PI*2, true );
+	var material = new THREE.MeshPhongMaterial( { color: 0x616669, specular: 0xffffff, shininess: 30, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide } );
+	var material2 = new THREE.MeshPhongMaterial( { color: 0xCBE6F7, specular: 0xfffefe, shininess: 5 } );
+	var materials = [ material, material2 ];
+
+	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, steps: 25, curveSegments:25, material: 1,	extrudeMaterial : 0} );
+	if(centerPivot)
+		THREE.GeometryUtils.center(geometry);
+	mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ));
+	mesh.dimensions = {};
+	mesh.dimensions.OD = OD;
+	mesh.dimensions.t_nom = t_nom;
+	mesh.dimensions.D1 = D1;
+	mesh.name = 'Pipe ' + shapeSize;
+	ray_objects.push(mesh);
+	mesh.matValue = material;
+	return(mesh)
+}
+function drawHHS_Rect2(shapeSize, D1, material,centerPivot){
+	var h = shapeSize.B *0.1;
+	var b = shapeSize.C *0.1;
+	var t_des = shapeSize.A;
+	var f1 = 0.01;
+
+	var shape = new THREE.Shape();
+	shape.moveTo(-b/2+f1,-h/2);
+	shape.lineTo(b/2-f1,-h/2);
+	shape.lineTo(b/2,-h/2+f1);
+	shape.lineTo(b/2,h/2-f1);
+	shape.lineTo(b/2-f1,h/2);
+	shape.lineTo(-b/2+f1,h/2);
+	shape.lineTo(-b/2,h/2-f1);
+	shape.lineTo(-b/2,-h/2+f1);
+	shape.lineTo(-b/2+f1,-h/2);
+
+	var hole = new THREE.Path();
+	hole.moveTo(-b/2+f1+t_des,-h/2+t_des);
+	hole.lineTo(b/2-f1-t_des,-h/2+t_des);
+	hole.lineTo(b/2-t_des,-h/2+f1+t_des);
+	hole.lineTo(b/2-t_des,h/2-f1-t_des);
+	hole.lineTo(b/2-f1-t_des,h/2-t_des);
+	hole.lineTo(-b/2+f1+t_des,h/2-t_des);
+	hole.lineTo(-b/2+t_des,h/2-f1-t_des);
+	hole.lineTo(-b/2+t_des,-h/2+f1+t_des);
+	hole.lineTo(-b/2+f1+t_des,-h/2+t_des);
+	shape.holes.push( hole );
+
+	var material2 = new THREE.MeshPhongMaterial( { color: 0xCFE8E3, specular: 0xffffff, shininess: 30 } );
+	var material = new THREE.MeshPhongMaterial( { color: 0x343B39, specular: 0xfffefe, shininess: 30, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.33 , side:THREE.DoubleSide } );
+	var materials = [ material, material2 ];
+
+
+	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, material: 1,	extrudeMaterial : 0} );
+	if(centerPivot)
+		THREE.GeometryUtils.center(geometry);
+	mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+	mesh.dimensions = {};
+	mesh.dimensions.h = h;
+	mesh.dimensions.b = b;
+	mesh.dimensions.t_des = t_des;
+	mesh.dimensions.f1 = f1;
+	mesh.dimensions.D1 = D1;
+	mesh.name = 'HHS(Rect) ' + shapeSize;
+	ray_objects.push(mesh);
+	mesh.matValue = material;
+	return(mesh)
+}
+
+	//Reflection Cube
+function addReflectionEnvironment(){
+	var path = "art/2/";
+	var format = '.jpg';
+	var urls = [
+			path + 'px' + format, path + 'nx' + format,
+			path + 'py' + format, path + 'ny' + format,
+			path + 'pz' + format, path + 'nz' + format
+		];
+
+
+	
+	textureCube = THREE.ImageUtils.loadTextureCube( urls );
+	var material = new THREE.MeshBasicMaterial( { color: 0xff0000, envMap: textureCube } );
+	var refractionCube = new THREE.Texture( textureCube.image, new THREE.CubeRefractionMapping() );
+		refractionCube.format = THREE.RGBFormat;
+	var shader = THREE.ShaderLib[ "cube" ];
+		shader.uniforms[ "tCube" ].value = textureCube;
+	var material = new THREE.ShaderMaterial( {
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					depthWrite: false,
+					side: THREE.BackSide
+				} ),
+	mesh = new THREE.Mesh( new THREE.CubeGeometry( 900, 900, 900 ), material );
+	mesh.visible = false;
+	scene.add( mesh );
+}

@@ -17,16 +17,6 @@ var accuracy = 4;
 var axis;
 var world_text, local_text;
 
-//Sections properties (to be read from SQL)
-// var I_d = 23.6, I_bf = 7.01, I_T = 20.75, I_tw = 0.395, I_tf = 0.505, I_k1 = 1,I_height = 200;
-// var L_d = 5, L_b = 3.5, L_xbar = 0.854, L_ybar = 1.6, L_t = 0.375;
-// var Pipe_OD =2.25 , Pipe_tnom = 0.322;
-// var PipeS_OD =1 , PipeS_tnom = 0.322;
-// var UB_rad = 2.6, UB_thick = 0.2, UB_Length = 5.2;
-// var UB_Length = 7.6, UB_Width = 4.7, UB_thread = 2.75, UB_thick = 0.26;
-// var UBT2_Length = 6.6, UBT2_Width = 4.7, UBT2_thread = 3.2, UBT2_thick = 0.26;
-// var Nut_rad = UB_thick*1.72, Nut_thick = UB_thick*1;
-
 //Variables to get wolrd coordinates from world
 var parentName;
 var position = new THREE.Vector3();

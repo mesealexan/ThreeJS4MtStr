@@ -53,29 +53,24 @@ Z:</div>
 
 function loadXMLDoc(filename)
 {
-if (window.XMLHttpRequest)
-  {
-  xhttp=new XMLHttpRequest();
-  }
-else
-  {
-  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xhttp.open("GET",filename,false);
-xhttp.send();
+	if (window.XMLHttpRequest)
+	  xhttp=new XMLHttpRequest();
+	else
+	  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	xhttp.open("GET",filename,false);
+	xhttp.send();
 return xhttp.responseXML;
 }
 
-var xmlDoc = loadXMLDoc("xml/Tower_full.xml");
-var nodes = xmlDoc.getElementsByTagName("NODE");
-var members = xmlDoc.getElementsByTagName("MEMBER");
-var shapes = xmlDoc.getElementsByTagName("SHAPE");
+var xmlDoc = loadXMLDoc("xml/Tower_full.xml"); //Loads the XML document
+
+var nodes = xmlDoc.getElementsByTagName("NODE"); //stores all nodex
+var members = xmlDoc.getElementsByTagName("MEMBER"); //stores all members
+var shapes = xmlDoc.getElementsByTagName("SHAPE"); //stores all shapes
 
 
 function createText(){
 	var coordinatesWindow = open('coordinates.html','coordinatesWindow','');
-	//coordinatesWindow.document.bgColor='000000';
-	//coordinatesWindow.document.style.fontSize = '40px';
 	if(ray_objects)
 	for(i=0;i<ray_objects.length;i++){
 		var vector = new THREE.Vector3();
@@ -88,9 +83,13 @@ function createText(){
 		"   Z: " + (vector.getPositionFromMatrix( ray_objects[i].matrixWorld ).z).toFixed(accuracy) + "<br>" + "<br>" + "<br>")
 	}
 }
+//Helper objects for different parts
 var Tower = new THREE.Object3D();
 var nodeText = new THREE.Object3D();
 var lines = new THREE.Object3D();
+var textHolder = new THREE.Object3D();
+var nodePoints = new THREE.Object3D();
+
 init();
 
 function init()
@@ -116,17 +115,16 @@ function init()
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,116,0); 
 
-	Coordinates.drawGrid({size:1000,scale:0.05, orientation:"x"});
-
+	Coordinates.drawGrid({size:300,scale:0.1, orientation:"x"});
+	addReflectionEnvironment();
+	//Add the Tower and subcomponents
 	drawTower(Tower);
 	scene.add(Tower);
 
-	var nodePoints = new THREE.Object3D();
 	addNodePoints(nodePoints);
 	scene.add(nodePoints);
 
 	addNodesText(nodeText);
-	//scene.add(nodeText);
 
 	drawLines(lines);
 	scene.add(lines);
@@ -174,24 +172,40 @@ function onMouseDown( event_info )
 	var direction = mouse_vector.sub( camera.position ).normalize();
 	ray.set( camera.position, direction );
 	intersects = ray.intersectObjects(ray_objects, false );
-
 	if(intersects.length>0)
 	{
+		if(textHolder)
+			scene.remove(textHolder)
 		if ( intersects[ 0 ].object != Intersected )
 		{
 			if ( Intersected ) 
-				Intersected.material.color.setHex( Intersected.currentHex );
-
+			{
+				if(Intersected.material.materials)
+					Intersected.material.materials[0].color.setHex( Intersected.currentHex );
+				else
+					Intersected.material.color.setHex( Intersected.currentHex );
+			}
 
 		Intersected = intersects[ 0 ].object;
 		if(selectedTrigger === true && Intersected.name.charAt(0) === 'N')
-			{
-				addSingleText(Intersected.name)
-			}
-		Intersected.currentHex = Intersected.material.color.getHex();
-		Intersected.material.color.setHex( 0xff0000 );
-		console.log(Intersected)
-		parentName = Intersected.parent.parent.name;
+			addSingleText(Intersected.name)
+
+		if(Intersected.material.materials)
+		{
+			Intersected.currentHex = Intersected.material.materials[0].color.getHex();
+			Intersected.material.materials[0].color.setHex( 0xff0000 );
+		}
+		else
+		{
+			Intersected.currentHex = Intersected.material.color.getHex();
+			Intersected.material.color.setHex( 0xff0000 );
+		}
+		
+		if(Intersected.parent.parent)
+			parentName = Intersected.parent.parent.name;
+		else
+			parentName = "none"
+		
 		var vector = new THREE.Vector3();
 		axis.position.x = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).x;
 		axis.position.y = vector.getPositionFromMatrix( intersects[0].object.matrixWorld ).y;
