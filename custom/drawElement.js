@@ -476,7 +476,7 @@ function drawBar(shapeSize, D1, material,centerPivot){
 	var material2 = new THREE.MeshPhongMaterial( { color: 0xCBE6F7, specular: 0xfffefe, shininess: 5 } );
 	var materials = [ material, material2 ];
 
-	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, steps: 25, curveSegments:25, material: 1,	extrudeMaterial : 0} );
+	geometry = new THREE.ExtrudeGeometry( shape, {bevelEnabled: false, amount:D1, steps: 10, curveSegments:10, material: 1,	extrudeMaterial : 0} );
 	if(centerPivot)
 		THREE.GeometryUtils.center(geometry);
 	mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ));
